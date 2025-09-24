@@ -5,8 +5,8 @@ export const fetchVarietals = createAsyncThunk(
   "varietal/fetchVarietal",
   async (__, thunkApi) => {
     try {
-      const { data } = await api.get("/varietal");
-      return data.data.items;
+      const { data } = await api.get("/varietals");
+      return data.data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }

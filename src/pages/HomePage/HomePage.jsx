@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import WineList from "../../components/WineList/WineList";
+import WineList from "../../components/WinesList/WinesList";
 import { useEffect } from "react";
 import { fetchWines } from "../../redux/wines/operations";
 

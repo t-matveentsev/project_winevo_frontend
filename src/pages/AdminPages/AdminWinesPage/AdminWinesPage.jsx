@@ -1,4 +1,4 @@
-import WineList from "../../../components/WineList/WineList";
+import WineList from "../../../components/WinesList/WinesList";
 
 const AdminWinesPage = () => {
   return (
