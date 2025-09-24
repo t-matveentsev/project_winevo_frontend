@@ -1,17 +1,18 @@
+import { fetchWines } from "../../../redux/wines/operations";
 import { useDispatch } from "react-redux";
-import WineList from "../../components/WineList/WineList";
 import { useEffect } from "react";
-import { fetchWines } from "../../redux/wines/operations";
+import WineList from "../../../components/WineList/WineList";
 
-const HomePage = () => {
+const AdminPage = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchWines());
   }, [dispatch]);
   return (
     <div>
-      <WineList />
+      <WineList admin />
     </div>
   );
 };
-export default HomePage;
+
+export default AdminPage;

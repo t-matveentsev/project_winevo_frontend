@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { NavLink } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 
 import s from "./Header.module.css";
 
@@ -13,7 +13,7 @@ const Header = () => {
       <h2>Header</h2>
       <nav>
         <NavLink className={buildLinkClass} to="/">
-          Home
+          Home wine list
         </NavLink>
         <NavLink className={buildLinkClass} to="/about">
           About as
@@ -21,7 +21,14 @@ const Header = () => {
         <NavLink className={buildLinkClass} to="/wine">
           About wine
         </NavLink>
+        <NavLink className={buildLinkClass} to="/signup">
+          Sign up
+        </NavLink>
+        <NavLink className={buildLinkClass} to="/signin">
+          Sign in
+        </NavLink>
       </nav>
+      <Outlet />
     </header>
   );
 };
