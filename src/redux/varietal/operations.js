@@ -17,7 +17,7 @@ export const deleteVarietalById = createAsyncThunk(
   "varietal/deleteById",
   async (id, thunkApi) => {
     try {
-      await api.delete(`/varietal/${id}`);
+      await api.delete(`/varietals/${id}`);
       return id;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);

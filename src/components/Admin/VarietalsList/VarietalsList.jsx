@@ -15,7 +15,7 @@ const VarietalsList = () => {
     <div>
       <ul>
         {varietals.map((item) => (
-          <Varietal key={item.id} {...item} onDelete={handleDelete} />
+          <Varietal key={item._id} {...item} onDelete={handleDelete} />
         ))}
       </ul>
     </div>
