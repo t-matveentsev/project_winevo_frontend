@@ -10,8 +10,8 @@ const buildLinkClass = ({ isActive }) => {
 const AdminHeader = () => {
   return (
     <nav>
-      <NavLink className={buildLinkClass} to="/admin/wines">
-        Wines list
+      <NavLink className={buildLinkClass} to="/admin/home">
+        Home page
       </NavLink>
       <NavLink className={buildLinkClass} to="/admin/types">
         Types list

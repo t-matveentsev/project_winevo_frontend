@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
-import VarietalsList from "../../../components/Admin/VarietalsList/VarietalsList";
 import { useEffect } from "react";
-import { fetchVarietals } from "../../../redux/varietal/operations";
+import { fetchVarietals } from "../../redux/varietal/operations";
+import VarietalsList from "../../components/Admin/VarietalsList/VarietalsList";
 
 const AdminVarietalsPage = () => {
   const dispatch = useDispatch();

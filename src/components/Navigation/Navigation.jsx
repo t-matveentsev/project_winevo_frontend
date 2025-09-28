@@ -10,13 +10,13 @@ const buildLinkClass = ({ isActive }) => {
 const Navigation = () => {
   return (
     <nav>
-      <NavLink className={buildLinkClass} to="/">
+      <NavLink className={buildLinkClass} to="/home">
         Home wine list
       </NavLink>
-      <NavLink className={buildLinkClass} to="/about">
+      <NavLink className={buildLinkClass} to="/about-as">
         About as
       </NavLink>
-      <NavLink className={buildLinkClass} to="/wine">
+      <NavLink className={buildLinkClass} to="/about-wine">
         About wine
       </NavLink>
     </nav>

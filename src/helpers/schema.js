@@ -18,7 +18,7 @@ export const signinValidationSchema = Yup.object().shape({
 });
 
 export const signupValidationSchema = Yup.object().shape({
-  name: Yup.string()
+  username: Yup.string()
     .required("Field name is required")
     .matches(onlyLetters, "The name cannot contain numbers!")
     .min(3, "The name must be longer than 3 symbols!")
@@ -28,6 +28,9 @@ export const signupValidationSchema = Yup.object().shape({
     .email("Invalid email format")
     .required("Field email is required"),
   password: Yup.string()
-    .min(6, "Password must be at least 6 characters")
+    .min(8, "Password must be at least 8 characters")
     .required("Field password is required"),
+  confirmPassword: Yup.string()
+    .oneOf([Yup.ref("password"), null], "Passwords must match")
+    .required("Confirm password is required"),
 });

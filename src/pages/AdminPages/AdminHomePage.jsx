@@ -1,7 +1,7 @@
-import { fetchWines } from "../../../redux/wines/operations";
+import { fetchWines } from "../../redux/wines/operations";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import WineList from "../../../components/WinesList/WinesList";
+import WineList from "../../components/WinesList/WinesList";
 
 const AdminPage = () => {
   const dispatch = useDispatch();

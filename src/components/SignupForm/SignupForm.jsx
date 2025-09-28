@@ -10,56 +10,86 @@ const SignupForm = () => {
   const navigate = useNavigate();
 
   const initialValues = {
-    name: "",
+    username: "",
     email: "",
     password: "",
     confirmPassword: "",
   };
 
   const handleSubmit = (values, options) => {
-    try {
-      dispatch(signupThunk(values));
-    } catch (error) {
-      console.log(error);
-    } finally {
-      navigate("/");
-      options.resetForm();
-    }
+    const { username, email, password } = values;
+    dispatch(signupThunk({ username, email, password }))
+      .unwrap()
+      .then(() => {
+        navigate("/", { replace: true });
+        options.resetForm();
+      })
+      .catch(() =>
+        options.setFieldError("password", "invalid email or password")
+      )
+      .finally(() => options.setSubmitting(false));
   };
 
   return (
     <div>
       <Formik
         initialValues={initialValues}
-        onSubmit={handleSubmit}
         validationSchema={signupValidationSchema}
+        onSubmit={handleSubmit}
       >
-        <Form>
-          <label>
-            <span>Name:</span>
-            <Field name="name"></Field>
-            <ErrorMessage name="name" component="p" />
-          </label>
-          <label>
-            <span>Email:</span>
-            <Field name="email"></Field>
-            <ErrorMessage name="email" component="p" />
-          </label>
-          <label>
-            <span>Password:</span>
-            <Field name="password" type="password"></Field>
-            <ErrorMessage name="password" component="p" />
-          </label>
-          <label>
-            <span>Confirm password:</span>
-            <Field name="confirmPassword" type="password"></Field>
-            <ErrorMessage name="confirmPassword" component="p" />
-          </label>
-          <button type="submit">Register</button>
+        <Form
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "10px",
+            width: "300px",
+          }}
+        >
           <div>
-            <p>You already have account?</p>
-            <Link to="/login">Log In</Link>
+            <label htmlFor="username">Name:</label>
+            <Field type="text" name="username" id="username" />
+            <ErrorMessage
+              name="username"
+              component="div"
+              style={{ color: "red" }}
+            />
           </div>
+
+          <div>
+            <label htmlFor="email">Email:</label>
+            <Field type="email" name="email" id="email" />
+            <ErrorMessage
+              name="email"
+              component="div"
+              style={{ color: "red" }}
+            />
+          </div>
+
+          <div>
+            <label htmlFor="password">Password:</label>
+            <Field type="password" name="password" id="password" />
+            <ErrorMessage
+              name="password"
+              component="div"
+              style={{ color: "red" }}
+            />
+          </div>
+
+          <div>
+            <label htmlFor="confirmPassword">Confirm Password:</label>
+            <Field
+              type="password"
+              name="confirmPassword"
+              id="confirmPassword"
+            />
+            <ErrorMessage
+              name="confirmPassword"
+              component="div"
+              style={{ color: "red" }}
+            />
+          </div>
+
+          <button type="submit">Sign Up</button>
         </Form>
       </Formik>
     </div>

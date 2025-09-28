@@ -1,9 +1,9 @@
-import AdminSignin from "../../../components/Admin/AdminSignin/AdminSignin";
+import SigninForm from "../../components/SigninForm/SigninForm";
 
 const AdminSigninPage = () => {
   return (
     <div>
-      <AdminSignin />
+      <SigninForm admin />
     </div>
   );
 };
