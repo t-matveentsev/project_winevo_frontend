@@ -5,9 +5,11 @@ import { selectTypes } from "../../../redux/type/selectors";
 import { selectVarietals } from "../../../redux/varietal/selectors";
 import { createWineValidationSchema } from "../../../helpers/schema";
 import { createWine } from "../../../redux/wines/operations";
+import { useNavigate } from "react-router-dom";
 
 const AddWineForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const types = useSelector(selectTypes);
   const varietals = useSelector(selectVarietals);
@@ -50,10 +52,9 @@ const AddWineForm = () => {
 
     try {
       const response = await dispatch(createWine(formData)).unwrap();
-      console.log("Response:", response);
       actions.resetForm();
       setSelectedVarietals([]);
-      alert("Вино успішно додано!");
+      navigate(`/wine-details/${response._id}`);
     } catch (error) {
       console.log(error.message);
     }

@@ -13,6 +13,18 @@ export const fetchWines = createAsyncThunk(
   }
 );
 
+export const getWineById = createAsyncThunk(
+  "wines/getWineById",
+  async (id, thunkApi) => {
+    try {
+      const { data } = await api.get(`/wines/${id}`);
+      return data.data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const deleteWineById = createAsyncThunk(
   "wines/deleteById",
   async (id, thunkApi) => {

@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Wine = ({
   _id,
   type,
@@ -25,6 +27,7 @@ const Wine = ({
       <p>year: {year}</p>
       <p>description: {description}</p>
       {admin && <button onClick={() => onDelete(_id)}>delete</button>}
+      <Link to={`/wine-details/${_id}`}>See details</Link>
     </li>
   );
 };
