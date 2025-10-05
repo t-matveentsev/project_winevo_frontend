@@ -32,7 +32,7 @@ const SigninForm = ({ admin = false, main = false }) => {
   };
 
   if (isLoggedIn) {
-    return <Navigate to="/admin/home" replace state={{ from: location }} />;
+    return <Navigate to="/home" replace state={{ from: location }} />;
   }
 
   return (

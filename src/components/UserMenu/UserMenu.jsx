@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 const UserMenu = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const users = useSelector(selectUser);
+  const user = useSelector(selectUser);
 
   const handleLogOut = () => {
     dispatch(signoutThunk());
@@ -14,10 +14,10 @@ const UserMenu = () => {
   };
   return (
     <div>
-      <p>Welcome, {users.username}</p>
+      <p>Welcome, {user.username}</p>
       {/* <p>Status, {users.role}</p> */}
       <button type="button" onClick={handleLogOut}>
-        Logout
+        signout
       </button>
     </div>
   );

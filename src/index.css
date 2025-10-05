@@ -42,6 +42,7 @@ input {
 }
 button {
   font-family: inherit;
-  color: currentColor;
+  /* color: currentColor; */
+  color: black;
   cursor: pointer;
 }

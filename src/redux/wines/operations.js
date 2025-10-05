@@ -24,3 +24,20 @@ export const deleteWineById = createAsyncThunk(
     }
   }
 );
+
+export const createWine = createAsyncThunk(
+  "wines/createWine",
+  async (wine, thunkAPI) => {
+    try {
+      const response = await api.post("/wines", wine, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      return response.data.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue({
+        message: error.response?.data?.message || error.message,
+        status: error.response?.status,
+      });
+    }
+  }
+);

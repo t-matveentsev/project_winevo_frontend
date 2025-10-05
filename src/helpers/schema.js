@@ -1,6 +1,6 @@
 import * as Yup from "yup";
 
-const onlyLetters = /^[A-Za-zА-Яа-яЄєІіЇїҐґ-\s]+$/;
+const onlyLetters = /^[A-Za-zĄąĆćĘęŁłŃńÓóŚśŹźŻż\s-]+$/;
 const onlyEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 export const signinValidationSchema = Yup.object().shape({
@@ -33,4 +33,35 @@ export const signupValidationSchema = Yup.object().shape({
   confirmPassword: Yup.string()
     .oneOf([Yup.ref("password"), null], "Passwords must match")
     .required("Confirm password is required"),
+});
+
+export const signinAdminValidationSchema = Yup.object().shape({
+  email: Yup.string().required("Field name is required"),
+  password: Yup.string().required("Field name is required"),
+});
+
+export const createWineValidationSchema = Yup.object().shape({
+  thumb: Yup.mixed().test("fileSize", "File size is too large", (value) => {
+    return !value || (value && value.size <= 5 * 1024 * 1024); // 5MB limit
+  }),
+  title: Yup.string()
+    .min(4, "Must be at least 4 characters")
+    .max(40, "Must be 40 characters or less")
+    .required(),
+  type: Yup.string().required(),
+  country: Yup.string()
+    .min(4, "Must be at least 4 characters")
+    .max(15, "Must be 15 characters or less")
+    .required(),
+  region: Yup.string().required(),
+  winery: Yup.string().required(),
+  varietal: Yup.array()
+    .of(Yup.string().trim())
+    .min(1, "At least one varietal is required")
+    .required(),
+  year: Yup.string().min(4).max(4).required(),
+  description: Yup.string()
+    .min(30, "Must be at least 30 characters")
+    .max(500, "Must be 500 characters or less")
+    .required(),
 });
