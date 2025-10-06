@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import FavoriteButton from "../FavoriteButton/FavoriteButton";
 
-const Wine = ({
+const FavoriteWine = ({
   _id,
   type,
   title,
@@ -34,4 +34,4 @@ const Wine = ({
   );
 };
 
-export default Wine;
+export default FavoriteWine;

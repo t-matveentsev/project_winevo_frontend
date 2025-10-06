@@ -19,6 +19,7 @@ import AdminAddWinePage from "../pages/AdminPages/AdminAddWinePage";
 import AdminEditWinePage from "../pages/AdminPages/AdminEditWinePage";
 import AdminSigninPage from "../pages/AdminPages/AdminSigninPage";
 import WineViewPage from "../pages/WineViewPage/WineViewPage";
+import FavoritesPage from "../pages/FavoritesPage/FavoritesPage";
 
 export default function App() {
   const isRefreshing = useSelector(selectIsRefreshing);
@@ -32,6 +33,7 @@ export default function App() {
           <Route path="/about-as" element={<AboutAsPage />} />
           <Route path="/about-wine" element={<AboutWinePage />} />
           <Route path="/wine-details/:id" element={<WineViewPage />} />
+          <Route path="/my-favorites" element={<FavoritesPage />} />
         </Route>
 
         <Route element={<PrivateLayout />}>

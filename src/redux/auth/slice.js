@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
+  fetchFavorites,
   refreshThunk,
   signinThunk,
   signoutThunk,
@@ -76,7 +77,21 @@ const slice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
-      .addCase(signoutThunk.fulfilled, () => initialState);
+
+      .addCase(signoutThunk.fulfilled, () => initialState)
+
+      .addCase(fetchFavorites.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchFavorites.fulfilled, (state, action) => {
+        state.user.favorites = action.payload;
+        state.loading = false;
+      })
+      .addCase(fetchFavorites.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
   },
 });
 

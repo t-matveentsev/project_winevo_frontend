@@ -39,6 +39,18 @@ export const signinThunk = createAsyncThunk(
   }
 );
 
+export const fetchFavorites = createAsyncThunk(
+  "auth/fetchFavorites",
+  async (__, thunkAPI) => {
+    try {
+      const { data } = await api.get("/auth/favorites");
+      return data.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const refreshThunk = createAsyncThunk(
   "auth/refresh",
   async (_, thunkAPI) => {
