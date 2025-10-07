@@ -1,6 +1,9 @@
 import FavoriteWine from "../FavoriteWine/FavoriteWine";
 
 const FavoritesList = ({ favorites }) => {
+  if (!Array.isArray(favorites) || favorites.length === 0) {
+    return <p>...loading</p>;
+  }
   return (
     <div>
       <ul>

@@ -26,7 +26,7 @@ export const getWineById = createAsyncThunk(
 );
 
 export const deleteWineById = createAsyncThunk(
-  "wines/deleteById",
+  "wines/deleteWineById",
   async (id, thunkApi) => {
     try {
       await api.delete(`/wines/${id}`);

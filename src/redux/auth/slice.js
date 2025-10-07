@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
+  addFavoriteById,
+  deleteFavoriteById,
   fetchFavorites,
   refreshThunk,
   signinThunk,
@@ -13,6 +15,7 @@ const initialState = {
     email: "",
     role: "",
     favorites: [],
+    favoriteIds: [],
   },
   token: "",
   isLoggedIn: false,
@@ -48,6 +51,9 @@ const slice = createSlice({
         state.token = action.payload.token;
         state.isLoggedIn = true;
         state.loading = false;
+
+        const favorites = action.payload.user?.favorites || [];
+        state.user.favoriteIds = favorites.map(String);
       })
       .addCase(signinThunk.pending, (state) => {
         state.loading = true;
@@ -86,10 +92,36 @@ const slice = createSlice({
       })
       .addCase(fetchFavorites.fulfilled, (state, action) => {
         state.user.favorites = action.payload;
+        state.user.favoriteIds = action.payload.map((w) => w._id);
         state.loading = false;
       })
       .addCase(fetchFavorites.rejected, (state, action) => {
         state.loading = false;
+        state.error = action.payload;
+      })
+
+      .addCase(addFavoriteById.pending, (state) => {
+        state.error = null;
+      })
+      .addCase(addFavoriteById.fulfilled, (state, action) => {
+        const id = action.payload;
+        if (!state.user.favoriteIds.includes(id)) {
+          state.user.favoriteIds.push(id);
+        }
+      })
+      .addCase(addFavoriteById.rejected, (state, action) => {
+        state.error = action.payload;
+      })
+
+      .addCase(deleteFavoriteById.pending, (state) => {
+        state.error = null;
+      })
+      .addCase(deleteFavoriteById.fulfilled, (state, action) => {
+        const id = action.payload;
+        state.user.favoriteIds = state.user.favoriteIds.filter((x) => x !== id);
+        state.user.favorites = state.user.favorites.filter((w) => w._id !== id);
+      })
+      .addCase(deleteFavoriteById.rejected, (state, action) => {
         state.error = action.payload;
       });
   },

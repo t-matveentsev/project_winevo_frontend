@@ -9,10 +9,8 @@ const FavoritesPage = () => {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    if (!favorites.length) {
-      dispatch(fetchFavorites());
-    }
-  }, [dispatch, favorites.length]);
+    dispatch(fetchFavorites());
+  }, [dispatch]);
   return (
     <div>
       <FavoritesList favorites={favorites} />

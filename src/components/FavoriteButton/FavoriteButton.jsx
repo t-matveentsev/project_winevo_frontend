@@ -1,40 +1,51 @@
-// import { useDispatch, useSelector } from "react-redux";
-// import { addFavorite, removeFavorite } from "../../redux/favorites/operations";
-// import { makeSelectIsFavorite } from "../../redux/favorites/selectors";
-// import { useState } from "react";
+// src/components/FavoriteButton/FavoriteButton.jsx
+import { useDispatch, useSelector } from "react-redux";
+import { useMemo, useState } from "react";
+import {
+  addFavoriteById,
+  deleteFavoriteById,
+  fetchFavorites,
+} from "../../redux/auth/operations";
+import { selectFavoriteIds } from "../../redux/auth/selectors";
 
-// const FavoriteButton = ({ wineId }) => {
-//   const dispatch = useDispatch();
-//   const isFavorite = useSelector(makeSelectIsFavorite(wineId));
-//   const [pending, setPending] = useState(false);
+const FavoriteButton = ({ wineId, className = "" }) => {
+  const dispatch = useDispatch();
+  const favoriteIds = useSelector(selectFavoriteIds);
+  const [pending, setPending] = useState(false);
 
-//   const onToggle = async () => {
-//     if (pending) return;
-//     setPending(true);
-//     try {
-//       if (isFavorite) {
-//         await dispatch(removeFavorite(wineId)).unwrap();
-//       } else {
-//         await dispatch(addFavorite(wineId)).unwrap();
-//       }
-//     } catch (e) {
-//       console.error(e);
-//     } finally {
-//       setPending(false);
-//     }
-//   };
+  const isFavorite = useMemo(
+    () => favoriteIds.includes(wineId),
+    [favoriteIds, wineId]
+  );
 
-//   return (
-//     <button onClick={onToggle} disabled={pending}>
-//       {pending ? "..." : isFavorite ? "★ In favorites" : "☆ Add to favorites"}
-//     </button>
-//   );
-// };
+  const handleToggle = async () => {
+    if (!wineId || pending) return;
+    setPending(true);
+    try {
+      if (isFavorite) {
+        await dispatch(deleteFavoriteById(wineId)).unwrap();
+      } else {
+        await dispatch(addFavoriteById(wineId)).unwrap();
+        await dispatch(fetchFavorites()).unwrap();
+      }
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setPending(false);
+    }
+  };
 
-// export default FavoriteButton;
-
-const FavoriteButton = () => {
-  return <button>add to favorite</button>;
+  return (
+    <button
+      type="button"
+      onClick={handleToggle}
+      disabled={pending}
+      aria-pressed={isFavorite}
+      className={className}
+    >
+      {pending ? "..." : isFavorite ? "Remove favorite" : "Add favorite"}
+    </button>
+  );
 };
 
 export default FavoriteButton;

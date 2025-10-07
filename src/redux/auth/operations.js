@@ -51,6 +51,30 @@ export const fetchFavorites = createAsyncThunk(
   }
 );
 
+export const addFavoriteById = createAsyncThunk(
+  "auth/addFavoriteById",
+  async (id, thunkApi) => {
+    try {
+      await api.post(`/auth/favorites/${id}`);
+      return id;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const deleteFavoriteById = createAsyncThunk(
+  "auth/deleteFavoriteById",
+  async (id, thunkApi) => {
+    try {
+      await api.delete(`/auth/favorites/${id}`);
+      return id;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const refreshThunk = createAsyncThunk(
   "auth/refresh",
   async (_, thunkAPI) => {

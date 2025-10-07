@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import FavoriteButton from "../FavoriteButton/FavoriteButton";
 
 const WineDetails = ({ wine }) => {
   return (
@@ -30,6 +31,7 @@ const WineDetails = ({ wine }) => {
         <p>
           <strong>Description:</strong> {wine.description}
         </p>
+        <FavoriteButton wineId={wine._id} />
       </div>
     </div>
   );
