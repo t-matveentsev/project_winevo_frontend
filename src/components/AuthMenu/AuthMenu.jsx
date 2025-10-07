@@ -1,11 +1,5 @@
-import clsx from "clsx";
 import { NavLink } from "react-router-dom";
-
-import s from "./AuthMenu.module.css";
-
-const buildLinkClass = ({ isActive }) => {
-  return clsx(s.link, isActive && s.active);
-};
+import buildLinkClass from "../../services/buildLinkClass";
 
 const AuthMenu = () => {
   return (

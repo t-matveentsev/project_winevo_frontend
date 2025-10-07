@@ -46,3 +46,11 @@ button {
   color: black;
   cursor: pointer;
 }
+
+.link {
+  color: red;
+}
+
+.active {
+  color: green;
+}
