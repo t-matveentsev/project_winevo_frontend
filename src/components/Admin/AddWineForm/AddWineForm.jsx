@@ -54,7 +54,9 @@ const AddWineForm = () => {
       const response = await dispatch(createWine(formData)).unwrap();
       actions.resetForm();
       setSelectedVarietals([]);
-      navigate(`/wine-details/${response._id}`);
+      navigate(`/wine-details/${response._id}`, {
+        state: { admin: true, from: "/admin" },
+      });
     } catch (error) {
       console.log(error.message);
     }

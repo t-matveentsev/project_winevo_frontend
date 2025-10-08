@@ -1,11 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import FavoriteButton from "../FavoriteButton/FavoriteButton";
 
 const WineDetails = ({ wine }) => {
+  const location = useLocation();
+  const isAdmin = Boolean(location.state?.admin);
+  const backPath = location.state?.from || (isAdmin ? "/admin" : "/home");
+
   return (
     <div>
       <div>
-        <Link to="/home">Back to Home</Link>
+        <Link to={backPath}>Back to collection</Link>
       </div>
       <div>
         <h2>{wine.title}</h2>

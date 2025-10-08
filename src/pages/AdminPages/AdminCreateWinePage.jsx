@@ -4,7 +4,7 @@ import { fetchTypes } from "../../redux/type/operations";
 import { fetchVarietals } from "../../redux/varietal/operations";
 import { useDispatch } from "react-redux";
 
-const AdminAddWinePage = () => {
+const AdminCreateWinePage = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -19,4 +19,4 @@ const AdminAddWinePage = () => {
   );
 };
 
-export default AdminAddWinePage;
+export default AdminCreateWinePage;

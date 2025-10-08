@@ -15,7 +15,7 @@ import RequireAdmin from "./Layouts/RequireAdmin";
 import AdminHomePage from "../pages/AdminPages/AdminHomePage";
 import AdminTypesPage from "../pages/AdminPages/AdminTypesPage";
 import AdminVarietalsPage from "../pages/AdminPages/AdminVarietalsPage";
-import AdminAddWinePage from "../pages/AdminPages/AdminAddWinePage";
+import AdminCreateWinePage from "../pages/AdminPages/AdminCreateWinePage";
 import AdminEditWinePage from "../pages/AdminPages/AdminEditWinePage";
 import AdminSigninPage from "../pages/AdminPages/AdminSigninPage";
 import WineViewPage from "../pages/WineViewPage/WineViewPage";
@@ -49,7 +49,7 @@ export default function App() {
             <Route path="home" element={<AdminHomePage />} />
             <Route path="types" element={<AdminTypesPage />} />
             <Route path="varietals" element={<AdminVarietalsPage />} />
-            <Route path="create" element={<AdminAddWinePage />} />
+            <Route path="create" element={<AdminCreateWinePage />} />
             <Route path="edit/:id" element={<AdminEditWinePage />} />
           </Route>
         </Route>

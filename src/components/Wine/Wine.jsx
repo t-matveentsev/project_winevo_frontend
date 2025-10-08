@@ -14,6 +14,10 @@ const Wine = ({
   admin = false,
   onDelete,
 }) => {
+  const linkState = admin
+    ? { admin: true, from: "/admin/home" }
+    : { from: "/home" };
+
   return (
     <li>
       <p>title: {title}</p>
@@ -28,7 +32,9 @@ const Wine = ({
       <p>year: {year}</p>
       <p>description: {description}</p>
       {admin && <button onClick={() => onDelete(_id)}>delete</button>}
-      <Link to={`/wine-details/${_id}`}>See details</Link>
+      <Link to={`/wine-details/${_id}`} state={linkState}>
+        See details
+      </Link>
       <FavoriteButton wineId={_id} />
     </li>
   );
