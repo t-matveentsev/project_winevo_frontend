@@ -25,7 +25,6 @@ const Wine = ({
       <p>type: {type}</p>
       <p>region: {region}</p>
       <p>winery: {winery}</p>
-      {/* <p>{varietal}</p> */}
       <p>
         varietal: {Array.isArray(varietal) ? varietal.join(", ") : varietal}
       </p>

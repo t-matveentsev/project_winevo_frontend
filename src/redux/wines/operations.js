@@ -3,10 +3,11 @@ import { api } from "../../services/api";
 
 export const fetchWines = createAsyncThunk(
   "wines/fetchWines",
-  async (__, thunkApi) => {
+  async (params = {}, thunkApi) => {
     try {
-      const { data } = await api.get("/wines");
-      return data.data.items;
+      const { append, ...query } = params;
+      const { data } = await api.get("/wines", { params: query });
+      return { ...data.data, append: !!append };
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }
