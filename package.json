@@ -13,6 +13,7 @@
     "@reduxjs/toolkit": "^2.9.0",
     "axios": "^1.12.1",
     "clsx": "^2.1.1",
+    "embla-carousel-react": "^8.6.0",
     "formik": "^2.4.6",
     "normalize.css": "^8.0.1",
     "react": "^19.1.1",

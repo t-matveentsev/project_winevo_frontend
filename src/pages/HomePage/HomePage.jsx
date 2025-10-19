@@ -7,7 +7,7 @@ const HomePage = () => {
     <>
       <HeroVideo />
       <AboutUs />
-      <WineSlider />
+      <WineSlider baseQuery={{ sort: "-rating", limit: 12 }} />
     </>
   );
 };
