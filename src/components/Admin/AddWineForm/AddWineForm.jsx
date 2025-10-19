@@ -6,6 +6,7 @@ import { selectVarietals } from "../../../redux/varietal/selectors";
 import { createWineValidationSchema } from "../../../helpers/schema";
 import { createWine } from "../../../redux/wines/operations";
 import { useNavigate } from "react-router-dom";
+import { COUNTRIES } from "../../../constants/countries";
 
 const AddWineForm = () => {
   const dispatch = useDispatch();
@@ -129,11 +130,18 @@ const AddWineForm = () => {
             <div>
               <label htmlFor="country">Country</label>
               <Field
+                as="select"
                 id="country"
                 name="country"
-                type="text"
-                placeholder="Enter country"
-              />
+                autoComplete="country"
+              >
+                <option value="">Select a country</option>
+                {COUNTRIES.map((country) => (
+                  <option key={country} value={country}>
+                    {country}
+                  </option>
+                ))}
+              </Field>
               <ErrorMessage name="country" component="div" />
             </div>
 
@@ -145,6 +153,7 @@ const AddWineForm = () => {
                 name="region"
                 type="text"
                 placeholder="Enter region"
+                autoComplete="region"
               />
               <ErrorMessage name="region" component="div" />
             </div>

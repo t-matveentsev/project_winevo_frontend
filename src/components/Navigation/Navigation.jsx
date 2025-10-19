@@ -9,15 +9,18 @@ const buildLinkClass = ({ isActive }) => {
 
 const Navigation = () => {
   return (
-    <nav>
+    <nav className={s.navigation}>
       <NavLink className={buildLinkClass} to="/home">
-        Home wine list
+        Home
       </NavLink>
-      <NavLink className={buildLinkClass} to="/about-as">
-        About as
+      <NavLink className={buildLinkClass} to="/wine-collection">
+        Collection
       </NavLink>
-      <NavLink className={buildLinkClass} to="/about-wine">
-        About wine
+      <NavLink className={buildLinkClass} to="/wine-countries">
+        Wine countries
+      </NavLink>
+      <NavLink className={buildLinkClass} to="/grape-varieties">
+        Grape varieties
       </NavLink>
     </nav>
   );

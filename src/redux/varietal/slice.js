@@ -1,5 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { deleteVarietalById, fetchVarietals } from "./operations";
+import {
+  createVarietal,
+  deleteVarietalById,
+  fetchVarietals,
+} from "./operations";
 
 const initialState = {
   varietals: {
@@ -25,6 +29,7 @@ const slice = createSlice({
         state.varietals.loading = false;
         state.varietals.error = action.payload;
       })
+
       .addCase(deleteVarietalById.fulfilled, (state, action) => {
         state.varietals.items = state.varietals.items.filter(
           (varietal) => varietal._id !== action.payload
@@ -34,6 +39,18 @@ const slice = createSlice({
         state.varietals.loading = true;
       })
       .addCase(deleteVarietalById.rejected, (state, action) => {
+        state.varietals.loading = false;
+        state.varietals.error = action.payload;
+      })
+
+      .addCase(createVarietal.fulfilled, (state, action) => {
+        state.varietals.loading = false;
+        state.varietals.items.push(action.payload);
+      })
+      .addCase(createVarietal.pending, (state) => {
+        state.varietals.loading = true;
+      })
+      .addCase(createVarietal.rejected, (state, action) => {
         state.varietals.loading = false;
         state.varietals.error = action.payload;
       });

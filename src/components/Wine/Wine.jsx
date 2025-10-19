@@ -3,6 +3,7 @@ import FavoriteButton from "../FavoriteButton/FavoriteButton";
 
 const Wine = ({
   _id,
+  thumb,
   type,
   title,
   country,
@@ -20,6 +21,7 @@ const Wine = ({
 
   return (
     <li>
+      <img src={thumb} alt={title} />
       <p>title: {title}</p>
       <p>country: {country}</p>
       <p>type: {type}</p>

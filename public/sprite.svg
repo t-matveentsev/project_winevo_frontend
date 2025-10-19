@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+
+    <!-- down-arrow -->
+    <symbol id="down-arrow" viewBox="0 0 120 61">
+        <path d="M1.5 1 60 36l58.5-35" fill="none" stroke="currentColor" stroke-width="2" />
+        <path d="M1.5 26 60 59l58.5-33" fill="none" stroke="currentColor" stroke-width="2" />
+    </symbol>
+
+    <!-- logout-icon -->
+    <symbol id="logout-icon" viewBox="0 0 24 24">
+        <path d="m16 17 5-5-5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+        <path d="M21 12H9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" />
+    </symbol>
+
+</svg>

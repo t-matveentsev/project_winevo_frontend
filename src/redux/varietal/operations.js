@@ -13,6 +13,18 @@ export const fetchVarietals = createAsyncThunk(
   }
 );
 
+export const createVarietal = createAsyncThunk(
+  "varietal/createVarietal",
+  async (newVarietal, thunkApi) => {
+    try {
+      const { data } = await api.post(`/varietals`, newVarietal);
+      return data.data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const deleteVarietalById = createAsyncThunk(
   "varietal/deleteById",
   async (id, thunkApi) => {

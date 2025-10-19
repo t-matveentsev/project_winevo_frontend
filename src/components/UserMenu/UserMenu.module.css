@@ -1,0 +1,10 @@
+.UserMenuWrapper {
+  display: flex;
+  gap: 10px;
+}
+
+.logoutBtn {
+  color: #fff;
+  background-color: inherit;
+  border: none;
+}

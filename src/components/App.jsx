@@ -2,8 +2,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { Suspense } from "react";
 import HomePage from "../pages/HomePage/HomePage";
 import NotFoundPage from "../pages/NotFoundPage/NotFoundPage";
-import AboutAsPage from "../pages/AboutAsPage/AboutAsPage";
-import AboutWinePage from "../pages/AboutWinePage/AboutWinePage";
+import AboutWinePage from "../pages/WineCountriesPage/WineCountriesPage";
 import SigninPage from "../pages/SigninPage/SigninPage";
 import SignupPage from "../pages/SignupPage/SignupPage";
 import PublicLayout from "./Layouts/PublicLayout";
@@ -20,18 +19,22 @@ import AdminEditWinePage from "../pages/AdminPages/AdminEditWinePage";
 import AdminSigninPage from "../pages/AdminPages/AdminSigninPage";
 import WineViewPage from "../pages/WineViewPage/WineViewPage";
 import FavoritesPage from "../pages/FavoritesPage/FavoritesPage";
+import WineCountriesPage from "../pages/WineCountriesPage/WineCountriesPage";
+import WineVarietiesPage from "../pages/WineVarietiesPage/WineVarietiesPage";
+import WineCollectionPage from "../pages/WineCollectionPage/WineCollectionPage";
 
 export default function App() {
   const isRefreshing = useSelector(selectIsRefreshing);
 
   return isRefreshing ? null : (
     <Suspense fallback={<div>Loading...</div>}>
-      <Routes path="/">
+      {/* <Routes path="/">
         <Route element={<PublicLayout />}>
           <Route index element={<Navigate to="home" replace />} />
           <Route path="/home" element={<HomePage />} />
-          <Route path="/about-as" element={<AboutAsPage />} />
-          <Route path="/about-wine" element={<AboutWinePage />} />
+          <Route path="/wine-collection" element={<WineCollectionPage />} />
+          <Route path="/wine-countries" element={<WineCountriesPage />} />
+          <Route path="/grape-varieties" element={<WineVarietiesPage />} />
           <Route path="/wine-details/:id" element={<WineViewPage />} />
           <Route path="/my-favorites" element={<FavoritesPage />} />
         </Route>
@@ -44,6 +47,34 @@ export default function App() {
         <Route path="/admin/signin" element={<AdminSigninPage />} />
 
         <Route path="/admin" element={<RequireAdmin />}>
+          <Route element={<AdminLayout />}>
+            <Route index element={<Navigate to="home" replace />} />
+            <Route path="home" element={<AdminHomePage />} />
+            <Route path="types" element={<AdminTypesPage />} />
+            <Route path="varietals" element={<AdminVarietalsPage />} />
+            <Route path="create" element={<AdminCreateWinePage />} />
+            <Route path="edit/:id" element={<AdminEditWinePage />} />
+          </Route>
+        </Route> */}
+      <Routes>
+        <Route element={<PublicLayout />}>
+          <Route index element={<Navigate to="home" replace />} />
+          <Route path="home" element={<HomePage />} />
+          <Route path="wine-collection" element={<WineCollectionPage />} />
+          <Route path="wine-countries" element={<WineCountriesPage />} />
+          <Route path="grape-varieties" element={<WineVarietiesPage />} />
+          <Route path="wine-details/:id" element={<WineViewPage />} />
+          <Route path="my-favorites" element={<FavoritesPage />} />
+        </Route>
+
+        <Route element={<PrivateLayout />}>
+          <Route path="signin" element={<SigninPage />} />
+          <Route path="signup" element={<SignupPage />} />
+        </Route>
+
+        <Route path="admin/signin" element={<AdminSigninPage />} />
+
+        <Route path="admin" element={<RequireAdmin />}>
           <Route element={<AdminLayout />}>
             <Route index element={<Navigate to="home" replace />} />
             <Route path="home" element={<AdminHomePage />} />

@@ -1,12 +1,18 @@
-export const COUNTRIES = [
+const countriesList = [
+  "Poland",
+  "Hungary",
+  "Austria",
+  "Australia",
   "France",
   "Italy",
   "Spain",
   "United States",
-  "Australia",
   "Chile",
   "Argentina",
   "Germany",
   "Portugal",
   "New Zealand",
+  "China",
 ];
+
+export const COUNTRIES = countriesList.sort();

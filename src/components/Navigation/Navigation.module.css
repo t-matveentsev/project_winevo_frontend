@@ -1,7 +1,14 @@
 .link {
-  color: red;
+  color: #fff;
 }
 
 .active {
-  color: green;
+  color: #e1a957;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.navigation {
+  display: flex;
+  gap: 10px;
 }

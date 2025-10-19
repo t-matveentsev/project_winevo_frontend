@@ -1,15 +1,9 @@
-import { NavLink } from "react-router-dom";
-import buildLinkClass from "../../services/buildLinkClass";
+import { Link } from "react-router-dom";
 
 const AuthMenu = () => {
   return (
     <div>
-      <NavLink className={buildLinkClass} to="/signup">
-        Sign up
-      </NavLink>
-      <NavLink className={buildLinkClass} to="/signin">
-        Sign in
-      </NavLink>
+      <Link to="/signup">Sign up</Link>
     </div>
   );
 };

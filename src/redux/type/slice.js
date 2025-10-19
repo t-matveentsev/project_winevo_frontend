@@ -1,10 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { deleteTypeById, fetchTypes } from "./operations";
+import { createType, deleteTypeById, fetchTypes } from "./operations";
 
 const initialState = {
-  items: [],
-  loading: false,
-  error: null,
+  types: {
+    items: [],
+    loading: false,
+    error: null,
+  },
 };
 
 const slice = createSlice({
@@ -13,25 +15,40 @@ const slice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchTypes.fulfilled, (state, action) => {
-        state.items = action.payload;
-        state.loading = false;
+        state.types.items = action.payload;
+        state.types.loading = false;
       })
       .addCase(fetchTypes.pending, (state) => {
-        state.loading = true;
+        state.types.loading = true;
       })
       .addCase(fetchTypes.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
+        state.types.loading = false;
+        state.types.error = action.payload;
       })
+
       .addCase(deleteTypeById.fulfilled, (state, action) => {
-        state.items = state.items.filter((type) => type._id !== action.payload);
+        state.types.items = state.types.items.filter(
+          (type) => type._id !== action.payload
+        );
       })
       .addCase(deleteTypeById.pending, (state) => {
-        state.loading = true;
+        state.types.loading = true;
       })
       .addCase(deleteTypeById.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
+        state.types.loading = false;
+        state.types.error = action.payload;
+      })
+
+      .addCase(createType.fulfilled, (state, action) => {
+        state.types.loading = false;
+        state.types.items.push(action.payload);
+      })
+      .addCase(createType.pending, (state) => {
+        state.types.loading = true;
+      })
+      .addCase(createType.rejected, (state, action) => {
+        state.types.loading = false;
+        state.types.error = action.payload;
       });
   },
 });

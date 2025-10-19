@@ -13,6 +13,18 @@ export const fetchTypes = createAsyncThunk(
   }
 );
 
+export const createType = createAsyncThunk(
+  "Type/createType",
+  async (newType, thunkApi) => {
+    try {
+      const { data } = await api.post(`/types`, newType);
+      return data.data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const deleteTypeById = createAsyncThunk(
   "types/deleteById",
   async (id, thunkApi) => {
