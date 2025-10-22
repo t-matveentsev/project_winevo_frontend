@@ -5,6 +5,7 @@ import { selectWines, selectWinesMeta } from "../../redux/wines/selectors";
 import { fetchWines } from "../../redux/wines/operations";
 import Wine from "../Wine/wine"; // твоя картка вина
 import styles from "./WineSlider.module.css";
+import Container from "../Container/Container";
 
 const AUTOPLAY_MS = 3500;
 
@@ -66,42 +67,43 @@ const WineSlider = ({ baseQuery = {} }) => {
 
   return (
     <section className={styles.section} aria-label="Wine slider">
-      <div
-        className={styles.header}
-        onMouseEnter={stop}
-        onMouseLeave={start}
-        onFocus={stop}
-        onBlur={start}
-      >
-        <h2 className={styles.title}>Featured Wines</h2>
-        <div className={styles.controls}>
-          <button
-            className={styles.ctrl}
-            onClick={scrollPrev}
-            aria-label="Previous wine"
-          >
-            ‹
-          </button>
-          <button
-            className={styles.ctrl}
-            onClick={scrollNext}
-            aria-label="Next wine"
-          >
-            ›
-          </button>
+      <Container>
+        <div
+          className={styles.header}
+          onMouseEnter={stop}
+          onMouseLeave={start}
+          onFocus={stop}
+          onBlur={start}
+        >
+          <h2 className={styles.title}>Featured Wines</h2>
+          <div className={styles.controls}>
+            <button
+              className={styles.ctrl}
+              onClick={scrollPrev}
+              aria-label="Previous wine"
+            >
+              ‹
+            </button>
+            <button
+              className={styles.ctrl}
+              onClick={scrollNext}
+              aria-label="Next wine"
+            >
+              ›
+            </button>
+          </div>
         </div>
-      </div>
-
-      <div className={styles.embla} ref={emblaRef}>
-        <div className={styles.container}>
-          {wines.map((item) => (
-            <div className={styles.slide} key={item._id}>
-              {/* Твоя картка. Можеш додати проп admin, onDelete якщо треба */}
-              <Wine {...item} />
-            </div>
-          ))}
+        <div className={styles.embla} ref={emblaRef}>
+          <div className={styles.container}>
+            {wines.map((item) => (
+              <div className={styles.slide} key={item._id}>
+                {/* Твоя картка. Можеш додати проп admin, onDelete якщо треба */}
+                <Wine {...item} />
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 };

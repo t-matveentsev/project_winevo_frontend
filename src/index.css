@@ -1,5 +1,17 @@
 @import "modern-normalize/modern-normalize.css";
 
+:root {
+  /* base colors */
+  --color-bg: #121212;
+  --color-black: black;
+  --color-white: white;
+  --color-grape: #6f2da8;
+  --color-accent: #bfa76f;
+
+  /* for hover/active */
+  --color-accent-hover: #bfa76f;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -13,7 +25,7 @@ body {
   font-family: "GFS Didot", serif;
   font-weight: 400;
   font-style: normal;
-  background-color: black;
+  background-color: var(--color-bg);
   color: #ffffff;
 }
 main {
@@ -51,17 +63,6 @@ input {
 }
 button {
   font-family: inherit;
-  /* color: currentColor; */
   color: black;
   cursor: pointer;
-}
-
-.link {
-  color: #fff;
-}
-
-.active {
-  color: #e1a957;
-  text-decoration: underline;
-  text-underline-offset: 4px;
 }
