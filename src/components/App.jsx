@@ -20,49 +20,21 @@ import AdminSigninPage from "../pages/AdminPages/AdminSigninPage";
 import WineViewPage from "../pages/WineViewPage/WineViewPage";
 import FavoritesPage from "../pages/FavoritesPage/FavoritesPage";
 import WineCountriesPage from "../pages/WineCountriesPage/WineCountriesPage";
-import WineVarietiesPage from "../pages/WineVarietiesPage/WineVarietiesPage";
 import WineCollectionPage from "../pages/WineCollectionPage/WineCollectionPage";
+import WineVarietalsPage from "../pages/WineVarietalsPage/WineVarietalsPage";
 
 export default function App() {
   const isRefreshing = useSelector(selectIsRefreshing);
 
   return isRefreshing ? null : (
     <Suspense fallback={<div>Loading...</div>}>
-      {/* <Routes path="/">
-        <Route element={<PublicLayout />}>
-          <Route index element={<Navigate to="home" replace />} />
-          <Route path="/home" element={<HomePage />} />
-          <Route path="/wine-collection" element={<WineCollectionPage />} />
-          <Route path="/wine-countries" element={<WineCountriesPage />} />
-          <Route path="/grape-varieties" element={<WineVarietiesPage />} />
-          <Route path="/wine-details/:id" element={<WineViewPage />} />
-          <Route path="/my-favorites" element={<FavoritesPage />} />
-        </Route>
-
-        <Route element={<PrivateLayout />}>
-          <Route path="/signin" element={<SigninPage />} />
-          <Route path="/signup" element={<SignupPage />} />
-        </Route>
-
-        <Route path="/admin/signin" element={<AdminSigninPage />} />
-
-        <Route path="/admin" element={<RequireAdmin />}>
-          <Route element={<AdminLayout />}>
-            <Route index element={<Navigate to="home" replace />} />
-            <Route path="home" element={<AdminHomePage />} />
-            <Route path="types" element={<AdminTypesPage />} />
-            <Route path="varietals" element={<AdminVarietalsPage />} />
-            <Route path="create" element={<AdminCreateWinePage />} />
-            <Route path="edit/:id" element={<AdminEditWinePage />} />
-          </Route>
-        </Route> */}
       <Routes>
         <Route element={<PublicLayout />}>
           <Route index element={<Navigate to="home" replace />} />
           <Route path="home" element={<HomePage />} />
           <Route path="wine-collection" element={<WineCollectionPage />} />
           <Route path="wine-countries" element={<WineCountriesPage />} />
-          <Route path="grape-varieties" element={<WineVarietiesPage />} />
+          <Route path="grape-varieties" element={<WineVarietalsPage />} />
           <Route path="wine-details/:id" element={<WineViewPage />} />
           <Route path="my-favorites" element={<FavoritesPage />} />
         </Route>

@@ -1,3 +1,5 @@
+@import "modern-normalize/modern-normalize.css";
+
 html {
   scroll-behavior: smooth;
 }
@@ -17,6 +19,11 @@ body {
 main {
   flex-grow: 1;
 }
+
+section {
+  scroll-margin-top: 50px;
+}
+
 img {
   display: block;
 }

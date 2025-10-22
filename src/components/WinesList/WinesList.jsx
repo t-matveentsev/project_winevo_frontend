@@ -21,7 +21,7 @@ const WinesList = ({ admin = false, baseQuery = {} }) => {
   }
 
   return (
-    <div>
+    <section>
       <ul>
         {wines.map((item) => (
           <Wine
@@ -36,11 +36,11 @@ const WinesList = ({ admin = false, baseQuery = {} }) => {
       {hasNextPage && (
         <div style={{ marginTop: 16 }}>
           <button onClick={loadMore} disabled={loading}>
-            Show more
+            Show more wines
           </button>
         </div>
       )}
-    </div>
+    </section>
   );
 };
 

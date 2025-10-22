@@ -10,8 +10,7 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 
-.inner {
-  max-width: 1200px;
+.wrapper {
   margin: 15px auto;
   min-height: var(--header-h);
   display: flex;

@@ -62,6 +62,6 @@ export const createWineValidationSchema = Yup.object().shape({
   year: Yup.string().min(4).max(4).required(),
   description: Yup.string()
     .min(30, "Must be at least 30 characters")
-    .max(500, "Must be 500 characters or less")
+    .max(1000, "Must be 500 characters or less")
     .required(),
 });

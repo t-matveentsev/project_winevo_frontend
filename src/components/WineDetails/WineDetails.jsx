@@ -7,7 +7,7 @@ const WineDetails = ({ wine }) => {
   const backPath = location.state?.from || (isAdmin ? "/admin" : "/home");
 
   return (
-    <div>
+    <section>
       <div>
         <Link to={backPath}>Back to collection</Link>
       </div>
@@ -37,7 +37,7 @@ const WineDetails = ({ wine }) => {
         </p>
         <FavoriteButton wineId={wine._id} />
       </div>
-    </div>
+    </section>
   );
 };
 

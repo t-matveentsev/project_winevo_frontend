@@ -1,4 +1,3 @@
-// src/components/FavoriteButton/FavoriteButton.jsx
 import { useDispatch, useSelector } from "react-redux";
 import { useMemo, useState } from "react";
 import {
@@ -8,7 +7,9 @@ import {
 } from "../../redux/auth/operations";
 import { selectFavoriteIds } from "../../redux/auth/selectors";
 
-const FavoriteButton = ({ wineId, className = "" }) => {
+import s from "./FavoritesButton.module.css";
+
+const FavoriteButton = ({ wineId }) => {
   const dispatch = useDispatch();
   const favoriteIds = useSelector(selectFavoriteIds);
   const [pending, setPending] = useState(false);
@@ -36,15 +37,22 @@ const FavoriteButton = ({ wineId, className = "" }) => {
   };
 
   return (
-    <button
-      type="button"
-      onClick={handleToggle}
-      disabled={pending}
-      aria-pressed={isFavorite}
-      className={className}
-    >
-      {pending ? "..." : isFavorite ? "Remove favorite" : "Add favorite"}
-    </button>
+    <div>
+      <button
+        type="button"
+        onClick={handleToggle}
+        disabled={pending}
+        aria-pressed={isFavorite}
+        className={s.favoriteBtn}
+      >
+        <svg
+          className={`${s.cardGrapeIcon} ${isFavorite ? s.favorite : ""}`}
+          viewBox="0 0 24 24"
+        >
+          <use href="../../../public/sprite.svg#grape" />
+        </svg>
+      </button>
+    </div>
   );
 };
 

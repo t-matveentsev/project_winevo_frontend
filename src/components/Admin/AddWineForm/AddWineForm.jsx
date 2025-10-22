@@ -92,7 +92,7 @@ const AddWineForm = () => {
                 id="thumb"
                 name="thumb"
                 type="file"
-                accept="image/*"
+                accept="image/png, image/webp"
                 onChange={(event) =>
                   setFieldValue("thumb", event.currentTarget.files[0])
                 }
@@ -172,7 +172,7 @@ const AddWineForm = () => {
 
             {/* Varietal (Select with Add/Remove) */}
             <div>
-              <label htmlFor="varietal">Varietal</label>
+              <label htmlFor="varietal">Grape varieties</label>
               <div>
                 <Field
                   as="select"

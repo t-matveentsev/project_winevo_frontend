@@ -33,6 +33,7 @@ const WineSlider = ({ baseQuery = {} }) => {
     timerRef.current = setInterval(() => {
       if (emblaApi) emblaApi.scrollNext();
     }, AUTOPLAY_MS);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [emblaApi]);
   const stop = useCallback(() => {
     if (timerRef.current) clearInterval(timerRef.current);
