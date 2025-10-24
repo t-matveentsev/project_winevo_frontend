@@ -49,7 +49,7 @@ const FavoriteButton = ({ wineId }) => {
           className={`${s.cardGrapeIcon} ${isFavorite ? s.favorite : ""}`}
           viewBox="0 0 24 24"
         >
-          <use href="../../../public/sprite.svg#grape" />
+          <use href="sprite.svg#grape" />
         </svg>
       </button>
     </div>

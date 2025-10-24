@@ -1,11 +1,12 @@
-import React, { useCallback, useEffect, useRef } from "react";
+import { useEffect } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectWines, selectWinesMeta } from "../../redux/wines/selectors";
 import { fetchWines } from "../../redux/wines/operations";
-import Wine from "../Wine/wine"; // твоя картка вина
-import styles from "./WineSlider.module.css";
+import Wine from "../Wine/wine";
+import s from "./WineSlider.module.css";
 import Container from "../Container/Container";
+import useEmblaAutoplay from "../../hooks/useEmblaAutoplay";
 
 const AUTOPLAY_MS = 3500;
 
@@ -14,93 +15,83 @@ const WineSlider = ({ baseQuery = {} }) => {
   const wines = useSelector(selectWines);
   const { loading } = useSelector(selectWinesMeta);
 
-  // 1 слайд за раз, центр, петля
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
     align: "center",
   });
+  const { start, stop, scrollPrev, scrollNext } = useEmblaAutoplay(
+    emblaApi,
+    AUTOPLAY_MS
+  );
 
-  // Підтягнути дані, якщо порожньо
   useEffect(() => {
     if (!wines?.length) {
       dispatch(fetchWines({ ...baseQuery, page: 1, append: false }));
     }
   }, [dispatch, baseQuery, wines?.length]);
 
-  // Автоплей (простий таймер)
-  const timerRef = useRef(null);
-  const start = useCallback(() => {
-    stop();
-    timerRef.current = setInterval(() => {
-      if (emblaApi) emblaApi.scrollNext();
-    }, AUTOPLAY_MS);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [emblaApi]);
-  const stop = useCallback(() => {
-    if (timerRef.current) clearInterval(timerRef.current);
-    timerRef.current = null;
-  }, []);
-  useEffect(() => {
-    if (!emblaApi) return;
-    start();
-    // зупиняти на наведенні/фокусі
-    emblaApi.on("pointerDown", stop);
-    emblaApi.on("scroll", () => {}); // тримаємо посилання
-    return () => stop();
-  }, [emblaApi, start, stop]);
-
-  const scrollPrev = useCallback(
-    () => emblaApi && emblaApi.scrollPrev(),
-    [emblaApi]
-  );
-  const scrollNext = useCallback(
-    () => emblaApi && emblaApi.scrollNext(),
-    [emblaApi]
-  );
-
   if (loading && (!wines || wines.length === 0)) {
-    return <div className={styles.skeleton}>Loading…</div>;
+    return <div className={s.skeleton}>Loading…</div>;
   }
   if (!wines || wines.length === 0) {
-    return <p className={styles.empty}>Nothing found</p>;
+    return <p className={s.empty}>Nothing found</p>;
   }
 
   return (
-    <section className={styles.section} aria-label="Wine slider">
+    <section className={s.section} aria-label="Wine slider">
       <Container>
-        <div
-          className={styles.header}
-          onMouseEnter={stop}
-          onMouseLeave={start}
-          onFocus={stop}
-          onBlur={start}
-        >
-          <h2 className={styles.title}>Featured Wines</h2>
-          <div className={styles.controls}>
-            <button
-              className={styles.ctrl}
-              onClick={scrollPrev}
-              aria-label="Previous wine"
-            >
-              ‹
-            </button>
-            <button
-              className={styles.ctrl}
-              onClick={scrollNext}
-              aria-label="Next wine"
-            >
-              ›
-            </button>
+        <div className={s.wrapper}>
+          <div
+            className={s.header}
+            onMouseEnter={stop}
+            onMouseLeave={start}
+            onFocus={stop}
+            onBlur={start}
+          >
+            <h2 className={s.title}>Featured Wines</h2>
+            <div className={s.controls}>
+              <button
+                className={`${s.nav} ${s.prev}`}
+                onClick={scrollPrev}
+                aria-label="Previous slide"
+              >
+                <svg viewBox="0 0 24 24" className={s.icon}>
+                  <path
+                    d="M15 6l-6 6 6 6"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </button>
+              <button
+                className={`${s.nav} ${s.next}`}
+                onClick={scrollNext}
+                aria-label="Next slide"
+              >
+                <svg viewBox="0 0 24 24" className={s.icon}>
+                  <path
+                    d="M9 6l6 6-6 6"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </button>
+            </div>
           </div>
-        </div>
-        <div className={styles.embla} ref={emblaRef}>
-          <div className={styles.container}>
-            {wines.map((item) => (
-              <div className={styles.slide} key={item._id}>
-                {/* Твоя картка. Можеш додати проп admin, onDelete якщо треба */}
-                <Wine {...item} />
-              </div>
-            ))}
+          <div className={s.embla} ref={emblaRef}>
+            <div className={s.card}>
+              {wines.map((item) => (
+                <div className={s.slide} key={item._id}>
+                  <Wine {...item} />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </Container>

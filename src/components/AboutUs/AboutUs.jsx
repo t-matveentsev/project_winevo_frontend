@@ -13,7 +13,7 @@ const AboutUs = () => {
           <div>
             <img
               className={s.teamImg}
-              src="../../../public/photo/aboutUs_photo.JPG"
+              src="photo/about_us_photo.jpg"
               alt="team"
             />
           </div>

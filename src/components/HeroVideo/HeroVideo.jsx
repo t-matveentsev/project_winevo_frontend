@@ -10,7 +10,7 @@ const HeroVideo = () => {
         loop
         playsInline
         preload="metadata"
-        poster="../../../public/photo/hero_photo.png"
+        poster="photo/hero_photo.png"
       >
         <source src="/video/winery cut video.mp4" type="video/mp4" />
       </video>
@@ -22,7 +22,7 @@ const HeroVideo = () => {
           </h2>
           <a className={s.arrowLink} href="#about">
             <svg className={s.arrow}>
-              <use href="../../../public/sprite.svg#down-arrow" />
+              <use href="sprite.svg#down-arrow" />
             </svg>
           </a>
         </div>

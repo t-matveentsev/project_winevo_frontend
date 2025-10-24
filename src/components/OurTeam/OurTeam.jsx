@@ -1,4 +1,5 @@
 import Container from "../Container/Container";
+import PhotoSlider from "../PhotoSlider/PhotoSlider";
 import s from "./OurTeam.module.css";
 
 const OurTeam = () => {
@@ -8,7 +9,10 @@ const OurTeam = () => {
         <h2 className={s.title}>
           Our <span className={s.accent}>Team</span>
         </h2>
-        <div className={s.wrapper}></div>
+
+        <div className={s.wrapper}>
+          <PhotoSlider />
+        </div>
       </Container>
     </section>
   );
