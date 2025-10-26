@@ -38,7 +38,7 @@ const WineSlider = ({ baseQuery = {} }) => {
   }
 
   return (
-    <section className={s.section} aria-label="Wine slider">
+    <section className={s.section} aria-label="Wine slider" id="wine-slider">
       <Container>
         <div className={s.wrapper}>
           <div

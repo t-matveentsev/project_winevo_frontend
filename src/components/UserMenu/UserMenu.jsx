@@ -17,7 +17,10 @@ const UserMenu = () => {
   };
   return (
     <div className={s.UserMenuWrapper}>
-      <NavLink className={buildLinkClass} to={`/my-favorites`}>
+      <NavLink
+        className={({ isActive }) => buildLinkClass({ isActive })}
+        to={`/my-favorites`}
+      >
         My favorites
       </NavLink>
       <p>{capitalizeFirst(user.username)}</p>

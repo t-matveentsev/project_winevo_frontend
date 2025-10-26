@@ -7,4 +7,10 @@
   color: #fff;
   background-color: inherit;
   border: none;
+
+  transition: color 0.3s ease;
+}
+
+.logoutBtn:hover {
+  color: var(--color-accent-hover);
 }

@@ -1,0 +1,19 @@
+.section {
+  padding: 60px 0;
+  background-color: #fafafa;
+  text-align: center;
+}
+
+.address {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.mapWrapper {
+  position: relative;
+  width: 300px;
+  height: 250px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}

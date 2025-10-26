@@ -66,3 +66,33 @@ button {
   color: black;
   cursor: pointer;
 }
+
+footer {
+  background-position: center;
+  background-repeat: repeat;
+
+  min-width: 480;
+
+  background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.7),
+      rgba(0, 0, 0, 0.7)
+    ),
+    url(photo/footer_photo.png);
+}
+
+.link {
+  color: #fff;
+
+  transition: color 0.3s ease;
+}
+
+.link:hover {
+  color: var(--color-accent-hover);
+}
+
+.active {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}

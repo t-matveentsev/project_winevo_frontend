@@ -1,27 +1,29 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import { Suspense } from "react";
-import HomePage from "../pages/HomePage/HomePage";
-import NotFoundPage from "../pages/NotFoundPage/NotFoundPage";
-import AboutWinePage from "../pages/WineCountriesPage/WineCountriesPage";
-import SigninPage from "../pages/SigninPage/SigninPage";
-import SignupPage from "../pages/SignupPage/SignupPage";
+import HomePage from "./pages/HomePage/HomePage";
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
+import AboutWinePage from "./pages/WineCountriesPage/WineCountriesPage";
+import SigninPage from "./pages/SigninPage/SigninPage";
+import SignupPage from "./pages/SignupPage/SignupPage";
 import PublicLayout from "./Layouts/PublicLayout";
 import PrivateLayout from "./Layouts/PrivateLayout";
 import AdminLayout from "./Layouts/AdminLayout";
 import { useSelector } from "react-redux";
-import { selectIsRefreshing } from "../redux/auth/selectors";
+import { selectIsRefreshing } from "./redux/auth/selectors";
 import RequireAdmin from "./Layouts/RequireAdmin";
-import AdminHomePage from "../pages/AdminPages/AdminHomePage";
-import AdminTypesPage from "../pages/AdminPages/AdminTypesPage";
-import AdminVarietalsPage from "../pages/AdminPages/AdminVarietalsPage";
-import AdminCreateWinePage from "../pages/AdminPages/AdminCreateWinePage";
-import AdminEditWinePage from "../pages/AdminPages/AdminEditWinePage";
-import AdminSigninPage from "../pages/AdminPages/AdminSigninPage";
-import WineViewPage from "../pages/WineViewPage/WineViewPage";
-import FavoritesPage from "../pages/FavoritesPage/FavoritesPage";
-import WineCountriesPage from "../pages/WineCountriesPage/WineCountriesPage";
-import WineCollectionPage from "../pages/WineCollectionPage/WineCollectionPage";
-import WineVarietalsPage from "../pages/WineVarietalsPage/WineVarietalsPage";
+import AdminHomePage from "./pages/AdminPages/AdminHomePage";
+import AdminTypesPage from "./pages/AdminPages/AdminTypesPage";
+import AdminVarietalsPage from "./pages/AdminPages/AdminVarietalsPage";
+import AdminCreateWinePage from "./pages/AdminPages/AdminCreateWinePage";
+import AdminEditWinePage from "./pages/AdminPages/AdminEditWinePage";
+import AdminSigninPage from "./pages/AdminPages/AdminSigninPage";
+import WineViewPage from "./pages/WineViewPage/WineViewPage";
+import FavoritesPage from "./pages/FavoritesPage/FavoritesPage";
+import WineCountriesPage from "./pages/WineCountriesPage/WineCountriesPage";
+import WineCollectionPage from "./pages/WineCollectionPage/WineCollectionPage";
+import WineVarietalsPage from "./pages/WineVarietalsPage/WineVarietalsPage";
+import PrivacyPolicyPage from "./pages/LegalPages/Privacy";
+import PublicOfferPage from "./pages/LegalPages/PublicOfferPage";
 
 export default function App() {
   const isRefreshing = useSelector(selectIsRefreshing);
@@ -37,6 +39,8 @@ export default function App() {
           <Route path="grape-varieties" element={<WineVarietalsPage />} />
           <Route path="wine-details/:id" element={<WineViewPage />} />
           <Route path="my-favorites" element={<FavoritesPage />} />
+          <Route path="privacy-policy" element={<PrivacyPolicyPage />} />
+          <Route path="public-offer" element={<PublicOfferPage />} />
         </Route>
 
         <Route element={<PrivateLayout />}>

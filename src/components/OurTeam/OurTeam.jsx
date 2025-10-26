@@ -4,7 +4,7 @@ import s from "./OurTeam.module.css";
 
 const OurTeam = () => {
   return (
-    <section className={s.ourTeamSection}>
+    <section className={s.ourTeamSection} id="team">
       <Container>
         <h2 className={s.title}>
           Our <span className={s.accent}>Team</span>

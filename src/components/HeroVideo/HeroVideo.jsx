@@ -2,7 +2,7 @@ import s from "./HeroVideo.module.css";
 
 const HeroVideo = () => {
   return (
-    <section className={s.heroWrapper}>
+    <section className={s.heroWrapper} id="home">
       <video
         className={s.video}
         autoPlay

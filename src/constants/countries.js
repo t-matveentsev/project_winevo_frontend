@@ -146,7 +146,6 @@ export const PHOTOS = [
   "/photo/slider/slide1.jpeg",
   "/photo/slider/slide2.jpeg",
   "/photo/slider/slide3.jpeg",
-  "/photo/slider/slide4.jpeg",
   "/photo/slider/slide5.jpeg",
   "/photo/slider/slide6.jpeg",
   "/photo/slider/slide7.jpeg",

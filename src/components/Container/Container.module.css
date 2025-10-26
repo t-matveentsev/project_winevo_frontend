@@ -17,3 +17,10 @@
     padding: 0 108px;
   }
 }
+
+@media only screen and (min-width: 1440px) {
+  .container {
+    max-width: 1840px;
+    padding: 0 108px;
+  }
+}
