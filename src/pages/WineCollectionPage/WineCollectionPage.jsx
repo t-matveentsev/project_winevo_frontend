@@ -6,7 +6,6 @@ import Filters from "../../components/Filters/Filters";
 import WinesList from "../../components/WinesList/WinesList";
 
 import { fetchWines } from "../../redux/wines/operations";
-import s from "./WineCollectionPage.module.css";
 
 const WineCollectionPage = () => {
   const dispatch = useDispatch();
@@ -19,19 +18,11 @@ const WineCollectionPage = () => {
 
   const baseQuery = { ...filters, ...(query ? { query } : {}) };
   return (
-    <section className={s.collectionBackground}>
-      <Container>
-        <div className={s.wrapper}>
-          <h2>Wine collection </h2>
-          <p>Here you’ll find your wine. </p>
-          <div>
-            <SearchBox extraFilters={filters} onQueryChange={setQuery} />
-            <Filters onFiltersChange={setFilters} />
-            <WinesList baseQuery={baseQuery} />
-          </div>
-        </div>
-      </Container>
-    </section>
+    <>
+      <SearchBox extraFilters={filters} onQueryChange={setQuery} />
+      <Filters onFiltersChange={setFilters} />
+      <WinesList baseQuery={baseQuery} />
+    </>
   );
 };
 

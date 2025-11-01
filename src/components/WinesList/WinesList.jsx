@@ -2,6 +2,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectWines, selectWinesMeta } from "../../redux/wines/selectors";
 import Wine from "../Wine/wine";
 import { deleteWineById, fetchWines } from "../../redux/wines/operations";
+import Container from "../Container/Container";
+
+import s from "./WineList.module.css";
 
 const WinesList = ({ admin = false, baseQuery = {} }) => {
   const dispatch = useDispatch();
@@ -21,25 +24,27 @@ const WinesList = ({ admin = false, baseQuery = {} }) => {
   }
 
   return (
-    <section>
-      <ul>
-        {wines.map((item) => (
-          <Wine
-            key={item._id}
-            {...item}
-            admin={admin}
-            onDelete={handleDelete}
-          />
-        ))}
-      </ul>
+    <section className={s.wrapper}>
+      <Container>
+        <ul>
+          {wines.map((item) => (
+            <Wine
+              key={item._id}
+              {...item}
+              admin={admin}
+              onDelete={handleDelete}
+            />
+          ))}
+        </ul>
 
-      {hasNextPage && (
-        <div style={{ marginTop: 16 }}>
-          <button onClick={loadMore} disabled={loading}>
-            Show more wines
-          </button>
-        </div>
-      )}
+        {hasNextPage && (
+          <div style={{ marginTop: 16 }}>
+            <button onClick={loadMore} disabled={loading}>
+              Show more wines
+            </button>
+          </div>
+        )}
+      </Container>
     </section>
   );
 };

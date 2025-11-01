@@ -14,7 +14,7 @@ const PhotoSlider = () => {
 
   return (
     <div className={s.root}>
-      <div className={s.text}>
+      <div className={s.text} className="visually-hidden">
         <p>
           Of course, it's not just about wine, but work, our team works side by
           side every day at work to give each of our guests in the restaurant a

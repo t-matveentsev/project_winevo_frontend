@@ -11,8 +11,7 @@
 }
 
 .wrapper {
-  margin: 15px auto;
-  min-height: var(--header-h);
+  margin: 8px auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -21,10 +20,29 @@
 }
 
 .brand {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 28px;
+  font-size: 20px;
   font-weight: 600;
   letter-spacing: 0.1em;
+}
+
+@media (max-width: 1279px) {
+  .authMenu {
+    display: none;
+  }
+}
+
+@media (min-width: 1279px) {
+  .wrapper {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    margin: 15px auto;
+  }
+  .brand {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+  }
 }

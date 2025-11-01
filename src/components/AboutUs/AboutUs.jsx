@@ -4,7 +4,11 @@ import s from "./AboutUs.module.css";
 
 const AboutUs = () => {
   return (
-    <section className={s.aboutUsSection} id="about">
+    <section
+      className={s.aboutUsSection}
+      className="visually-hidden"
+      id="about"
+    >
       <Container>
         <h2 className={s.title}>
           About <span className={s.accent}>us</span>

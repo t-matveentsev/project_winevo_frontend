@@ -6,6 +6,9 @@ import { fetchWines } from "../../redux/wines/operations";
 import { COUNTRIES } from "../../constants/countries";
 import { fetchVarietals } from "../../redux/varietal/operations";
 import { fetchTypes } from "../../redux/type/operations";
+import Container from "../Container/Container";
+
+import s from "./Filters.module.css";
 
 const Filters = ({ onFiltersChange }) => {
   const dispatch = useDispatch();
@@ -42,57 +45,59 @@ const Filters = ({ onFiltersChange }) => {
   };
 
   return (
-    <div>
-      <select
-        id="country"
-        name="country"
-        value={country}
-        autoComplete="country"
-        onChange={(e) => setCountry(e.target.value)}
-      >
-        <option value="">Country</option>
-        {COUNTRIES.map((item) => (
-          <option key={item} value={item}>
-            {item}
-          </option>
-        ))}
-      </select>
+    <section className={s.wrapper}>
+      <Container>
+        <select
+          id="country"
+          name="country"
+          value={country}
+          autoComplete="country"
+          onChange={(e) => setCountry(e.target.value)}
+        >
+          <option value="">Country</option>
+          {COUNTRIES.map((item) => (
+            <option key={item} value={item}>
+              {item}
+            </option>
+          ))}
+        </select>
 
-      <select
-        id="type"
-        name="type"
-        value={type}
-        onChange={(e) => setType(e.target.value)}
-      >
-        <option value="">Type</option>
-        {types.map(({ _id, type }) => (
-          <option key={_id} value={_id}>
-            {type}
-          </option>
-        ))}
-      </select>
+        <select
+          id="type"
+          name="type"
+          value={type}
+          onChange={(e) => setType(e.target.value)}
+        >
+          <option value="">Type</option>
+          {types.map(({ _id, type }) => (
+            <option key={_id} value={_id}>
+              {type}
+            </option>
+          ))}
+        </select>
 
-      <select
-        id="varietal"
-        name="varietal"
-        value={varietal}
-        onChange={(e) => setVarietal(e.target.value)}
-      >
-        <option value="">Varietal</option>
-        {varietals.map(({ _id, varietal }) => (
-          <option key={_id} value={_id}>
-            {varietal}
-          </option>
-        ))}
-      </select>
+        <select
+          id="varietal"
+          name="varietal"
+          value={varietal}
+          onChange={(e) => setVarietal(e.target.value)}
+        >
+          <option value="">Varietal</option>
+          {varietals.map(({ _id, varietal }) => (
+            <option key={_id} value={_id}>
+              {varietal}
+            </option>
+          ))}
+        </select>
 
-      <div>
-        <button onClick={apply}>Search</button>
-        <button onClick={reset} type="button">
-          Reset
-        </button>
-      </div>
-    </div>
+        <div>
+          <button onClick={apply}>Search</button>
+          <button onClick={reset} type="button">
+            Reset
+          </button>
+        </div>
+      </Container>
+    </section>
   );
 };
 

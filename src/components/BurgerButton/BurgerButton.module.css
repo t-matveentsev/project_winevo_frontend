@@ -1,0 +1,57 @@
+.button {
+  z-index: 10;
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 12px;
+  background: inherit;
+}
+
+.button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.icon {
+  display: block;
+}
+
+.line {
+  stroke: var(--color-white);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  transform-origin: 50% 50%;
+  transition: transform 250ms ease, opacity 250ms ease, stroke 250ms ease;
+}
+
+/* Closed */
+.top {
+  transform: translateY(-3px);
+}
+.bottom {
+  transform: translateY(3px);
+}
+
+/* Hover */
+.button:hover .line {
+  stroke: var(--color-accent);
+}
+
+/* Open */
+.open .top {
+  transform: rotate(45deg) translateY(5px);
+}
+.open .bottom {
+  transform: rotate(-45deg) translateY(-5px);
+}
+.open .middle {
+  opacity: 0;
+}
+
+@media (min-width: 1280px) {
+  .button {
+    display: none;
+  }
+}

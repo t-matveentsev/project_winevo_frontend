@@ -7,7 +7,7 @@ const Footer = () => {
     <footer className={s.background}>
       <Container>
         <div className={s.wrapper}>
-          <div className={s.bottomWrapper}>
+          <div className={s.contactsWrapper}>
             <div className={s.countryWrapper}>
               <p className={s.brand}>WINEVO</p>
               <p className={s.country}>
@@ -23,6 +23,7 @@ const Footer = () => {
                 Out of love for wine and coding
                 <br /> project realized by:
                 <a
+                  className={s.accent}
                   href="https://www.linkedin.com/in/artem-matvieientsev-a5a6862a1/"
                   target="_blank"
                 >
@@ -33,7 +34,7 @@ const Footer = () => {
             </div>
             <div className={s.socialWrapper}>
               <address className={s.contact}>
-                <ul>
+                <ul className={s.contactList}>
                   <li>
                     <a href="mailto:tmatveentsev@gmail.com">
                       tmatveentsev@gmail.com
@@ -62,7 +63,7 @@ const Footer = () => {
               <nav className={s.nav}>
                 <ul>
                   <li>
-                    <a href="#home">HOME</a>
+                    <NavLink to="/home">HOME</NavLink>
                   </li>
                   <li>
                     <a href="#about">ABOUT US</a>

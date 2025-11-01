@@ -11,14 +11,20 @@
   }
 }
 
+@media only screen and (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
+    padding: 0 108px;
+  }
+}
+
 @media only screen and (min-width: 1440px) {
   .container {
     max-width: 1440px;
     padding: 0 108px;
   }
 }
-
-@media only screen and (min-width: 1440px) {
+@media only screen and (min-width: 1840px) {
   .container {
     max-width: 1840px;
     padding: 0 108px;

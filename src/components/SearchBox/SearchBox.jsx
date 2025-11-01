@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { fetchWines } from "../../redux/wines/operations";
+import Container from "../Container/Container";
+
+import s from "./SearchBox.module.css";
 
 const SearchBox = ({ extraFilters = {}, onQueryChange }) => {
   const dispatch = useDispatch();
@@ -11,20 +14,24 @@ const SearchBox = ({ extraFilters = {}, onQueryChange }) => {
       const query = value.trim();
       onQueryChange?.(query);
       dispatch(fetchWines({ ...extraFilters, query, page: 1 }));
-    }, 1000);
+    }, 700);
     return () => clearTimeout(id);
   }, [value, dispatch, extraFilters, onQueryChange]);
 
   return (
-    <div>
-      <input
-        name="search"
-        type="text"
-        placeholder="Enter search query"
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-      />
-    </div>
+    <section className={s.wrapper}>
+      <Container>
+        <h2>Wine Collection</h2>
+        <p>Here you’ll find your wine. </p>
+        <input
+          name="search"
+          type="text"
+          placeholder="Enter search query"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+        />
+      </Container>
+    </section>
   );
 };
 
