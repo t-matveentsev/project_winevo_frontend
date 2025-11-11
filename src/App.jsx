@@ -24,6 +24,7 @@ import WineCollectionPage from "./pages/WineCollectionPage/WineCollectionPage";
 import WineVarietalsPage from "./pages/WineVarietalsPage/WineVarietalsPage";
 import PrivacyPolicyPage from "./pages/LegalPages/Privacy";
 import PublicOfferPage from "./pages/LegalPages/PublicOfferPage";
+import OauthGoogleCallback from "./pages/OauthGoogleCallback/OauthGoogleCallback";
 
 export default function App() {
   const isRefreshing = useSelector(selectIsRefreshing);
@@ -41,6 +42,10 @@ export default function App() {
           <Route path="my-favorites" element={<FavoritesPage />} />
           <Route path="privacy-policy" element={<PrivacyPolicyPage />} />
           <Route path="public-offer" element={<PublicOfferPage />} />
+          <Route
+            path="/auth/auth-with-google"
+            element={<OauthGoogleCallback />}
+          />
         </Route>
 
         <Route element={<PrivateLayout />}>

@@ -7,23 +7,15 @@ const AUTOPLAY_MS = 3000;
 
 const PhotoSlider = () => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "start" });
-  const { start, stop, selectedIndex, scrollPrev, scrollNext, scrollTo } =
-    useEmblaAutoplay(emblaApi, AUTOPLAY_MS);
+  const { start, stop, scrollPrev, scrollNext } = useEmblaAutoplay(
+    emblaApi,
+    AUTOPLAY_MS
+  );
 
   if (!PHOTOS.length) return null;
 
   return (
     <div className={s.root}>
-      <div className={s.text} className="visually-hidden">
-        <p>
-          Of course, it's not just about wine, but work, our team works side by
-          side every day at work to give each of our guests in the restaurant a
-          truly unforgettable experience. Yes, exactly the guests, have you ever
-          wondered why we call you guests?! How could you have guessed, because
-          we are a small family that welcomes you to our home!
-        </p>
-      </div>
-
       <div
         className={s.wrap}
         onMouseEnter={stop}
@@ -80,17 +72,6 @@ const PhotoSlider = () => {
             />
           </svg>
         </button>
-      </div>
-
-      <div className={s.dots}>
-        {PHOTOS.map((_, i) => (
-          <button
-            key={i}
-            aria-label={`Go to slide ${i + 1}`}
-            className={`${s.dot} ${i === selectedIndex ? s.dotActive : ""}`}
-            onClick={() => scrollTo(i)}
-          />
-        ))}
       </div>
     </div>
   );

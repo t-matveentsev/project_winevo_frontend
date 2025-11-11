@@ -5,6 +5,7 @@ import {
   fetchFavorites,
   refreshThunk,
   signinThunk,
+  signinWithGoogleThunk,
   signoutThunk,
   signupThunk,
 } from "./operations";
@@ -123,6 +124,11 @@ const slice = createSlice({
       })
       .addCase(deleteFavoriteById.rejected, (state, action) => {
         state.error = action.payload;
+      })
+      .addCase(signinWithGoogleThunk.fulfilled, (state, action) => {
+        state.isLoggedIn = true;
+        state.accessToken = action.payload?.accessToken ?? null;
+        console.log(state.accessToken);
       });
   },
 });

@@ -1,0 +1,12 @@
+.wrapper {
+  padding-bottom: 50px;
+}
+
+.wineList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}

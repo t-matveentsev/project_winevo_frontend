@@ -7,6 +7,7 @@ import { createWineValidationSchema } from "../../../helpers/schema";
 import { createWine } from "../../../redux/wines/operations";
 import { useNavigate } from "react-router-dom";
 import { COUNTRIES } from "../../../constants/countries";
+import ImageEditorModal from "../../ImageEditorModal/ImageEditorModal";
 
 const AddWineForm = () => {
   const dispatch = useDispatch();
@@ -35,6 +36,22 @@ const AddWineForm = () => {
     setFieldValue("varietal", updatedVarietals);
   };
 
+  const [rawPreview, setRawPreview] = useState(null); // URL оригіналу
+  const [finalPreview, setFinalPreview] = useState(null); // URL після кропу
+  const [editorOpen, setEditorOpen] = useState(false);
+
+  const onFilePicked = (e, setFieldValue) => {
+    const file = e.currentTarget.files?.[0];
+    if (!file) return;
+
+    const url = URL.createObjectURL(file);
+    setRawPreview(url);
+    setEditorOpen(true);
+
+    // тимчасово очищаємо thumb, встановимо після кропу
+    setFieldValue("thumb", "");
+  };
+
   const handleSubmit = async (values, actions) => {
     const formData = new FormData();
     if (values.thumb) {
@@ -51,6 +68,16 @@ const AddWineForm = () => {
     formData.append("year", values.year);
     formData.append("description", values.description);
 
+    // try {
+    //   const response = await dispatch(createWine(formData)).unwrap();
+    //   actions.resetForm();
+    //   setSelectedVarietals([]);
+    //   navigate(`/wine-details/${response._id}`, {
+    //     state: { admin: true, from: "/admin" },
+    //   });
+    // } catch (error) {
+    //   console.log(error.message);
+    // }
     try {
       const response = await dispatch(createWine(formData)).unwrap();
       actions.resetForm();
@@ -58,8 +85,8 @@ const AddWineForm = () => {
       navigate(`/wine-details/${response._id}`, {
         state: { admin: true, from: "/admin" },
       });
-    } catch (error) {
-      console.log(error.message);
+    } catch (e) {
+      console.log(e.message);
     }
   };
 
@@ -86,7 +113,7 @@ const AddWineForm = () => {
         {({ setFieldValue }) => (
           <Form>
             {/* Thumb (File Input) */}
-            <div>
+            {/* <div>
               <label htmlFor="thumb">Wine Image</label>
               <input
                 id="thumb"
@@ -97,6 +124,44 @@ const AddWineForm = () => {
                   setFieldValue("thumb", event.currentTarget.files[0])
                 }
               />
+              <ErrorMessage name="thumb" component="div" />
+            </div> */}
+            <div>
+              <label htmlFor="thumb">Wine Image</label>
+              <input
+                id="thumb"
+                name="thumb"
+                type="file"
+                accept="image/*"
+                onChange={(e) => onFilePicked(e, setFieldValue)}
+              />
+              {/* прев’ю */}
+              {finalPreview ? (
+                <img
+                  src={finalPreview}
+                  alt="Preview"
+                  style={{
+                    width: 160,
+                    height: 160,
+                    objectFit: "cover",
+                    borderRadius: 12,
+                    marginTop: 8,
+                  }}
+                />
+              ) : rawPreview ? (
+                <img
+                  src={rawPreview}
+                  alt="Preview"
+                  style={{
+                    width: 160,
+                    height: 160,
+                    objectFit: "cover",
+                    borderRadius: 12,
+                    marginTop: 8,
+                    opacity: 0.6,
+                  }}
+                />
+              ) : null}
               <ErrorMessage name="thumb" component="div" />
             </div>
 
@@ -253,6 +318,20 @@ const AddWineForm = () => {
               <ErrorMessage name="description" component="div" />
             </div>
             <button type="submit">create wine</button>
+
+            {/* модалка-редактор */}
+            {editorOpen && (
+              <ImageEditorModal
+                src={rawPreview}
+                aspect={1}
+                onCancel={() => setEditorOpen(false)}
+                onApply={({ file, previewUrl }) => {
+                  setFieldValue("thumb", file); // <<< ВАЖЛИВО: кладемо файл у Formik
+                  setFinalPreview(previewUrl);
+                  setEditorOpen(false);
+                }}
+              />
+            )}
           </Form>
         )}
       </Formik>

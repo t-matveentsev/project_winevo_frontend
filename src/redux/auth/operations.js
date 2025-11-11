@@ -105,3 +105,37 @@ export const signoutThunk = createAsyncThunk(
     }
   }
 );
+
+export const getGoogleOAuthLinkThunk = createAsyncThunk(
+  "auth/google/getLink",
+  async (_, { rejectWithValue }) => {
+    try {
+      const { data } = await api.post("/auth/get-google-oauth-link");
+      // бекенд повертає { status, message, data: { link } }
+      console.log(data.data.link);
+      return data.data.link;
+    } catch (err) {
+      return rejectWithValue(
+        err?.response?.data?.message || "Failed to get Google OAuth link"
+      );
+    }
+  }
+);
+
+export const signinWithGoogleThunk = createAsyncThunk(
+  "auth/google/signin",
+  async ({ code }, { rejectWithValue }) => {
+    try {
+      const { data } = await api.post("/auth/signin-with-google", {
+        code,
+      });
+      // бекенд ставить куки (httpOnly) + повертає { accessToken } у тілі
+      console.log(data.data);
+      return data.data; // { accessToken }
+    } catch (err) {
+      return rejectWithValue(
+        err?.response?.data?.message || "Google sign-in failed"
+      );
+    }
+  }
+);

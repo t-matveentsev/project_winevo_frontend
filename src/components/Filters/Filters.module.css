@@ -1,0 +1,89 @@
+.background {
+  padding: 30px 0;
+  background-color: #0f0f0f; /* темний фон */
+}
+
+.filterWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+.selectedContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* Стилі для select */
+.select {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 10px 16px;
+  color: #fff;
+  font-size: 15px;
+  min-width: 140px;
+  outline: none;
+  transition: all 0.25s ease;
+  appearance: none;
+  backdrop-filter: blur(4px);
+}
+
+.select:hover,
+.select:focus {
+  border-color: #7a2e2e;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Кнопки */
+.btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn:hover {
+  background: #7a2e2e;
+  border-color: #7a2e2e;
+}
+
+/* Основна кнопка (Search) */
+.btnPrimary {
+  background: #7a2e2e;
+  border-color: #7a2e2e;
+}
+
+.btnPrimary:hover {
+  background: #a33e3e;
+}
+
+/* Адаптив */
+@media (max-width: 767px) {
+  .filterWrapper {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .selectedContainer {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .select {
+    width: 100%;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}

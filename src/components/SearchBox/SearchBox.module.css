@@ -1,16 +1,68 @@
 .wrapper {
-  background-position: top;
-  background-repeat: repeat;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 
-  min-width: 480;
-  min-height: 600px;
+  min-height: 500px;
 
   background-image: linear-gradient(
       to bottom,
       rgba(0, 0, 0, 0.7),
       rgba(0, 0, 0, 0.7)
     ),
-    url(photo/chinh.jpg);
+    url(photo/collection_wines.webp);
 
   padding-top: 60px;
+}
+
+.searchWrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 150px 32px;
+}
+
+.text {
+  font-size: 16px;
+  padding-bottom: 15px;
+}
+
+.searchInput {
+  max-width: 267px;
+  width: 100%;
+  height: 50px;
+  color: rgb(18, 18, 18);
+  line-height: 1.25;
+  background-color: rgb(255, 255, 255);
+  padding: 15px 18px;
+  border-width: initial;
+  border-style: none;
+  border-color: initial;
+  border-image: initial;
+  border-radius: 12px;
+  transition: color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (min-width: 768px) {
+  .searchInput {
+    max-width: 400px;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .searchWrapper {
+    align-items: center;
+  }
+  .text {
+    font-size: 20px;
+    padding-bottom: 20px;
+  }
+}
+
+@media only screen and (min-width: 1840px) {
+  .searchWrapper {
+    align-items: center;
+  }
+  .searchInput {
+    max-width: 600px;
+  }
 }

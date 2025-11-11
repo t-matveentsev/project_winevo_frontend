@@ -4,7 +4,7 @@ import Wine from "../Wine/wine";
 import { deleteWineById, fetchWines } from "../../redux/wines/operations";
 import Container from "../Container/Container";
 
-import s from "./WineList.module.css";
+import s from "./WinesList.module.css";
 
 const WinesList = ({ admin = false, baseQuery = {} }) => {
   const dispatch = useDispatch();
@@ -26,7 +26,7 @@ const WinesList = ({ admin = false, baseQuery = {} }) => {
   return (
     <section className={s.wrapper}>
       <Container>
-        <ul>
+        <ul className={s.wineList}>
           {wines.map((item) => (
             <Wine
               key={item._id}

@@ -2,10 +2,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { signinValidationSchema } from "../../helpers/schema";
 import { signinThunk } from "../../redux/auth/operations";
 import { selectIsLoggedIn } from "../../redux/auth/selectors";
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
 import Container from "../Container/Container";
+import GoogleButton from "../GoogleButton/GoogleButton";
 
 const SigninForm = ({ admin = false, main = false }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -69,6 +70,11 @@ const SigninForm = ({ admin = false, main = false }) => {
             <button type="submit" disabled={isSubmitting}>
               Sign In
             </button>
+            <p>
+              Don’t have an account? <Link to="/signup">signup</Link>
+            </p>
+
+            <GoogleButton>Google</GoogleButton>
           </Form>
         )}
       </Formik>

@@ -1,10 +1,10 @@
 .aboutUsSection {
-  padding-top: 60px;
-  padding-bottom: 50px;
+  padding-top: 30px;
+  padding-bottom: 20px;
 }
 
 .title {
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   font-size: 30px;
   font-weight: 600;
   letter-spacing: 1px;
@@ -13,19 +13,12 @@
   color: var(--color-accent);
 }
 
-.wrapper {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-}
-
 .teamImg {
-  width: 600px;
+  width: 100%;
   border-radius: 10px;
   filter: brightness(0.8);
 }
 
-.sectionText {
-  font: 400;
-  font-size: 20px;
+.text {
+  padding-bottom: 15px;
 }

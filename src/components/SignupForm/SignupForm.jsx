@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { signupThunk } from "../../redux/auth/operations";
@@ -54,7 +54,6 @@ const SignupForm = () => {
               style={{ color: "red" }}
             />
           </div>
-
           <div>
             <label htmlFor="email">Email:</label>
             <Field type="email" name="email" id="email" />
@@ -64,7 +63,6 @@ const SignupForm = () => {
               style={{ color: "red" }}
             />
           </div>
-
           <div>
             <label htmlFor="password">Password:</label>
             <Field type="password" name="password" id="password" />
@@ -74,7 +72,6 @@ const SignupForm = () => {
               style={{ color: "red" }}
             />
           </div>
-
           <div>
             <label htmlFor="confirmPassword">Confirm Password:</label>
             <Field
@@ -88,8 +85,9 @@ const SignupForm = () => {
               style={{ color: "red" }}
             />
           </div>
-
           <button type="submit">Sign Up</button>
+          <p>Don`t have account?</p>
+          <Link to="/signin">sign in</Link>
         </Form>
       </Formik>
     </div>

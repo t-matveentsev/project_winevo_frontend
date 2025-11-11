@@ -24,9 +24,9 @@ const Wine = ({
   return (
     <li className={s.wineCard}>
       <div className={s.cardWrapper}>
-        <figure className={s.wineMedia}>
+        <div className={s.wineMedia}>
           <img className={s.wineImg} src={thumb} alt={title} />
-        </figure>
+        </div>
         <div className={s.details}>
           <div className={s.cardHeadWrapper}>
             <h2 className={s.title}>{title}</h2>
@@ -45,12 +45,10 @@ const Wine = ({
               <dd className={s.value}>{type || "—"}</dd>
             </div>
             <div className={s.row}>
-              <dt>Country of origin :</dt>
-              <dd className={s.value}>{country || "—"}</dd>
-            </div>
-            <div className={s.row}>
-              <dt>Region:</dt>
-              <dd className={s.value}>{region || "—"}</dd>
+              <dt>Country/Region of origin :</dt>
+              <dd className={s.value}>
+                {country || "—"}/{region || "-"}
+              </dd>
             </div>
             <div className={s.row}>
               <dt>Winery:</dt>

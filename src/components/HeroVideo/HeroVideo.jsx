@@ -13,30 +13,30 @@ const HeroVideo = () => {
         poster="photo/hero_photo.png"
       >
         <source
-          src="/video/hero-video-mob.webm"
+          src="/video/hero-mob.webm"
           type="video/webm"
           media="(max-width: 767px)"
         />
         {/* tablet ≤ 1279px */}
         <source
-          src="/video/hero-tablet.mp4"
+          src="/video/hero-tab.mp4"
           type="video/webm"
           media="(max-width: 1279px)"
         />
         {/* desktop (fallback) */}
-        <source src="/video/hero-video-desc.webm" type="video/webm" />
+        <source src="/video/hero-desc.webm" type="video/webm" />
         {/* fallback MP4 */}
         <source
-          src="/video/hero-video-mob.mp4"
+          src="/video/hero-mob.mp4"
           type="video/mp4"
           media="(max-width: 767px)"
         />
         <source
-          src="/video/hero-video-tab.mp4"
+          src="/video/hero-tab.mp4"
           type="video/mp4"
           media="(max-width: 1279px)"
         />
-        <source src="/video/hero-video-desc.mp4" type="video/mp4" />
+        <source src="/video/hero-desc.mp4" type="video/mp4" />
       </video>
       <div className={s.center}>
         <div className={s.titleWrapper}>

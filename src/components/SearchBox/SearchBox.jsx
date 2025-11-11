@@ -21,15 +21,17 @@ const SearchBox = ({ extraFilters = {}, onQueryChange }) => {
   return (
     <section className={s.wrapper}>
       <Container>
-        <h2>Wine Collection</h2>
-        <p>Here you’ll find your wine. </p>
-        <input
-          name="search"
-          type="text"
-          placeholder="Enter search query"
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-        />
+        <div className={s.searchWrapper}>
+          <p className={s.text}>Here you’ll find your wine. </p>
+          <input
+            className={s.searchInput}
+            name="search"
+            type="text"
+            placeholder="Enter search query"
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+          />
+        </div>
       </Container>
     </section>
   );
