@@ -5,14 +5,6 @@ import * as Accordion from "@radix-ui/react-accordion";
 import s from "./WineVarietalsPage.module.css";
 import { VARIETALS } from "../../constants/varietals";
 
-const badgeStyle = (t) => ({
-  background: t === "red" ? "#722F37" : t === "white" ? "#D6E68A" : "#8b5cf6",
-  color: "#fff",
-  fontSize: 12,
-  padding: "2px 8px",
-  borderRadius: 999,
-});
-
 const WineVarietalsPage = ({
   allowMultiple = false,
   allowCollapseAll = true,
@@ -29,7 +21,6 @@ const WineVarietalsPage = ({
     );
   }, [query]);
 
-  const type = allowMultiple ? "multiple" : "single";
   return (
     <section className={s.grapeBackground}>
       <Container>
@@ -50,7 +41,8 @@ const WineVarietalsPage = ({
           </div>
 
           <Accordion.Root
-            type={type}
+            type="multiple"
+            collapsible
             {...(!allowMultiple && allowCollapseAll
               ? { collapsible: true }
               : {})}
@@ -65,7 +57,15 @@ const WineVarietalsPage = ({
                     <div className={s.triggerInner}>
                       <span className={s.varietyName}>{v.name}</span>
                       {v.type && (
-                        <span style={badgeStyle(v.type)}>
+                        <span
+                          className={`${s.badge} ${
+                            v.type === "red"
+                              ? s.badgeRed
+                              : v.type === "white"
+                              ? s.badgeWhite
+                              : s.badgeMixed
+                          }`}
+                        >
                           {v.type === "red"
                             ? "Red"
                             : v.type === "white"

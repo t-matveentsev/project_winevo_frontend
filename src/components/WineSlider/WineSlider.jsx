@@ -48,7 +48,9 @@ const WineSlider = ({ baseQuery = {} }) => {
             onFocus={stop}
             onBlur={start}
           >
-            <h2 className={s.title}>Featured Wines</h2>
+            <h2 className={s.title}>
+              Featured <span className={s.accent}>Wines</span>
+            </h2>
             <div className={s.controls}>
               <button
                 className={`${s.nav} ${s.prev}`}

@@ -1,11 +1,12 @@
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import Container from "../../components/Container/Container";
 import SearchBox from "../../components/SearchBox/SearchBox";
 import Filters from "../../components/Filters/Filters";
 import WinesList from "../../components/WinesList/WinesList";
 
 import { fetchWines } from "../../redux/wines/operations";
+
+import s from "./WineCollectionPage.module.css";
 
 const WineCollectionPage = () => {
   const dispatch = useDispatch();
@@ -17,10 +18,23 @@ const WineCollectionPage = () => {
   }, [dispatch]);
 
   const baseQuery = { ...filters, ...(query ? { query } : {}) };
+
+  const handleReset = () => {
+    setFilters({});
+    setQuery("");
+    dispatch(fetchWines({ page: 1, perPage: 10 }));
+  };
+
   return (
     <>
-      <SearchBox extraFilters={filters} onQueryChange={setQuery} />
-      <Filters onFiltersChange={setFilters} />
+      <div className={s.collectionBackground}>
+        <SearchBox
+          extraFilters={filters}
+          query={query}
+          onQueryChange={setQuery}
+        />
+        <Filters onFiltersChange={setFilters} onReset={handleReset} />
+      </div>
       <WinesList baseQuery={baseQuery} />
     </>
   );

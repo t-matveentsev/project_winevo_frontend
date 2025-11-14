@@ -15,7 +15,7 @@ const FavoriteButton = ({ wineId }) => {
   const [pending, setPending] = useState(false);
 
   const isFavorite = useMemo(
-    () => favoriteIds.includes(wineId),
+    () => (favoriteIds ?? []).includes(wineId),
     [favoriteIds, wineId]
   );
 

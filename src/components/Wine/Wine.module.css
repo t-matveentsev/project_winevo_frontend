@@ -32,7 +32,7 @@
 }
 .row {
   display: grid;
-  grid-template-columns: 100px 1fr;
+  grid-template-columns: 100px minmax(0, 1fr);
   align-items: baseline;
   gap: 16px;
   padding: 5px 0;
@@ -40,7 +40,7 @@
 }
 .row:last-child {
   border-bottom: 0;
-  /* padding-bottom: 30px; */
+  padding-bottom: 30px;
 }
 
 .specs dt {

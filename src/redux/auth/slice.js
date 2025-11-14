@@ -126,9 +126,23 @@ const slice = createSlice({
         state.error = action.payload;
       })
       .addCase(signinWithGoogleThunk.fulfilled, (state, action) => {
+        state.token = action.payload.token;
+        state.user = action.payload.user;
         state.isLoggedIn = true;
-        state.accessToken = action.payload?.accessToken ?? null;
-        console.log(state.accessToken);
+        state.loading = false;
+
+        const favorites = action.payload.user?.favorites || [];
+        state.user.favoriteIds = favorites.map(String);
+      })
+      .addCase(signinWithGoogleThunk.pending, (state) => {
+        state.loading = true;
+        state.isLoggedIn = false;
+        state.error = null;
+      })
+      .addCase(signinWithGoogleThunk.rejected, (state, action) => {
+        state.loading = false;
+        state.isLoggedIn = false;
+        state.error = action.payload;
       });
   },
 });

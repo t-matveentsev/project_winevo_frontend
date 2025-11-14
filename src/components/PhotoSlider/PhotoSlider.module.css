@@ -82,26 +82,6 @@
   color: var(--color-black);
 }
 
-/* Dots */
-/* .dots {
-  display: flex;
-  gap: 8px;
-  justify-content: center;
-  margin-top: 8px;
-}
-.dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 999px;
-  background: gray;
-  opacity: 0.35;
-  border: none;
-  cursor: pointer;
-}
-.dotActive {
-  opacity: 1;
-} */
-
 /* Responsive heights */
 @media (max-width: 768px) {
   .prev {

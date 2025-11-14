@@ -6,7 +6,8 @@
   --color-black: black;
   --color-white: white;
   --color-grape: #6f2da8;
-  --color-accent: #bfa76f;
+  --gold-accent: #bfa76f;
+  --red-accent: #7a2e2e;
 
   /* for hover/active */
   --color-accent-hover: #bfa76f;
@@ -84,7 +85,7 @@ button {
 }
 
 .active {
-  color: var(--color-accent);
+  color: var(--gold-accent);
   text-decoration: underline;
   text-underline-offset: 4px;
 }

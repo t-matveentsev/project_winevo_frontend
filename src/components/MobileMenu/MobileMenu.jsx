@@ -78,7 +78,6 @@ export default function MobileMenu({ open, onClose, id = "site-menu" }) {
     <div
       className={clsx(s.overlay, isClosing && s.closing)}
       onClick={closeOnOverlay}
-      aria-hidden={!open}
     >
       <nav
         id={id}
@@ -87,10 +86,6 @@ export default function MobileMenu({ open, onClose, id = "site-menu" }) {
         role="dialog"
         aria-modal="true"
       >
-        <div className={s.authMenu}>
-          {isLoggedIn ? <UserMenu /> : <AuthMenu />}
-        </div>
-
         <ul className={s.list}>
           <li>
             <NavLink to="/home" {...linkProps} ref={firstLinkRef}>
@@ -113,6 +108,10 @@ export default function MobileMenu({ open, onClose, id = "site-menu" }) {
             </NavLink>
           </li>
         </ul>
+
+        <div className={s.authMenu} onClick={onClose}>
+          {isLoggedIn ? <UserMenu /> : <AuthMenu />}
+        </div>
 
         <div className={s.footer}>
           <a href="mailto:tmatveentsev@gmail.com" className={s.meta}>

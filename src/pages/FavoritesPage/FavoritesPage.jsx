@@ -4,8 +4,8 @@ import { fetchFavorites } from "../../redux/auth/operations";
 import { selectFavorites } from "../../redux/auth/selectors";
 
 import s from "./FavoritesPage.module.css";
-import Wine from "../../components/Wine/Wine";
 import Container from "../../components/Container/Container";
+import Wine from "../../components/Wine/wine";
 
 const FavoritesPage = () => {
   const dispatch = useDispatch();
@@ -22,12 +22,20 @@ const FavoritesPage = () => {
   return (
     <section className={s.favoritesBackground}>
       <Container>
-        <div>
-          <ul>
-            {favorites.map((item) => (
-              <Wine key={item._id} {...item} />
-            ))}
-          </ul>
+        <div className={s.wrapper}>
+          <div>
+            <h2 className={s.title}>MY FAVORITES</h2>
+            <p className={s.subtitle}>
+              Your favorite wines will be stored here
+            </p>
+          </div>
+          <div>
+            <ul className={s.wineList}>
+              {favorites.map((item) => (
+                <Wine key={item._id} {...item} />
+              ))}
+            </ul>
+          </div>
         </div>
       </Container>
     </section>

@@ -22,7 +22,7 @@ export const signinThunk = createAsyncThunk(
       const response = await api.post("/auth/signin", body);
       const { accessToken, user } = response.data;
 
-      setAuthHeader(accessToken);
+      // setAuthHeader(accessToken);
 
       const normalizedUser = {
         id: user._id,
@@ -129,9 +129,11 @@ export const signinWithGoogleThunk = createAsyncThunk(
       const { data } = await api.post("/auth/signin-with-google", {
         code,
       });
+      // setAuthHeader(data.data.accessToken);
+
       // бекенд ставить куки (httpOnly) + повертає { accessToken } у тілі
       console.log(data.data);
-      return data.data; // { accessToken }
+      return { token: data.data.accessToken, user: data.data.user }; // { accessToken }
     } catch (err) {
       return rejectWithValue(
         err?.response?.data?.message || "Google sign-in failed"

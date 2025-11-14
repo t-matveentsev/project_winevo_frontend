@@ -94,6 +94,7 @@
 }
 .link:active {
   transform: scale(0.98);
+  color: var(--gold-accent);
 }
 
 .footer {
@@ -105,7 +106,7 @@
 }
 
 .meta {
-  color: var(--color-accent);
+  color: var(--gold-accent);
   text-decoration: none;
 }
 .meta:hover {
@@ -164,7 +165,7 @@
 
 /* Hover */
 .button:hover .line {
-  stroke: var(--color-accent);
+  stroke: var(--gold-accent);
 }
 
 /* Open */

@@ -2,7 +2,6 @@ import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectTypes } from "../../redux/type/selectors";
 import { selectVarietals } from "../../redux/varietal/selectors";
-import { fetchWines } from "../../redux/wines/operations";
 import { COUNTRIES } from "../../constants/countries";
 import { fetchVarietals } from "../../redux/varietal/operations";
 import { fetchTypes } from "../../redux/type/operations";
@@ -10,7 +9,7 @@ import Container from "../Container/Container";
 
 import s from "./Filters.module.css";
 
-const Filters = ({ onFiltersChange }) => {
+const Filters = ({ onFiltersChange, onReset }) => {
   const dispatch = useDispatch();
   const types = useSelector(selectTypes);
   const varietals = useSelector(selectVarietals);
@@ -33,15 +32,12 @@ const Filters = ({ onFiltersChange }) => {
       onFiltersChange?.(params);
   }, [params, onFiltersChange, dispatch]);
 
-  const apply = () => {
-    dispatch(fetchWines({ ...params, page: 1 }));
-  };
-
   const reset = () => {
     setCountry("");
     setType("");
     setVarietal("");
     onFiltersChange?.({});
+    onReset?.();
   };
 
   return (
@@ -90,9 +86,9 @@ const Filters = ({ onFiltersChange }) => {
           </div>
 
           <div>
-            <button className={`${s.btn} ${s.btnPrimary}`} onClick={apply}>
+            {/* <button className={`${s.btn} ${s.btnPrimary}`} onClick={apply}>
               Search
-            </button>
+            </button> */}
             <button className={s.btn} onClick={reset}>
               Reset
             </button>

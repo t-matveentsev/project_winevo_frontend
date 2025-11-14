@@ -1,4 +1,4 @@
-.wrapper {
+/* .wrapper {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -13,7 +13,7 @@
     url(photo/collection_wines.webp);
 
   padding-top: 60px;
-}
+} */
 
 .searchWrapper {
   display: flex;

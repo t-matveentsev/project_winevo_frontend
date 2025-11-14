@@ -15,7 +15,7 @@ const WineCountriesPage = () => {
               ciekawostki.
             </p>
           </div>
-          <Accordion.Root type="multiple">
+          <Accordion.Root type="single" collapsible>
             {COUNTRIES_DETAILS.map((c) => (
               <Accordion.Item
                 key={c.country}

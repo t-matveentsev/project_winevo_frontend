@@ -1,6 +1,5 @@
 .background {
   padding: 30px 0;
-  background-color: #0f0f0f; /* темний фон */
 }
 
 .filterWrapper {
@@ -40,7 +39,7 @@
 
 /* Кнопки */
 .btn {
-  background: transparent;
+  background: var(--red-accent);
   border: 1px solid rgba(255, 255, 255, 0.3);
   color: #fff;
   padding: 10px 20px;
@@ -61,6 +60,7 @@
 .btnPrimary {
   background: #7a2e2e;
   border-color: #7a2e2e;
+  background: var(--gold-accent);
 }
 
 .btnPrimary:hover {
