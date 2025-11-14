@@ -5,6 +5,8 @@ import SearchBox from "../../components/SearchBox/SearchBox";
 import Filters from "../../components/Filters/Filters";
 import WinesList from "../../components/WinesList/WinesList";
 
+import s from "./AdminShared.module.css";
+
 const AdminHomePage = () => {
   const dispatch = useDispatch();
   const [filters, setFilters] = useState({});
@@ -13,14 +15,27 @@ const AdminHomePage = () => {
   useEffect(() => {
     dispatch(fetchWines({ page: 1, perPage: 10 }));
   }, [dispatch]);
+
   const baseQuery = { ...filters, ...(query ? { query } : {}) };
 
+  const handleReset = () => {
+    setFilters({});
+    setQuery("");
+    dispatch(fetchWines({ page: 1, perPage: 10 }));
+  };
+
   return (
-    <div>
-      <SearchBox extraFilters={filters} onQueryChange={setQuery} />
-      <Filters onFiltersChange={setFilters} />
+    <>
+      <div className={s.homeBackground}>
+        <SearchBox
+          extraFilters={filters}
+          query={query}
+          onQueryChange={setQuery}
+        />
+        <Filters onFiltersChange={setFilters} onReset={handleReset} />
+      </div>
       <WinesList admin baseQuery={baseQuery} />
-    </div>
+    </>
   );
 };
 
