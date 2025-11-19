@@ -39,9 +39,9 @@ export default function AgeVerification() {
         loop
         playsInline
         preload="metadata"
-        poster="photo/age-verification.jpg"
+        poster="photo/age_verification.jpg"
       >
-        <source src="/video/age-verification.mp4" type="video/mp4" />
+        <source src="/video/age_verification.mp4" type="video/mp4" />
       </video>
 
       <div className={s.center}>

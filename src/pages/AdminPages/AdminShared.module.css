@@ -15,14 +15,32 @@
 
 .typeBackground {
   padding: 30px 0 30px 0;
+  background: radial-gradient(
+    circle at top center,
+    #26211e 0,
+    #050505 100%,
+    #050505 100%
+  );
 }
 
 .varietalBackground {
   padding: 30px 0 30px 0;
+  background: radial-gradient(
+    circle at top center,
+    #26211e 0,
+    #050505 100%,
+    #050505 100%
+  );
 }
 
 .createWineBack {
   padding: 30px 0 30px 0;
+  background: radial-gradient(
+    circle at top center,
+    #26211e 0,
+    #050505 100%,
+    #050505 100%
+  );
 }
 
 .contentSettingsBack {
