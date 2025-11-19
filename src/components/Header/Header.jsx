@@ -37,7 +37,7 @@ const Header = () => {
           </div>
           <Navigation />
           <div className={s.brand}>
-            <a href="/home">WINEVO</a>
+            <a href="/admin/home">WINEVO</a>
           </div>
           <BurgerButton isOpen={open} onToggle={handleToggle} id="site-menu" />
         </div>

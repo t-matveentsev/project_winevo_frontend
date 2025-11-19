@@ -33,9 +33,12 @@ const Wine = ({
             <div className={s.cardBtn}>
               <FavoriteButton wineId={_id} />
               {admin && (
-                <button className={s.deleteBtn} onClick={() => onDelete(_id)}>
-                  delete
-                </button>
+                <div>
+                  <button className={s.deleteBtn} onClick={() => onDelete(_id)}>
+                    delete
+                  </button>
+                  <button className={s.editBtn}>Edit</button>
+                </div>
               )}
             </div>
           </div>

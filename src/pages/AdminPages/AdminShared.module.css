@@ -10,5 +10,177 @@
       rgba(0, 0, 0, 0.7),
       rgba(0, 0, 0, 0.7)
     ),
-    url(../../../public/photo/collection_wines.webp);
+    url(/photo/collection_wines.webp);
+}
+
+.typeBackground {
+  padding: 30px 0 30px 0;
+}
+
+.varietalBackground {
+  padding: 30px 0 30px 0;
+}
+
+.createWineBack {
+  padding: 30px 0 30px 0;
+}
+
+.contentSettingsBack {
+  padding-top: 60px;
+}
+
+.subNavigation {
+  display: flex;
+  gap: 10px;
+}
+
+/* stypes for type and varietal list */
+.inputWrapper {
+  margin: 0 auto 24px;
+  max-width: 600px;
+}
+
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.input {
+  flex: 1 1 220px;
+  min-width: 0;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid #374151;
+  background: #050505;
+  color: var(--color-white);
+  font-size: 14px;
+}
+
+.input::placeholder {
+  color: #6b7280;
+}
+
+.addBtn {
+  padding: 8px 16px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  background: var(--red-accent);
+  color: #fee2e2;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+.addBtn:hover {
+  background: #9f1239;
+}
+
+.typeList,
+.varietalList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.typeItem,
+.varietalItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: #1a1a1a;
+  border: 1px solid rgba(191, 167, 111, 0.35);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.6);
+}
+
+.typeItem,
+.varietalItem p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--color-white);
+}
+
+.deleteBtn {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  background: rgba(122, 46, 46, 0.9);
+  color: #fee2e2;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.deleteBtn:hover {
+  background: rgba(185, 28, 28, 0.98);
+}
+
+@media (min-width: 768px) {
+  .typeBackground {
+    padding: 48px 0 70px;
+  }
+
+  .varietalBackground {
+    padding: 48px 0 70px;
+  }
+
+  .inputWrapper {
+    margin-bottom: 28px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .typeBackground {
+    padding: 56px 0 80px;
+  }
+
+  .varietalBackground {
+    padding: 56px 0 80px;
+  }
+
+  .inputWrapper {
+    margin-bottom: 32px;
+  }
+
+  .typeList {
+    gap: 12px;
+  }
+}
+
+.btn {
+  background: var(--red-accent);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn:hover {
+  background: #7a2e2e;
+  border-color: #7a2e2e;
+}
+
+/* Основна кнопка (Search) */
+.btnPrimary {
+  background: #7a2e2e;
+  border-color: #7a2e2e;
+  background: var(--gold-accent);
+}
+
+.btnPrimary:hover {
+  background: #a33e3e;
 }

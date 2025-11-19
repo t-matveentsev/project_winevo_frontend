@@ -1,22 +1,20 @@
-import { NavLink } from "react-router-dom";
-import buildLinkClass from "../../../services/buildLinkClass";
+import Container from "../../Container/Container";
+import AdminNavigation from "../AdminNavigation/AdminNavigation";
+
+import s from "./AdminHeader.module.css";
 
 const AdminHeader = () => {
   return (
-    <nav>
-      <NavLink className={buildLinkClass} to="/admin/home">
-        Home page
-      </NavLink>
-      <NavLink className={buildLinkClass} to="/admin/types">
-        Types list
-      </NavLink>
-      <NavLink className={buildLinkClass} to="/admin/varietals">
-        Varietals list
-      </NavLink>
-      <NavLink className={buildLinkClass} to="/admin/create">
-        Wine create
-      </NavLink>
-    </nav>
+    <div className={s.adminHeaderBackground}>
+      <Container>
+        <div className={s.wrapper}>
+          <AdminNavigation />
+          <div className={s.brand}>
+            <a href="/home">WINEVO</a>
+          </div>
+        </div>
+      </Container>
+    </div>
   );
 };
 

@@ -9,6 +9,8 @@ import { useNavigate } from "react-router-dom";
 import { COUNTRIES } from "../../../constants/countries";
 import ImageEditorModal from "../../ImageEditorModal/ImageEditorModal";
 
+import s from "./AddWineForm.module.css";
+
 const AddWineForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -68,16 +70,6 @@ const AddWineForm = () => {
     formData.append("year", values.year);
     formData.append("description", values.description);
 
-    // try {
-    //   const response = await dispatch(createWine(formData)).unwrap();
-    //   actions.resetForm();
-    //   setSelectedVarietals([]);
-    //   navigate(`/wine-details/${response._id}`, {
-    //     state: { admin: true, from: "/admin" },
-    //   });
-    // } catch (error) {
-    //   console.log(error.message);
-    // }
     try {
       const response = await dispatch(createWine(formData)).unwrap();
       actions.resetForm();
@@ -103,84 +95,62 @@ const AddWineForm = () => {
   };
 
   return (
-    <div>
-      <h2>Add New Wine</h2>
+    <div className={s.wrapper}>
+      <h2 className={s.title}>Add New Wine</h2>
       <Formik
         initialValues={initialValues}
         validationSchema={createWineValidationSchema}
         onSubmit={handleSubmit}
       >
         {({ setFieldValue }) => (
-          <Form>
-            {/* Thumb (File Input) */}
-            {/* <div>
-              <label htmlFor="thumb">Wine Image</label>
-              <input
-                id="thumb"
-                name="thumb"
-                type="file"
-                accept="image/png, image/webp"
-                onChange={(event) =>
-                  setFieldValue("thumb", event.currentTarget.files[0])
-                }
-              />
-              <ErrorMessage name="thumb" component="div" />
-            </div> */}
-            <div>
-              <label htmlFor="thumb">Wine Image</label>
+          <Form className={s.form}>
+            {/* Wine Image */}
+            <div className={`${s.field} ${s.fieldSpan2}`}>
+              <label htmlFor="thumb" className={s.label}>
+                Wine Image
+              </label>
               <input
                 id="thumb"
                 name="thumb"
                 type="file"
                 accept="image/*"
                 onChange={(e) => onFilePicked(e, setFieldValue)}
+                className={s.fileInput}
               />
-              {/* прев’ю */}
-              {finalPreview ? (
-                <img
-                  src={finalPreview}
-                  alt="Preview"
-                  style={{
-                    width: 160,
-                    height: 160,
-                    objectFit: "cover",
-                    borderRadius: 12,
-                    marginTop: 8,
-                  }}
-                />
-              ) : rawPreview ? (
-                <img
-                  src={rawPreview}
-                  alt="Preview"
-                  style={{
-                    width: 160,
-                    height: 160,
-                    objectFit: "cover",
-                    borderRadius: 12,
-                    marginTop: 8,
-                    opacity: 0.6,
-                  }}
-                />
-              ) : null}
-              <ErrorMessage name="thumb" component="div" />
+              <ErrorMessage name="thumb" component="div" className={s.error} />
+
+              {(rawPreview || finalPreview) && (
+                <div className={s.previewWrapper}>
+                  <img
+                    src={finalPreview || rawPreview}
+                    alt="Preview"
+                    className={finalPreview ? s.previewFinal : s.previewDraft}
+                  />
+                </div>
+              )}
             </div>
 
             {/* Title */}
-            <div>
-              <label htmlFor="title">Title</label>
+            <div className={s.field}>
+              <label htmlFor="title" className={s.label}>
+                Title
+              </label>
               <Field
                 id="title"
                 name="title"
                 type="text"
                 placeholder="Enter wine title"
+                className={s.input}
               />
-              <ErrorMessage name="title" component="div" />
+              <ErrorMessage name="title" component="div" className={s.error} />
             </div>
 
-            {/* Type (Select) */}
-            <div>
-              <label htmlFor="type">Type</label>
-              <Field as="select" id="type" name="type">
+            {/* Type */}
+            <div className={s.field}>
+              <label htmlFor="type" className={s.label}>
+                Type
+              </label>
+              <Field as="select" id="type" name="type" className={s.select}>
                 <option value="">Select a type</option>
                 {types.map(({ _id, type }) => (
                   <option key={_id} value={_id}>
@@ -188,17 +158,20 @@ const AddWineForm = () => {
                   </option>
                 ))}
               </Field>
-              <ErrorMessage name="type" component="div" />
+              <ErrorMessage name="type" component="div" className={s.error} />
             </div>
 
             {/* Country */}
-            <div>
-              <label htmlFor="country">Country</label>
+            <div className={s.field}>
+              <label htmlFor="country" className={s.label}>
+                Country
+              </label>
               <Field
                 as="select"
                 id="country"
                 name="country"
                 autoComplete="country"
+                className={s.select}
               >
                 <option value="">Select a country</option>
                 {COUNTRIES.map((country) => (
@@ -207,42 +180,55 @@ const AddWineForm = () => {
                   </option>
                 ))}
               </Field>
-              <ErrorMessage name="country" component="div" />
+              <ErrorMessage
+                name="country"
+                component="div"
+                className={s.error}
+              />
             </div>
 
             {/* Region */}
-            <div>
-              <label htmlFor="region">Region</label>
+            <div className={s.field}>
+              <label htmlFor="region" className={s.label}>
+                Region
+              </label>
               <Field
                 id="region"
                 name="region"
                 type="text"
                 placeholder="Enter region"
                 autoComplete="region"
+                className={s.input}
               />
-              <ErrorMessage name="region" component="div" />
+              <ErrorMessage name="region" component="div" className={s.error} />
             </div>
 
             {/* Winery */}
-            <div>
-              <label htmlFor="winery">Winery</label>
+            <div className={s.field}>
+              <label htmlFor="winery" className={s.label}>
+                Winery
+              </label>
               <Field
                 id="winery"
                 name="winery"
                 type="text"
                 placeholder="Enter winery"
+                className={s.input}
               />
-              <ErrorMessage name="winery" component="div" />
+              <ErrorMessage name="winery" component="div" className={s.error} />
             </div>
 
-            {/* Varietal (Select with Add/Remove) */}
-            <div>
-              <label htmlFor="varietal">Grape varieties</label>
-              <div>
+            {/* Varietals */}
+            <div className={`${s.field} ${s.fieldSpan2}`}>
+              <label htmlFor="varietal" className={s.label}>
+                Grape varieties
+              </label>
+              <div className={s.varietalControls}>
                 <Field
                   as="select"
                   id="varietal"
                   value={currentVarietal}
+                  className={s.select}
                   onChange={(e) => setCurrentVarietal(e.target.value)}
                 >
                   <option value="">Select a varietal</option>
@@ -258,75 +244,87 @@ const AddWineForm = () => {
                   type="button"
                   onClick={() => handleAddVarietal(setFieldValue)}
                   disabled={!currentVarietal}
+                  className={s.varietalAddBtn}
                 >
                   Add
                 </button>
               </div>
-              <div>
-                {selectedVarietals.length > 0 && (
-                  <ul>
-                    {selectedVarietals.map((varietalId) => {
-                      const varietal = varietals.find(
-                        (v) => v._id === varietalId
-                      );
-                      return (
-                        <li key={varietalId}>
-                          <span>
-                            {varietal?.varietal || "Unknown Varietal"}
-                          </span>
-                          <button
-                            type="button"
-                            onClick={() =>
-                              handleRemoveVarietal(varietalId, setFieldValue)
-                            }
-                          >
-                            Remove
-                          </button>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                )}
-              </div>
-              {selectedVarietals.length === 0 && (
-                <div>At least one varietal is required</div>
+
+              {selectedVarietals.length > 0 ? (
+                <ul className={s.varietalList}>
+                  {selectedVarietals.map((varietalId) => {
+                    const varietal = varietals.find(
+                      (v) => v._id === varietalId
+                    );
+                    return (
+                      <li key={varietalId} className={s.varietalItem}>
+                        <span>{varietal?.varietal || "Unknown Varietal"}</span>
+                        <button
+                          type="button"
+                          className={s.varietalRemoveBtn}
+                          onClick={() =>
+                            handleRemoveVarietal(varietalId, setFieldValue)
+                          }
+                        >
+                          ✕
+                        </button>
+                      </li>
+                    );
+                  })}
+                </ul>
+              ) : (
+                <div className={s.hint}>At least one varietal is required</div>
               )}
             </div>
 
             {/* Year */}
-            <div>
-              <label htmlFor="year">Year</label>
+            <div className={s.field}>
+              <label htmlFor="year" className={s.label}>
+                Year
+              </label>
               <Field
                 id="year"
                 name="year"
                 type="text"
                 placeholder="Enter year"
+                className={s.input}
               />
-              <ErrorMessage name="year" component="div" />
+              <ErrorMessage name="year" component="div" className={s.error} />
             </div>
 
             {/* Description */}
-            <div>
-              <label htmlFor="description">Description</label>
+            <div className={`${s.field} ${s.fieldFull}`}>
+              <label htmlFor="description" className={s.label}>
+                Description
+              </label>
               <Field
                 as="textarea"
                 id="description"
                 name="description"
                 placeholder="Enter description"
                 rows="4"
+                className={s.textarea}
               />
-              <ErrorMessage name="description" component="div" />
+              <ErrorMessage
+                name="description"
+                component="div"
+                className={s.error}
+              />
             </div>
-            <button type="submit">create wine</button>
 
-            {/* модалка-редактор */}
+            <div className={s.fieldFull}>
+              <button type="submit" className={s.submitBtn}>
+                create wine
+              </button>
+            </div>
+
             {editorOpen && (
               <ImageEditorModal
                 src={rawPreview}
                 aspect={1}
                 onCancel={() => setEditorOpen(false)}
                 onApply={({ file, previewUrl }) => {
-                  setFieldValue("thumb", file); // <<< ВАЖЛИВО: кладемо файл у Formik
+                  setFieldValue("thumb", file);
                   setFinalPreview(previewUrl);
                   setEditorOpen(false);
                 }}

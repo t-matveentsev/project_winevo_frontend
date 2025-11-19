@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { selectWines, selectWinesMeta } from "../../redux/wines/selectors";
-import Wine from "../Wine/ryba";
+import Wine from "../Wine/Wine";
 import { deleteWineById, fetchWines } from "../../redux/wines/operations";
 import Container from "../Container/Container";
 

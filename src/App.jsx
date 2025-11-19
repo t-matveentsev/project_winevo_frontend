@@ -16,7 +16,6 @@ import AdminTypesPage from "./pages/AdminPages/AdminTypesPage";
 import AdminVarietalsPage from "./pages/AdminPages/AdminVarietalsPage";
 import AdminCreateWinePage from "./pages/AdminPages/AdminCreateWinePage";
 import AdminEditWinePage from "./pages/AdminPages/AdminEditWinePage";
-import AdminSigninPage from "./pages/AdminPages/AdminSigninPage";
 import WineViewPage from "./pages/WineViewPage/WineViewPage";
 import FavoritesPage from "./pages/FavoritesPage/FavoritesPage";
 import WineCountriesPage from "./pages/WineCountriesPage/WineCountriesPage";
@@ -25,6 +24,7 @@ import WineVarietalsPage from "./pages/WineVarietalsPage/WineVarietalsPage";
 import PrivacyPolicyPage from "./pages/LegalPages/Privacy";
 import PublicOfferPage from "./pages/LegalPages/PublicOfferPage";
 import OauthGoogleCallback from "./pages/OauthGoogleCallback/OauthGoogleCallback";
+import AdminContentSettings from "./pages/AdminPages/AdminContentSettings";
 
 export default function App() {
   const isRefreshing = useSelector(selectIsRefreshing);
@@ -53,16 +53,17 @@ export default function App() {
           <Route path="signup" element={<SignupPage />} />
         </Route>
 
-        <Route path="admin/signin" element={<AdminSigninPage />} />
-
         <Route path="admin" element={<RequireAdmin />}>
           <Route element={<AdminLayout />}>
             <Route index element={<Navigate to="home" replace />} />
             <Route path="home" element={<AdminHomePage />} />
-            <Route path="types" element={<AdminTypesPage />} />
-            <Route path="varietals" element={<AdminVarietalsPage />} />
-            <Route path="create" element={<AdminCreateWinePage />} />
-            <Route path="edit/:id" element={<AdminEditWinePage />} />
+            <Route path="content-settings" element={<AdminContentSettings />}>
+              <Route index element={<Navigate to="types" replace />} />
+              <Route path="types" element={<AdminTypesPage />} />
+              <Route path="varietals" element={<AdminVarietalsPage />} />
+              <Route path="create" element={<AdminCreateWinePage />} />
+              <Route path="edit/:id" element={<AdminEditWinePage />} />
+            </Route>
           </Route>
         </Route>
 

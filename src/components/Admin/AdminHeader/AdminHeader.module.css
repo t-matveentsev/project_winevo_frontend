@@ -1,7 +1,30 @@
-.link {
-  color: red;
+.adminHeaderBackground {
+  position: fixed;
+  inset: 0 auto auto 0;
+  width: 100%;
+  z-index: 50;
+
+  background: rgba(10, 10, 10, 0.6);
+  backdrop-filter: blur(20px) saturate(120%);
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 
-.active {
-  color: green;
+.wrapper {
+  margin: 8px auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #fff;
+  position: relative;
+  margin: 15px auto;
+}
+
+.brand {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
 }

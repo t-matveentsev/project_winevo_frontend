@@ -21,6 +21,8 @@ const WineVarietalsPage = ({
     );
   }, [query]);
 
+  const type = allowMultiple ? "multiple" : "single";
+
   return (
     <section className={s.grapeBackground}>
       <Container>
@@ -41,8 +43,7 @@ const WineVarietalsPage = ({
           </div>
 
           <Accordion.Root
-            type="multiple"
-            collapsible
+            type={type}
             {...(!allowMultiple && allowCollapseAll
               ? { collapsible: true }
               : {})}
