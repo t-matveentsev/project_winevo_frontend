@@ -25,12 +25,14 @@ import PrivacyPolicyPage from "./pages/LegalPages/Privacy";
 import PublicOfferPage from "./pages/LegalPages/PublicOfferPage";
 import OauthGoogleCallback from "./pages/OauthGoogleCallback/OauthGoogleCallback";
 import AdminContentSettings from "./pages/AdminPages/AdminContentSettings";
+import AgeVerification from "./components/AgeVerification/AgeVerification";
 
 export default function App() {
   const isRefreshing = useSelector(selectIsRefreshing);
 
   return isRefreshing ? null : (
     <Suspense fallback={<div>Loading...</div>}>
+      <AgeVerification />
       <Routes>
         <Route element={<PublicLayout />}>
           <Route index element={<Navigate to="home" replace />} />
