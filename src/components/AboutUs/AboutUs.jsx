@@ -20,7 +20,7 @@ const AboutUs = () => {
           <div>
             <img
               className={s.teamImg}
-              src="photo/about_us_photo.jpg"
+              src="photo/about_us_photo.webp"
               alt="team"
             />
           </div>

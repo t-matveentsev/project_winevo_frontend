@@ -17,15 +17,13 @@ const HeroVideo = () => {
           type="video/webm"
           media="(max-width: 767px)"
         />
-        {/* tablet ≤ 1279px */}
         <source
-          src="/video/hero-tab.mp4"
+          src="/video/hero-tab.webm"
           type="video/webm"
           media="(max-width: 1279px)"
         />
-        {/* desktop (fallback) */}
         <source src="/video/hero-desc.webm" type="video/webm" />
-        {/* fallback MP4 */}
+
         <source
           src="/video/hero-mob.mp4"
           type="video/mp4"

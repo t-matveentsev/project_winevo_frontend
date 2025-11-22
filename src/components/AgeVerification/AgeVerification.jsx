@@ -41,7 +41,29 @@ export default function AgeVerification() {
         preload="metadata"
         poster="photo/age_verification.jpg"
       >
-        <source src="/video/age_verification.mp4" type="video/mp4" />
+        <source
+          src="/video/age_verification_mob.webm"
+          type="video/webm"
+          media="(max-width: 767px)"
+        />
+        <source
+          src="/video/age_verification_tab.webm"
+          type="video/webm"
+          media="(max-width: 1279px)"
+        />
+        <source src="/video/age_verification_desc.webm" type="video/webm" />
+
+        <source
+          src="/video/age_verification_mob.mp4"
+          type="video/mp4"
+          media="(max-width: 767px)"
+        />
+        <source
+          src="/video/age_verification_tab.mp4"
+          type="video/mp4"
+          media="(max-width: 1279px)"
+        />
+        <source src="/video/age_verification_desc.mp4" type="video/mp4" />
       </video>
 
       <div className={s.center}>
@@ -54,16 +76,30 @@ export default function AgeVerification() {
 
         <ul className={s.socialMedia}>
           <li>
-            <a href="">facebook</a>
+            <a
+              href="https://www.facebook.com/panska85/?locale=pl_PL"
+              target="_blank"
+            >
+              facebook
+            </a>
           </li>
           <li>
-            <a href="">instagram</a>
+            <a href="https://www.instagram.com/panska85/" target="_blank">
+              instagram
+            </a>
           </li>
           <li>
-            <a href="">linkedin</a>
+            <a
+              href="https://www.linkedin.com/in/artem-matvieientsev-a5a6862a1/"
+              target="_blank"
+            >
+              linkedIn
+            </a>
           </li>
           <li>
-            <a href="">github</a>
+            <a href="https://github.com/t-matveentsev" target="_blank">
+              github
+            </a>
           </li>
         </ul>
       </div>
