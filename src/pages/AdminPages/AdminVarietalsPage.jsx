@@ -47,7 +47,9 @@ const AdminVarietalsPage = () => {
                 value={varietal}
                 onChange={(e) => setVarietal(e.target.value)}
               />
-              <button type="submit">Add</button>
+              <button className={s.addBtn} type="submit">
+                Add
+              </button>
             </form>
           </div>
           <ul className={s.varietalList}>

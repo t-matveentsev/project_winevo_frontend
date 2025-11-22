@@ -15,6 +15,7 @@
 
 .typeBackground {
   padding: 30px 0 30px 0;
+  min-height: 100vh;
   background: radial-gradient(
     circle at top center,
     #26211e 0,
@@ -25,6 +26,7 @@
 
 .varietalBackground {
   padding: 30px 0 30px 0;
+  min-height: 100vh;
   background: radial-gradient(
     circle at top center,
     #26211e 0,
@@ -35,6 +37,7 @@
 
 .createWineBack {
   padding: 30px 0 30px 0;
+  min-height: 100vh;
   background: radial-gradient(
     circle at top center,
     #26211e 0,
@@ -45,11 +48,18 @@
 
 .contentSettingsBack {
   padding-top: 60px;
+  background: radial-gradient(
+    circle at top center,
+    #26211e 0,
+    #050505 100%,
+    #050505 100%
+  );
 }
 
 .subNavigation {
   display: flex;
   gap: 10px;
+  padding-bottom: 10px;
 }
 
 /* stypes for type and varietal list */
@@ -94,7 +104,7 @@
 }
 
 .addBtn:hover {
-  background: #9f1239;
+  background: rgba(185, 28, 28, 0.98);
 }
 
 .typeList,

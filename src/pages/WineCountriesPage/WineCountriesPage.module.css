@@ -1,6 +1,7 @@
 .countriesBackground {
   padding-top: 80px;
   padding-bottom: 60px;
+  min-height: 100vh;
 
   /* темний фон як на колекції */
   background: radial-gradient(

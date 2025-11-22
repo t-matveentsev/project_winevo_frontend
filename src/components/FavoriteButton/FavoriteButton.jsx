@@ -5,13 +5,22 @@ import {
   deleteFavoriteById,
   fetchFavorites,
 } from "../../redux/auth/operations";
-import { selectFavoriteIds } from "../../redux/auth/selectors";
+import {
+  selectFavoriteIds,
+  selectIsLoggedIn,
+} from "../../redux/auth/selectors";
 
 import s from "./FavoritesButton.module.css";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const FavoriteButton = ({ wineId }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const favoriteIds = useSelector(selectFavoriteIds);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+
   const [pending, setPending] = useState(false);
 
   const isFavorite = useMemo(
@@ -20,39 +29,43 @@ const FavoriteButton = ({ wineId }) => {
   );
 
   const handleToggle = async () => {
-    if (!wineId || pending) return;
-    setPending(true);
-    try {
-      if (isFavorite) {
-        await dispatch(deleteFavoriteById(wineId)).unwrap();
-      } else {
-        await dispatch(addFavoriteById(wineId)).unwrap();
-        await dispatch(fetchFavorites()).unwrap();
+    if (!isLoggedIn) {
+      navigate("/signin", { replace: true, state: { from: location } });
+      return;
+    } else {
+      if (!wineId || pending) return;
+
+      setPending(true);
+      try {
+        if (isFavorite) {
+          await dispatch(deleteFavoriteById(wineId)).unwrap();
+        } else {
+          await dispatch(addFavoriteById(wineId)).unwrap();
+          await dispatch(fetchFavorites()).unwrap();
+        }
+      } catch (e) {
+        console.error(e);
+      } finally {
+        setPending(false);
       }
-    } catch (e) {
-      console.error(e);
-    } finally {
-      setPending(false);
     }
   };
 
   return (
-    <div>
-      <button
-        type="button"
-        onClick={handleToggle}
-        disabled={pending}
-        aria-pressed={isFavorite}
-        className={s.favoriteBtn}
+    <button
+      type="button"
+      onClick={handleToggle}
+      disabled={pending}
+      aria-pressed={isFavorite}
+      className={s.favoriteBtn}
+    >
+      <svg
+        className={`${s.cardGrapeIcon} ${isFavorite ? s.favorite : ""}`}
+        viewBox="0 0 24 24"
       >
-        <svg
-          className={`${s.cardGrapeIcon} ${isFavorite ? s.favorite : ""}`}
-          viewBox="0 0 24 24"
-        >
-          <use href="sprite.svg#grape" />
-        </svg>
-      </button>
-    </div>
+        <use href="sprite.svg#grape" />
+      </svg>
+    </button>
   );
 };
 

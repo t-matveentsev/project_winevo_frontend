@@ -125,9 +125,10 @@ const slice = createSlice({
       .addCase(deleteFavoriteById.rejected, (state, action) => {
         state.error = action.payload;
       })
+
       .addCase(signinWithGoogleThunk.fulfilled, (state, action) => {
-        state.token = action.payload.token;
         state.user = action.payload.user;
+        state.token = action.payload.token;
         state.isLoggedIn = true;
         state.loading = false;
 

@@ -1,0 +1,222 @@
+.signupBackground {
+  min-height: 100vh;
+  padding: 80px 0;
+
+  background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.7),
+      rgba(0, 0, 0, 0.7)
+    ),
+    url(/photo/footer_background.png);
+}
+
+.wrapper {
+  min-height: calc(100vh - 160px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.backLink {
+  margin-left: 80px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: white;
+
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.backIcon {
+  stroke: white;
+  transition: stroke 0.3s ease;
+}
+
+/* Ховер по всьому Link */
+.backLink:hover {
+  color: var(--gold-accent);
+}
+
+.backLink:hover .backIcon {
+  stroke: var(--gold-accent);
+}
+
+.form {
+  width: 100%;
+  max-width: 360px;
+
+  padding: 24px 22px;
+  border-radius: 16px;
+  border: 1px solid rgba(191, 167, 111, 0.5);
+  background: var(--color-white);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.65);
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.wrapper {
+  min-height: calc(100vh - 160px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* основна картка форми */
+.form {
+  width: 100%;
+  max-width: 360px;
+
+  padding: 24px 22px;
+  border-radius: 16px;
+  border: 1px solid rgba(191, 167, 111, 0.5);
+  background: var(--color-white);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.65);
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* заголовок */
+.title {
+  margin: 0 0 4px;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--gold-accent);
+}
+
+.titleSpan {
+  color: var(--color-black);
+  font-size: 12px;
+}
+
+/* label */
+.label {
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-black);
+}
+
+/* інпут */
+.field {
+  width: 100%;
+  border-radius: 8px;
+
+  outline: none;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.input {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--gold-accent);
+  outline: none;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.input::placeholder {
+  color: #6b7280;
+}
+
+.input:focus {
+  border-color: var(--gold-accent);
+  box-shadow: 0 0 0 1px rgba(191, 167, 111, 0.6);
+}
+
+/* помилка */
+.error {
+  margin-top: 2px;
+  font-size: 12px;
+  color: var(--red-accent);
+}
+
+/* кнопка сабміту */
+.submitBtn {
+  margin-top: 4px;
+  width: 100%;
+  padding: 10px 0;
+
+  border-radius: 999px;
+  border: none;
+  background: var(--gold-accent);
+  color: var(--color-black);
+
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  cursor: pointer;
+  transition: background 0.22s ease, transform 0.06s ease, box-shadow 0.22s ease;
+}
+
+.submitBtn:hover {
+  background: var(--color-accent-hover);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+}
+
+.submitBtn:active {
+  transform: scale(0.97);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.6);
+}
+
+.submitBtn:disabled {
+  opacity: 0.6;
+  cursor: default;
+  box-shadow: none;
+}
+
+/* футер з лінком на signup */
+.footerText {
+  margin: 4px 0 0;
+  font-size: 13px;
+  text-align: center;
+  color: var(--color-black);
+}
+
+.link {
+  color: var(--gold-accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.link:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* GoogleButton всередині форми */
+.form :global(button) {
+  /* якщо хочеш стилізувати GoogleButton так само шириною */
+  width: 100%;
+  margin-top: 4px;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  margin: 10px 0 6px;
+  font-size: 16px;
+  color: var(--color-black);
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #4b5563;
+}

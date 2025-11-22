@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const AuthMenu = () => {
   return (
     <div>
-      <Link to="/signup">Sign up</Link>
+      <Link to="/signin">Sign in</Link>
     </div>
   );
 };
