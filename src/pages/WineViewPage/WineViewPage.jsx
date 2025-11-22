@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import { getWineById } from "../../redux/wines/operations";
 import WineDetails from "../../components/WineDetails/WineDetails";
 
+import s from "./WineViewPage.module.css";
+
 const WineViewPage = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -30,9 +32,9 @@ const WineViewPage = () => {
   if (!wine) return <p>Wine not found.</p>;
 
   return (
-    <div>
+    <section className={s.wineDetailsBack}>
       <WineDetails wine={wine} />
-    </div>
+    </section>
   );
 };
 

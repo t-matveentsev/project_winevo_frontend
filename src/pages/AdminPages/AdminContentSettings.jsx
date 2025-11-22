@@ -4,7 +4,7 @@ import Container from "../../components/Container/Container";
 
 export default function AdminContentSettings() {
   return (
-    <div className={s.contentSettingsBack}>
+    <section className={s.contentSettingsBack}>
       <Container>
         <nav className={s.subNavigation}>
           <NavLink to="types">Types</NavLink>
@@ -13,6 +13,6 @@ export default function AdminContentSettings() {
         </nav>
       </Container>
       <Outlet />
-    </div>
+    </section>
   );
 }

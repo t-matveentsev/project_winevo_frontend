@@ -36,7 +36,7 @@ const Wine = ({
                   <button className={s.deleteBtn} onClick={() => onDelete(_id)}>
                     Delete
                   </button>
-                  <button className={s.editBtn}>Edit</button>
+                  {/* <button className={s.editBtn}>Edit</button> */}
                 </div>
               ) : (
                 <FavoriteButton wineId={_id} />
