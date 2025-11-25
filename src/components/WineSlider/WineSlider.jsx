@@ -3,7 +3,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectWines, selectWinesMeta } from "../../redux/wines/selectors";
 import { fetchWines } from "../../redux/wines/operations";
-import Wine from "../Wine/Horrizont";
+import Wine from "../Wine/Wine";
 import s from "./WineSlider.module.css";
 import Container from "../Container/Container";
 import useEmblaAutoplay from "../../hooks/useEmblaAutoplay";
