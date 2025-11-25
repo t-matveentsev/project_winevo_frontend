@@ -5,7 +5,7 @@ import { selectFavorites } from "../../redux/auth/selectors";
 
 import s from "./FavoritesPage.module.css";
 import Container from "../../components/Container/Container";
-import Wine from "../../components/Wine/Horizzont";
+import Wine from "../../components/Wine/Wine";
 
 const FavoritesPage = () => {
   const dispatch = useDispatch();
