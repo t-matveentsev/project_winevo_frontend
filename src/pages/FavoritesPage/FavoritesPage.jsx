@@ -15,10 +15,6 @@ const FavoritesPage = () => {
 
   const favorites = useSelector(selectFavorites);
 
-  if (!Array.isArray(favorites) || favorites.length === 0) {
-    return <p>you don`t have any favorites</p>;
-  }
-
   return (
     <section className={s.favoritesBackground}>
       <Container>
@@ -30,11 +26,15 @@ const FavoritesPage = () => {
             </p>
           </div>
           <div>
-            <ul className={s.wineList}>
-              {favorites.map((item) => (
-                <Wine key={item._id} {...item} />
-              ))}
-            </ul>
+            {favorites.length === 0 ? (
+              <p>you don`t have any favorites</p>
+            ) : (
+              <ul className={s.wineList}>
+                {favorites.map((item) => (
+                  <Wine key={item._id} {...item} />
+                ))}
+              </ul>
+            )}
           </div>
         </div>
       </Container>
