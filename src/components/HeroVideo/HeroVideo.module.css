@@ -25,10 +25,6 @@
   text-align: center;
   color: #fff;
   padding: 40px 24px;
-  border-radius: 10px;
-  backdrop-filter: blur(4px);
-  background: rgba(0, 0, 0, 0.4);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .titleWrapper {
@@ -39,15 +35,15 @@
 .title {
   font-weight: 400;
   font-size: 28px;
-  text-shadow: 0 12px 56px rgba(0, 0, 0, 0.7);
   text-transform: uppercase;
+  filter: drop-shadow(10px 10px 36px #00000088);
 }
 
 .subtitle {
   font-size: 14px;
   text-transform: uppercase;
 
-  text-shadow: 0 6px 28px rgba(0, 0, 0, 0.35);
+  filter: drop-shadow(10px 10px 36px #00000088);
 }
 
 @media (min-width: 1279px) {
@@ -63,6 +59,7 @@
   background: transparent;
   border: 0;
   padding: 0;
+  filter: drop-shadow(10px 10px 36px #00000088);
 }
 
 .arrow {

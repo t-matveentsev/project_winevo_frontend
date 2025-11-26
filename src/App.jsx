@@ -1,38 +1,62 @@
+import { Suspense, lazy } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-import { Suspense } from "react";
-import HomePage from "./pages/HomePage/HomePage";
-import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
-import AboutWinePage from "./pages/WineCountriesPage/WineCountriesPage";
-import SigninPage from "./pages/SigninPage/SigninPage";
-import SignupPage from "./pages/SignupPage/SignupPage";
+import { useSelector } from "react-redux";
+
+import { selectIsRefreshing } from "./redux/auth/selectors";
+
 import PublicLayout from "./Layouts/PublicLayout";
 import PrivateLayout from "./Layouts/PrivateLayout";
 import AdminLayout from "./Layouts/AdminLayout";
-import { useSelector } from "react-redux";
-import { selectIsRefreshing } from "./redux/auth/selectors";
 import RequireAdmin from "./Layouts/RequireAdmin";
-import AdminHomePage from "./pages/AdminPages/AdminHomePage";
-import AdminTypesPage from "./pages/AdminPages/AdminTypesPage";
-import AdminVarietalsPage from "./pages/AdminPages/AdminVarietalsPage";
-import AdminCreateWinePage from "./pages/AdminPages/AdminCreateWinePage";
-import AdminEditWinePage from "./pages/AdminPages/AdminEditWinePage";
-import WineViewPage from "./pages/WineViewPage/WineViewPage";
-import FavoritesPage from "./pages/FavoritesPage/FavoritesPage";
-import WineCountriesPage from "./pages/WineCountriesPage/WineCountriesPage";
-import WineCollectionPage from "./pages/WineCollectionPage/WineCollectionPage";
-import WineVarietalsPage from "./pages/WineVarietalsPage/WineVarietalsPage";
-import PrivacyPolicyPage from "./pages/LegalPages/Privacy";
-import PublicOfferPage from "./pages/LegalPages/PublicOfferPage";
-import OauthGoogleCallback from "./pages/OauthGoogleCallback/OauthGoogleCallback";
-import AdminContentSettings from "./pages/AdminPages/AdminContentSettings";
 import AgeVerification from "./components/AgeVerification/AgeVerification";
+
+/* ==== Lazy pages ==== */
+const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
+const NotFoundPage = lazy(() => import("./pages/NotFoundPage/NotFoundPage"));
+const SigninPage = lazy(() => import("./pages/SigninPage/SigninPage"));
+const SignupPage = lazy(() => import("./pages/SignupPage/SignupPage"));
+const WineCountriesPage = lazy(() =>
+  import("./pages/WineCountriesPage/WineCountriesPage")
+);
+const WineCollectionPage = lazy(() =>
+  import("./pages/WineCollectionPage/WineCollectionPage")
+);
+const WineVarietalsPage = lazy(() =>
+  import("./pages/WineVarietalsPage/WineVarietalsPage")
+);
+const WineViewPage = lazy(() => import("./pages/WineViewPage/WineViewPage"));
+const FavoritesPage = lazy(() => import("./pages/FavoritesPage/FavoritesPage"));
+const PrivacyPolicyPage = lazy(() => import("./pages/LegalPages/Privacy"));
+const PublicOfferPage = lazy(() =>
+  import("./pages/LegalPages/PublicOfferPage")
+);
+const OauthGoogleCallback = lazy(() =>
+  import("./pages/OauthGoogleCallback/OauthGoogleCallback")
+);
+const AdminHomePage = lazy(() => import("./pages/AdminPages/AdminHomePage"));
+const AdminTypesPage = lazy(() => import("./pages/AdminPages/AdminTypesPage"));
+const AdminVarietalsPage = lazy(() =>
+  import("./pages/AdminPages/AdminVarietalsPage")
+);
+const AdminCreateWinePage = lazy(() =>
+  import("./pages/AdminPages/AdminCreateWinePage")
+);
+const AdminEditWinePage = lazy(() =>
+  import("./pages/AdminPages/AdminEditWinePage")
+);
+const AdminContentSettings = lazy(() =>
+  import("./pages/AdminPages/AdminContentSettings")
+);
 
 export default function App() {
   const isRefreshing = useSelector(selectIsRefreshing);
 
-  return isRefreshing ? null : (
+  if (isRefreshing) return null;
+
+  return (
     <Suspense fallback={<div>Loading...</div>}>
       <AgeVerification />
+
       <Routes>
         <Route element={<PublicLayout />}>
           <Route index element={<Navigate to="home" replace />} />
@@ -59,6 +83,7 @@ export default function App() {
           <Route element={<AdminLayout />}>
             <Route index element={<Navigate to="home" replace />} />
             <Route path="home" element={<AdminHomePage />} />
+
             <Route path="content-settings" element={<AdminContentSettings />}>
               <Route index element={<Navigate to="types" replace />} />
               <Route path="types" element={<AdminTypesPage />} />

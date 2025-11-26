@@ -39,7 +39,7 @@ export default function AgeVerification() {
         loop
         playsInline
         preload="metadata"
-        poster="/photo/age_verification.jpg"
+        poster="photo/age_verification.jpg"
       >
         <source
           src="/video/age_verification_mob.webm"
@@ -47,32 +47,23 @@ export default function AgeVerification() {
           media="(max-width: 767px)"
         />
         <source
+          src="/video/age_verification_tab.webm"
+          type="video/webm"
+          media="(max-width: 1279px)"
+        />
+        <source src="/video/age_verification_desc.webm" type="video/webm" />
+
+        <source
           src="/video/age_verification_mob.mp4"
           type="video/mp4"
           media="(max-width: 767px)"
         />
-
-        <source
-          src="/video/age_verification_tab.webm"
-          type="video/webm"
-          media="(min-width: 768px) and (max-width: 1279px)"
-        />
         <source
           src="/video/age_verification_tab.mp4"
           type="video/mp4"
-          media="(min-width: 768px) and (max-width: 1279px)"
+          media="(max-width: 1279px)"
         />
-
-        <source
-          src="/video/age_verification_desc.webm"
-          type="video/webm"
-          media="(min-width: 1280px)"
-        />
-        <source
-          src="/video/age_verification_desc.mp4"
-          type="video/mp4"
-          media="(min-width: 1280px)"
-        />
+        <source src="/video/age_verification_desc.mp4" type="video/mp4" />
       </video>
 
       <div className={s.center}>
