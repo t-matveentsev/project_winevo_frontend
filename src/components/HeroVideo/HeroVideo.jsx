@@ -10,7 +10,7 @@ const HeroVideo = () => {
         loop
         playsInline
         preload="metadata"
-        poster="photo/hero_photo.webp"
+        poster="/photo/hero_photo.webp"
       >
         <source
           src="/video/hero-mob.webm"

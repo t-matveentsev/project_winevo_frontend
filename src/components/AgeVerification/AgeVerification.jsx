@@ -39,7 +39,7 @@ export default function AgeVerification() {
         loop
         playsInline
         preload="metadata"
-        poster="photo/age_verification.webp"
+        poster="/photo/age_verification.webp"
       >
         <source
           src="/video/age_verification_mob.webm"
