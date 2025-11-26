@@ -9,11 +9,6 @@
   background: inherit;
 }
 
-.button:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.35);
-}
-
 .icon {
   display: block;
 }
@@ -32,11 +27,6 @@
 }
 .bottom {
   transform: translateY(3px);
-}
-
-/* Hover */
-.button:hover .line {
-  stroke: var(--color-accent);
 }
 
 /* Open */
