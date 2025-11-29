@@ -9,7 +9,7 @@
       rgba(0, 0, 0, 0.7),
       rgba(0, 0, 0, 0.7)
     ),
-    url(photo/footer_background.webp);
+    url(/photo/footer_background.webp);
 }
 
 .wrapper {
