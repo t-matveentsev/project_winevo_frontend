@@ -5,7 +5,7 @@ import axios from "axios";
 //   withCredentials: true,
 // });
 export const api = axios.create({
-  baseURL: "https://www.api.winevo-collection.me",
+  baseURL: "https://www.api.winevo-collection.me/api",
   withCredentials: true,
 });
 
