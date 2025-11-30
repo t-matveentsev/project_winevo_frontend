@@ -25,7 +25,7 @@ const SignupPage = () => {
     dispatch(signupThunk({ username, email, password }))
       .unwrap()
       .then(() => {
-        navigate("/", { replace: true });
+        navigate("/home", { replace: true });
         options.resetForm();
       })
       .catch(() =>

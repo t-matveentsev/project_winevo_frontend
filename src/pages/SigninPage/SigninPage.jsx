@@ -25,7 +25,7 @@ const SigninPage = () => {
     await dispatch(signinThunk(values))
       .unwrap()
       .then(() => {
-        navigate("/", { replace: true });
+        navigate("/home", { replace: true });
         options.resetForm();
       })
       .catch(() =>
