@@ -78,9 +78,15 @@ const Footer = () => {
               </nav>
             </div>
             <div>
-              <p>receive information about new wines in the collection</p>
-              <input type="email" />
-              <button>subscribe</button>
+              <p className={s.subscribe}>
+                Receive information about new wines in the collection
+              </p>
+              <input
+                className={s.subscribeInput}
+                placeholder="Feature in progress..."
+                type="email"
+              />
+              <button className={s.subscribeBtn}>subscribe</button>
             </div>
           </div>
           <div className={s.policy}>

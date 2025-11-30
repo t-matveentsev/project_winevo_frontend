@@ -36,6 +36,16 @@
   text-align: center;
 }
 
+.empty {
+  margin: 60px auto 0;
+  max-width: 300px;
+
+  text-align: center;
+  font-size: 18px;
+
+  opacity: 0.85;
+}
+
 .wineList {
   display: flex;
   flex-direction: column;

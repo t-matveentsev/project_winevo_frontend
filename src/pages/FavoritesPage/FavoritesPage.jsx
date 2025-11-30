@@ -27,7 +27,7 @@ const FavoritesPage = () => {
           </div>
           <div>
             {favorites.length === 0 ? (
-              <p>you don`t have any favorites</p>
+              <p className={s.empty}>You don`t have any favorites</p>
             ) : (
               <ul className={s.wineList}>
                 {favorites.map((item) => (

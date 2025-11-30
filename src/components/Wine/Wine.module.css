@@ -5,21 +5,18 @@
 .cardWrapper {
   background-color: white;
   color: black;
-  padding: 10px;
+  padding: 15px;
   border-radius: 12px;
 }
 
-@media (max-width: 767px) {
-  .wineMedia {
-    padding-bottom: 20px;
-  }
+.wineMedia {
+  padding-bottom: 20px;
 }
 
 .wineImg {
   width: 100%;
-  background-color: inherit;
-  box-shadow: inset 0 100px 100px 0 rgba(18, 18, 18, 1);
   border-radius: 12px;
+  box-shadow: inset 0 100px 100px 0 rgba(18, 18, 18, 1);
 }
 
 .cardHeadWrapper {
@@ -27,14 +24,9 @@
   justify-content: space-between;
 }
 
-.deleteBtn {
-  color: black;
-}
-
 .adminBtnWrapper {
   display: flex;
   gap: 5px;
-
   font-size: 12px;
   font-weight: 600;
 }
@@ -51,51 +43,27 @@
   letter-spacing: 0.5px;
 }
 
-.editBtn {
-  background: var(--red-accent);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: #fff;
-  padding: 5px 10px;
-
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
 .specs {
   display: grid;
+  gap: 10px;
 }
+
 .row {
   display: grid;
-  grid-template-columns: 100px minmax(0, 1fr);
+  grid-template-columns: 120px minmax(0, 1fr);
   align-items: baseline;
-  gap: 16px;
+  gap: 12px;
   padding: 5px 0;
-  border-bottom: 1px dashed #eee;
-}
-.row:last-child {
-  border-bottom: 0;
-  padding-bottom: 30px;
 }
 
 .specs dt {
   color: #111;
   font-weight: 600;
 }
+
 .value {
   color: #7a2e2e;
   font-weight: 700;
-}
-
-.rowWide {
-  grid-template-columns: 100px minmax(0, 1fr);
-}
-.rowWide .value {
-  font-weight: 400;
-  color: #333;
 }
 
 .cta {
@@ -108,34 +76,20 @@
   border-radius: 10px;
   text-decoration: none;
   font-weight: 600;
+  margin-top: 10px;
 }
 
 @media (min-width: 768px) {
   .cardWrapper {
     display: flex;
-    align-items: center;
-    gap: 1px;
+    gap: 20px;
     padding: 20px;
-  }
-
-  .wineMedia {
-    flex-shrink: 0;
-    display: flex;
     align-items: center;
-    justify-content: center;
-    padding-right: 20px;
-  }
-
-  .wineCard {
-    max-height: 370px;
-  }
-  .cardWrapper {
-    display: flex;
-    max-height: 320px;
   }
 
   .wineMedia {
-    padding-right: 20px;
+    padding: 0;
+    flex-shrink: 0;
   }
 
   .wineImg {
@@ -156,28 +110,11 @@
     font-weight: 700;
     margin-bottom: 20px;
   }
-
-  .specs {
-    display: grid;
-    margin: 0;
-  }
 }
 
 @media (min-width: 1280px) {
-  .wineCard {
-    max-height: 500px;
-  }
-  .cardWrapper {
-    align-items: center;
-    max-height: 370px;
-  }
-
   .wineImg {
     width: 350px;
-  }
-
-  .wineMedia {
-    padding-right: 40px;
   }
 
   .row {

@@ -4,9 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectWines, selectWinesMeta } from "../../redux/wines/selectors";
 import { fetchWines } from "../../redux/wines/operations";
 import Wine from "../Wine/Wine";
-import s from "./WineSlider.module.css";
 import Container from "../Container/Container";
 import useEmblaAutoplay from "../../hooks/useEmblaAutoplay";
+
+import s from "./WineSlider.module.css";
 
 const AUTOPLAY_MS = 3500;
 
@@ -19,10 +20,8 @@ const WineSlider = ({ baseQuery = {} }) => {
     loop: true,
     align: "center",
   });
-  const { start, stop, scrollPrev, scrollNext } = useEmblaAutoplay(
-    emblaApi,
-    AUTOPLAY_MS
-  );
+
+  const { start, stop } = useEmblaAutoplay(emblaApi, AUTOPLAY_MS);
 
   useEffect(() => {
     if (!wines?.length) {
@@ -41,55 +40,24 @@ const WineSlider = ({ baseQuery = {} }) => {
     <section className={s.section} aria-label="Wine slider" id="wine-slider">
       <Container>
         <div className={s.wrapper}>
+          <div className={s.header}>
+            <h2 className={s.title}>
+              Featured <span className={s.accent}>Wines</span>
+            </h2>
+            <div className={s.controls} />
+          </div>
+
           <div
-            className={s.header}
+            className={s.embla}
+            ref={emblaRef}
             onMouseEnter={stop}
             onMouseLeave={start}
             onFocus={stop}
             onBlur={start}
           >
-            <h2 className={s.title}>
-              Featured <span className={s.accent}>Wines</span>
-            </h2>
-            <div className={s.controls}>
-              <button
-                className={`${s.nav} ${s.prev}`}
-                onClick={scrollPrev}
-                aria-label="Previous slide"
-              >
-                <svg viewBox="0 0 24 24" className={s.icon}>
-                  <path
-                    d="M15 6l-6 6 6 6"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </button>
-              <button
-                className={`${s.nav} ${s.next}`}
-                onClick={scrollNext}
-                aria-label="Next slide"
-              >
-                <svg viewBox="0 0 24 24" className={s.icon}>
-                  <path
-                    d="M9 6l6 6-6 6"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </button>
-            </div>
-          </div>
-          <div className={s.embla} ref={emblaRef}>
             <div className={s.card}>
               {wines.map((item) => (
-                <div className={s.slide} key={item._id}>
+                <div className={s.slide} key={item._id} tabIndex={0}>
                   <Wine {...item} />
                 </div>
               ))}
