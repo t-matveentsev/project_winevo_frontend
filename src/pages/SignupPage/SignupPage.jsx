@@ -37,10 +37,7 @@ const SignupPage = () => {
   return (
     <div className={s.signupBackground}>
       <Link className={s.backLink} to="/">
-        <svg className={s.backIcon} width="24" height="24">
-          <use href="sprite.svg#arrow-back"></use>
-        </svg>
-        Back to main
+        <p className={s.backBtn}>← Back</p>
       </Link>
       <Container>
         <div className={s.wrapper}>

@@ -11,7 +11,7 @@
 }
 
 .backLink {
-  margin-left: 80px;
+  margin-left: 10%;
   display: flex;
   align-items: center;
   gap: 15px;
@@ -22,6 +22,37 @@
 
   cursor: pointer;
   transition: color 0.3s ease;
+}
+
+.backBtn {
+  margin-top: 24px;
+  margin-bottom: 16px;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  background: transparent;
+  border: none;
+  color: var(--gold-accent);
+
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  cursor: pointer;
+  padding: 0;
+
+  transition: color 0.2s ease, transform 0.12s ease;
+}
+
+.backBtn:hover {
+  color: var(--color-accent-hover);
+  transform: translateX(-2px);
+}
+
+.backBtn:active {
+  transform: translateX(-1px) scale(0.99);
 }
 
 .backIcon {

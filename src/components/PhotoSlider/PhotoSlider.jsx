@@ -26,15 +26,18 @@ const PhotoSlider = () => {
       >
         <div className={s.embla} ref={emblaRef}>
           <div className={s.container}>
-            {PHOTOS.map((src, i) => (
+            {PHOTOS.map((photo, i) => (
               <div className={s.slide} key={i} tabIndex={0}>
                 <div className={s.card}>
-                  <img
-                    src={src}
-                    alt={`Wine photo ${i + 1}`}
-                    className={s.img}
-                    draggable="false"
-                  />
+                  <picture>
+                    <source srcSet={photo.webp} type="image/webp" />
+                    <img
+                      src={photo.fallback}
+                      alt={`Wine photo ${i + 1}`}
+                      className={s.img}
+                      draggable="false"
+                    />
+                  </picture>
                 </div>
               </div>
             ))}

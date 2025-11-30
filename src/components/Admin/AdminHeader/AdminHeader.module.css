@@ -22,9 +22,15 @@
 
 .brand {
   position: absolute;
-  left: 50%;
+  left: 84%;
   transform: translateX(-50%);
   font-size: 28px;
   font-weight: 600;
   letter-spacing: 0.1em;
+}
+
+@media only screen and (min-width: 768px) {
+  .brand {
+    left: 50%;
+  }
 }
