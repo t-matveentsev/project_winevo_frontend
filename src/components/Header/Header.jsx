@@ -35,7 +35,6 @@ const Header = () => {
         <div className={s.wrapper}>
           <div className={s.authMenu}>
             {isLoggedIn ? <UserMenu /> : <AuthMenu />}
-            {console.log(isLoggedIn)}
           </div>
           <Navigation />
           <div className={s.brand}>
@@ -44,7 +43,6 @@ const Header = () => {
             ) : (
               <a href="/home">WINEVO</a>
             )}
-            {/* <a href="/home">WINEVO</a> */}
           </div>
 
           <BurgerButton isOpen={open} onToggle={handleToggle} id="site-menu" />

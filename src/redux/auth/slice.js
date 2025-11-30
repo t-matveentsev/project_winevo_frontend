@@ -12,7 +12,7 @@ import {
 
 const initialState = {
   user: {
-    username: "user",
+    username: "",
     email: "",
     role: "user",
     favorites: [],
@@ -30,10 +30,8 @@ const slice = createSlice({
   initialState,
   extraReducers: (builder) => {
     builder
-      .addCase(signupThunk.fulfilled, (state, action) => {
-        state.user = action.payload.user;
-        state.token = action.payload.token;
-        state.isLoggedIn = true;
+      .addCase(signupThunk.fulfilled, (state) => {
+        state.isLoggedIn = false;
         state.loading = false;
       })
       .addCase(signupThunk.pending, (state) => {

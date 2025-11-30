@@ -6,7 +6,6 @@ export const signupThunk = createAsyncThunk(
   async (body, thunkAPI) => {
     try {
       const { data } = await api.post("/auth/signup", body);
-      setAuthHeader(data.token);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
