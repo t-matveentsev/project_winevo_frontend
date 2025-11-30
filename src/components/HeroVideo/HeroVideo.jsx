@@ -1,9 +1,28 @@
+import { useEffect, useRef } from "react";
 import s from "./HeroVideo.module.css";
 
 const HeroVideo = () => {
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+
+    const tryPlay = async () => {
+      try {
+        await v.play();
+      } catch (e) {
+        console.log("Autoplay blocked on this device:", e);
+      }
+    };
+
+    tryPlay();
+  }, []);
+
   return (
     <section className={s.heroWrapper} id="home">
       <video
+        ref={videoRef}
         className={s.video}
         autoPlay
         muted
