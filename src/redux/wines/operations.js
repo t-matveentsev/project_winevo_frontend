@@ -19,7 +19,6 @@ export const getWineById = createAsyncThunk(
   async (id, thunkApi) => {
     try {
       const { data } = await api.get(`/wines/${id}`);
-      console.log(data.data);
       return data.data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);

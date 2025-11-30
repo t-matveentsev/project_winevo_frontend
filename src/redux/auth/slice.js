@@ -12,9 +12,9 @@ import {
 
 const initialState = {
   user: {
-    username: "",
+    username: "user",
     email: "",
-    role: "",
+    role: "user",
     favorites: [],
     favoriteIds: [],
   },

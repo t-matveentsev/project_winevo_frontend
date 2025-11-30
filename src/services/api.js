@@ -1,7 +1,11 @@
 import axios from "axios";
 
+// export const api = axios.create({
+//   baseURL: "https://project-winevo-backend.onrender.com/api",
+//   withCredentials: true,
+// });
 export const api = axios.create({
-  baseURL: "https://project-winevo-backend.onrender.com/api",
+  baseURL: "https://www.api.winevo-collection.me",
   withCredentials: true,
 });
 

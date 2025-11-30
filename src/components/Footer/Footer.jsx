@@ -77,11 +77,11 @@ const Footer = () => {
                 </ul>
               </nav>
             </div>
-            {/* <div>
+            <div>
               <p>receive information about new wines in the collection</p>
               <input type="email" />
               <button>subscribe</button>
-            </div> */}
+            </div>
           </div>
           <div className={s.policy}>
             <div>

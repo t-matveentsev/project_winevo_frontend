@@ -117,8 +117,8 @@ export default function MobileMenu({ open, onClose, id = "site-menu" }) {
           <a href="mailto:tmatveentsev@gmail.com" className={s.meta}>
             tmatveentsev@gmail.com
           </a>
-          <a href="tel:+48722268383" className={s.meta}>
-            +48 722 268 383
+          <a href="tel:+48733268383" className={s.meta}>
+            +48 733 268 383
           </a>
           <div className={s.legal}>
             <a href="/privacy-policy">Privacy Policy</a>

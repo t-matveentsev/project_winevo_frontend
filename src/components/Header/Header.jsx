@@ -1,6 +1,6 @@
 import Navigation from "../Navigation/Navigation";
 import { useSelector } from "react-redux";
-import { selectIsLoggedIn } from "../../redux/auth/selectors";
+import { selectIsLoggedIn, selectRole } from "../../redux/auth/selectors";
 import UserMenu from "../UserMenu/UserMenu";
 import AuthMenu from "../AuthMenu/AuthMenu";
 
@@ -11,6 +11,7 @@ import { useState } from "react";
 import MobileMenu from "../MobileMenu/MobileMenu";
 
 const Header = () => {
+  const userRole = useSelector(selectRole);
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   const [open, setOpen] = useState(false);
@@ -34,11 +35,18 @@ const Header = () => {
         <div className={s.wrapper}>
           <div className={s.authMenu}>
             {isLoggedIn ? <UserMenu /> : <AuthMenu />}
+            {console.log(isLoggedIn)}
           </div>
           <Navigation />
           <div className={s.brand}>
-            <a href="/admin/home">WINEVO</a>
+            {userRole === "admin" ? (
+              <a href="/admin/home">WINEVO</a>
+            ) : (
+              <a href="/home">WINEVO</a>
+            )}
+            {/* <a href="/home">WINEVO</a> */}
           </div>
+
           <BurgerButton isOpen={open} onToggle={handleToggle} id="site-menu" />
         </div>
       </Container>
