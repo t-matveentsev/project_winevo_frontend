@@ -9,6 +9,7 @@ import PrivateLayout from "./Layouts/PrivateLayout";
 import AdminLayout from "./Layouts/AdminLayout";
 import RequireAdmin from "./Layouts/RequireAdmin";
 import AgeVerification from "./components/AgeVerification/AgeVerification";
+import Loader from "./components/Loader/Loader";
 // import HomePage from "./pages/HomePage/HomePage";
 
 /* ==== Lazy pages ==== */
@@ -55,7 +56,7 @@ export default function App() {
   if (isRefreshing) return null;
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<Loader />}>
       <AgeVerification />
 
       <Routes>

@@ -5,16 +5,15 @@ import s from "./AdminShared.module.css";
 import EditWineForm from "../../components/Admin/EditWineForm/EditWineForm";
 import { useSelector } from "react-redux";
 import { selectWines } from "../../redux/wines/selectors";
+import Loader from "../../components/Loader/Loader";
 
 const AdminEditWinePage = () => {
   const { id } = useParams();
   const wines = useSelector(selectWines);
   const wine = wines.find((item) => item._id === id);
 
-  console.log(wine);
-
   if (!wine) {
-    return <p>Loading...</p>;
+    return <Loader />;
   }
   return (
     <section className={s.createWineBack}>

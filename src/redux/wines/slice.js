@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { deleteWineById, fetchWines } from "./operations";
+import { deleteWineById, fetchWines, updateWine } from "./operations";
 
 const initialState = {
   wines: {
@@ -35,7 +35,6 @@ const slice = createSlice({
         state.wines.loading = false;
         state.wines.error = action.payload;
       })
-
       .addCase(deleteWineById.pending, (state) => {
         state.wines.loading = true;
       })
@@ -44,10 +43,20 @@ const slice = createSlice({
           (w) => w._id !== action.payload
         );
         state.wines.totalItems = Math.max(0, state.wines.totalItems - 1);
+        state.wines.loading = false;
       })
       .addCase(deleteWineById.rejected, (state, action) => {
         state.wines.loading = false;
         state.wines.error = action.payload;
+      })
+      .addCase(updateWine.pending, (state) => {
+        state.wines.loading = true;
+      })
+      .addCase(updateWine.fulfilled, (state) => {
+        state.wines.loading = false;
+      })
+      .addCase(updateWine.rejected, (state) => {
+        state.wines.loading = false;
       });
   },
 });

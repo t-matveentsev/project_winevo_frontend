@@ -14,3 +14,5 @@ export const selectWinesMeta = createSelector([selectWinesState], (wine) => ({
   loading: wine.loading,
   error: wine.error,
 }));
+
+export const selectLoading = (state) => state.wines.loading;

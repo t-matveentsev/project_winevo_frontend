@@ -11,11 +11,14 @@ import { COUNTRIES } from "../../../constants/countries";
 import ImageEditorModal from "../../ImageEditorModal/ImageEditorModal";
 
 import s from "../AddWineForm/AddWineForm.module.css";
+import { selectLoading } from "../../../redux/auth/selectors";
+import Loader from "../../Loader/Loader";
 
 const EditWineForm = ({ wine }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const loading = useSelector(selectLoading);
   const types = useSelector(selectTypes);
   const varietals = useSelector(selectVarietals);
   const [selectedVarietals, setSelectedVarietals] = useState([]);
@@ -57,7 +60,7 @@ const EditWineForm = ({ wine }) => {
 
   const handleSubmit = async (values, actions) => {
     const formData = new FormData();
-    if (values.thumb) {
+    if (values.thumb instanceof File) {
       formData.append("thumb", values.thumb);
     }
     formData.append("title", values.title);
@@ -72,12 +75,10 @@ const EditWineForm = ({ wine }) => {
     formData.append("description", values.description);
 
     try {
-      const response = await dispatch(
-        updateWine({ id: wine._id, formData })
-      ).unwrap();
+      await dispatch(updateWine({ id: wine._id, formData })).unwrap();
       actions.resetForm();
       setSelectedVarietals([]);
-      navigate(`/wine-details/${response._id}`, {
+      navigate(`/admin/home`, {
         state: { admin: true, from: "/admin" },
       });
     } catch (e) {
@@ -97,6 +98,9 @@ const EditWineForm = ({ wine }) => {
     description: wine.description || "",
   };
 
+  if (loading) {
+    return <Loader />;
+  }
   return (
     <div className={s.wrapper}>
       <h2 className={s.title}>Add New Wine</h2>
