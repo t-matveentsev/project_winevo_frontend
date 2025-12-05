@@ -43,6 +43,18 @@
   letter-spacing: 0.5px;
 }
 
+.editBtn {
+  background: var(--red-accent);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
 .specs {
   display: grid;
   gap: 10px;

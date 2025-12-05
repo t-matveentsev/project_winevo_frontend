@@ -42,7 +42,7 @@ const Footer = () => {
                   </li>
                   <li>
                     <a href="tel:+48733268383" target="_blank">
-                      PL: +48 722 268 383
+                      PL: +48 733 268 383
                     </a>
                   </li>
                   <li>

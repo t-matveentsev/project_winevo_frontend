@@ -9,10 +9,10 @@ import PrivateLayout from "./Layouts/PrivateLayout";
 import AdminLayout from "./Layouts/AdminLayout";
 import RequireAdmin from "./Layouts/RequireAdmin";
 import AgeVerification from "./components/AgeVerification/AgeVerification";
-import HomePage from "./pages/HomePage/HomePage";
+// import HomePage from "./pages/HomePage/HomePage";
 
 /* ==== Lazy pages ==== */
-// const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
+const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage/NotFoundPage"));
 const SigninPage = lazy(() => import("./pages/SigninPage/SigninPage"));
 const SignupPage = lazy(() => import("./pages/SignupPage/SignupPage"));

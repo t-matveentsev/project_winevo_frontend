@@ -26,6 +26,20 @@ export const getWineById = createAsyncThunk(
   }
 );
 
+export const updateWine = createAsyncThunk(
+  "wines/updateWine",
+  async ({ id, formData }, thunkAPI) => {
+    try {
+      const { data } = await api.patch(`/wines/${id}`, formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response?.data || error.message);
+    }
+  }
+);
+
 export const deleteWineById = createAsyncThunk(
   "wines/deleteWineById",
   async (id, thunkApi) => {
