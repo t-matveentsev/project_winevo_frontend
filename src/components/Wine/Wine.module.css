@@ -1,27 +1,32 @@
 .wineCard {
   width: 100%;
+  list-style: none;
 }
 
 .cardWrapper {
   background-color: white;
   color: black;
-  padding: 15px;
   border-radius: 12px;
 }
 
-.wineMedia {
-  padding-bottom: 20px;
+.title {
+  padding-bottom: 10px;
 }
 
 .wineImg {
   width: 100%;
-  border-radius: 12px;
-  box-shadow: inset 0 100px 100px 0 rgba(18, 18, 18, 1);
+  border-radius: 12px 12px 0 0;
+  padding: 20px;
+  box-shadow: inset 0 200px 100px 0 rgba(18, 18, 18, 1);
 }
 
 .cardHeadWrapper {
   display: flex;
   justify-content: space-between;
+}
+
+.details {
+  padding: 20px;
 }
 
 .adminBtnWrapper {
@@ -62,41 +67,26 @@
 
 .row {
   display: grid;
-  grid-template-columns: 120px minmax(0, 1fr);
+  grid-template-columns: 130px minmax(0, 1fr);
   align-items: baseline;
+
   gap: 12px;
   padding: 5px 0;
+  align-items: center;
 }
 
 .specs dt {
   color: #111;
   font-weight: 600;
 }
-
-.value {
+.specs dd {
   color: #7a2e2e;
-  font-weight: 700;
-}
-
-.cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: #111;
-  color: #fff;
-  padding: 10px 14px;
-  border-radius: 10px;
-  text-decoration: none;
   font-weight: 600;
-  margin-top: 10px;
 }
 
 @media (min-width: 768px) {
   .cardWrapper {
     display: flex;
-    gap: 20px;
-    padding: 20px;
-    align-items: center;
   }
 
   .wineMedia {
@@ -105,16 +95,14 @@
   }
 
   .wineImg {
-    width: 280px;
-    height: auto;
-    object-fit: contain;
+    max-width: 333px;
+    border-radius: 12px 0 0 12px;
   }
 
   .details {
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center;
   }
 
   .title {
@@ -126,7 +114,7 @@
 
 @media (min-width: 1280px) {
   .wineImg {
-    width: 350px;
+    height: 350px;
   }
 
   .row {

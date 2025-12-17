@@ -1,5 +1,5 @@
 .background {
-  padding: 30px 0;
+  padding-bottom: 20px;
 }
 
 .filterWrapper {
@@ -16,7 +16,6 @@
   gap: 12px;
 }
 
-/* Стилі для select */
 .select {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -37,7 +36,6 @@
   background: rgba(255, 255, 255, 0.1);
 }
 
-/* Кнопки */
 .btn {
   background: var(--red-accent);
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -56,7 +54,6 @@
   border-color: #7a2e2e;
 }
 
-/* Основна кнопка (Search) */
 .btnPrimary {
   background: #7a2e2e;
   border-color: #7a2e2e;
@@ -67,7 +64,6 @@
   background: #a33e3e;
 }
 
-/* Адаптив */
 @media (max-width: 767px) {
   .filterWrapper {
     flex-direction: column;
@@ -85,5 +81,7 @@
 
   .btn {
     width: 100%;
+    padding: 5px 10px;
+    font-size: 14px;
   }
 }

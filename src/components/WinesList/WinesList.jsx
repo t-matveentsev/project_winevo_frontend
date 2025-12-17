@@ -1,5 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import { selectWines, selectWinesMeta } from "../../redux/wines/selectors";
+import {
+  selectLoading,
+  selectWines,
+  selectWinesMeta,
+} from "../../redux/wines/selectors";
 import Wine from "../Wine/Wine";
 import { deleteWineById, fetchWines } from "../../redux/wines/operations";
 import Container from "../Container/Container";
@@ -8,6 +12,7 @@ import s from "./WinesList.module.css";
 
 const WinesList = ({ admin = false, baseQuery = {} }) => {
   const dispatch = useDispatch();
+  const isLoading = useSelector(selectLoading);
   const wines = useSelector(selectWines);
   const { page, hasNextPage, loading } = useSelector(selectWinesMeta);
 
@@ -20,7 +25,7 @@ const WinesList = ({ admin = false, baseQuery = {} }) => {
   };
 
   if (!loading && wines.length === 0) {
-    return <p>Nothing found</p>;
+    return <p className={s.nothing}>Nothing found</p>;
   }
 
   return (
@@ -38,10 +43,25 @@ const WinesList = ({ admin = false, baseQuery = {} }) => {
         </ul>
 
         {hasNextPage && (
-          <div style={{ marginTop: 16 }}>
-            <button onClick={loadMore} disabled={loading}>
-              Show more wines
-            </button>
+          <div className={s.showMore}>
+            {console.log(isLoading)}
+            {isLoading ? (
+              <button
+                className={s.showMoreBtn}
+                onClick={loadMore}
+                disabled={loading}
+              >
+                loading...
+              </button>
+            ) : (
+              <button
+                className={s.showMoreBtn}
+                onClick={loadMore}
+                disabled={loading}
+              >
+                Show more
+              </button>
+            )}
           </div>
         )}
       </Container>

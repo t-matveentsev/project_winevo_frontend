@@ -34,14 +34,22 @@
   font-weight: 400;
   font-size: 28px;
   text-transform: uppercase;
-  filter: drop-shadow(0 1px 50px #00000088);
+  filter: drop-shadow(0 1px 200px #00000088);
+}
+
+.link {
+  text-decoration: underline 2px;
+  text-underline-offset: 2px;
+}
+.link:focus {
+  color: var(--gold-accent);
 }
 
 .subtitle {
   font-size: 14px;
   text-transform: uppercase;
 
-  filter: drop-shadow(0 1px 50px #00000088);
+  filter: drop-shadow(0 1px 200px #00000088);
 }
 
 @media (min-width: 1279px) {
@@ -57,7 +65,7 @@
   background: transparent;
   border: 0;
   padding: 0;
-  filter: drop-shadow(0 1px 50px #00000088);
+  filter: drop-shadow(0 1px 200px #00000088);
 }
 
 .arrow {

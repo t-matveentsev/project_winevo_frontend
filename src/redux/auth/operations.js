@@ -109,8 +109,6 @@ export const getGoogleOAuthLinkThunk = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const { data } = await api.post("/auth/get-google-oauth-link");
-      // бекенд повертає { status, message, data: { link } }
-      console.log(data.data.link);
       return data.data.link;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -144,27 +142,3 @@ export const signinWithGoogleThunk = createAsyncThunk(
     }
   }
 );
-
-// export const signinThunk = createAsyncThunk(
-//   "auth/signin",
-//   async (body, thunkAPI) => {
-//     try {
-//       const response = await api.post("/auth/signin", body);
-//       const { accessToken, user } = response.data;
-
-//       setAuthHeader(accessToken);
-
-//       const normalizedUser = {
-//         id: user._id,
-//         username: user.username,
-//         email: user.email,
-//         role: user.role,
-//         favorites: user.favorites,
-//       };
-
-//       return { token: accessToken, user: normalizedUser };
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );

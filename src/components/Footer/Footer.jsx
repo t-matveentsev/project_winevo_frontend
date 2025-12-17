@@ -3,13 +3,18 @@ import Container from "../Container/Container";
 import s from "./Footer.module.css";
 
 const Footer = () => {
+  const handleClick = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
   return (
     <footer className={s.background}>
       <Container>
         <div className={s.wrapper}>
           <div className={s.contactsWrapper}>
             <div className={s.countryWrapper}>
-              <p className={s.brand}>WINEVO</p>
+              <p className={s.brand} onClick={handleClick}>
+                WINEVO
+              </p>
               <p className={s.country}>
                 <a
                   href="https://www.google.com/maps/place/Warszawa,+Poland/"

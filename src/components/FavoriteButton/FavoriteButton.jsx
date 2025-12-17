@@ -1,9 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   addFavoriteById,
   deleteFavoriteById,
-  fetchFavorites,
 } from "../../redux/auth/operations";
 import {
   selectFavoriteIds,
@@ -21,33 +20,41 @@ const FavoriteButton = ({ wineId }) => {
   const favoriteIds = useSelector(selectFavoriteIds);
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
-  const [pending, setPending] = useState(false);
-
-  const isFavorite = useMemo(
+  const reduxIsFavorite = useMemo(
     () => (favoriteIds ?? []).includes(wineId),
     [favoriteIds, wineId]
   );
+
+  const [optimistic, setOptimistic] = useState(reduxIsFavorite);
+  const [pending, setPending] = useState(false);
+
+  useEffect(() => {
+    setOptimistic(reduxIsFavorite);
+  }, [reduxIsFavorite]);
 
   const handleToggle = async () => {
     if (!isLoggedIn) {
       navigate("/signin", { replace: true, state: { from: location } });
       return;
-    } else {
-      if (!wineId || pending) return;
+    }
+    if (pending) return;
 
-      setPending(true);
-      try {
-        if (isFavorite) {
-          await dispatch(deleteFavoriteById(wineId)).unwrap();
-        } else {
-          await dispatch(addFavoriteById(wineId)).unwrap();
-          await dispatch(fetchFavorites()).unwrap();
-        }
-      } catch (e) {
-        console.error(e);
-      } finally {
-        setPending(false);
+    const next = !optimistic;
+
+    setOptimistic(next);
+    setPending(true);
+
+    try {
+      if (next) {
+        await dispatch(addFavoriteById(wineId)).unwrap();
+      } else {
+        await dispatch(deleteFavoriteById(wineId)).unwrap();
       }
+    } catch (e) {
+      console.error(e);
+      setOptimistic(!next);
+    } finally {
+      setPending(false);
     }
   };
 
@@ -55,12 +62,11 @@ const FavoriteButton = ({ wineId }) => {
     <button
       type="button"
       onClick={handleToggle}
-      disabled={pending}
-      aria-pressed={isFavorite}
+      aria-pressed={optimistic}
       className={s.favoriteBtn}
     >
       <svg
-        className={`${s.cardGrapeIcon} ${isFavorite ? s.favorite : ""}`}
+        className={`${s.cardGrapeIcon} ${optimistic ? s.favorite : ""}`}
         viewBox="0 0 24 24"
       >
         <use href="sprite.svg#grape" />

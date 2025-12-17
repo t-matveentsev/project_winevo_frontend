@@ -13,7 +13,7 @@ const SearchBox = ({ extraFilters = {}, query = "", onQueryChange }) => {
       const trimmed = query.trim();
       onQueryChange?.(trimmed);
       dispatch(fetchWines({ ...extraFilters, query: trimmed, page: 1 }));
-    }, 700);
+    }, 500);
 
     return () => clearTimeout(id);
   }, [query, dispatch, extraFilters, onQueryChange]);

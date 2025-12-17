@@ -5,6 +5,7 @@
 
 .wrap {
   position: relative;
+  margin-bottom: 20px;
 }
 .embla {
   overflow: hidden;
@@ -41,7 +42,7 @@
   object-fit: cover;
 }
 
-.nav {
+/* .nav {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -63,9 +64,9 @@
   transform: translateY(-50%) scale(1.05);
   background: #fff;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
-}
+} */
 
-.prev {
+/* .prev {
   left: -50px;
 }
 .next {
@@ -80,14 +81,13 @@
   width: 20px;
   height: 20px;
   color: var(--color-black);
-}
+} */
 
-/* Responsive heights */
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .prev {
     left: 4px;
   }
   .next {
     right: 4px;
   }
-}
+} */

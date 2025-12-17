@@ -4,6 +4,10 @@ import Container from "../Container/Container";
 import s from "./WineDetails.module.css";
 
 const WineDetails = ({ wine }) => {
+  const varietalText = Array.isArray(wine.varietal)
+    ? wine.varietal.join(", ")
+    : wine.varietal;
+
   const navigate = useNavigate();
   return (
     <section>
@@ -37,7 +41,7 @@ const WineDetails = ({ wine }) => {
               </div>
               <div className={s.row}>
                 <dt>Varieties:</dt>
-                <dd className={s.value}>{wine.varietal || "—"}</dd>
+                <dd className={s.value}>{varietalText || "—"}</dd>
               </div>
               <div className={s.row}>
                 <dt>Vintage:</dt>
@@ -46,9 +50,7 @@ const WineDetails = ({ wine }) => {
             </dl>
           </div>
           <div className={s.description}>
-            <p>
-              <strong>Description:</strong> {wine.description}
-            </p>
+            <p>{wine.description}</p>
           </div>
         </div>
       </Container>

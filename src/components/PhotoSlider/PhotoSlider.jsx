@@ -16,32 +16,30 @@ const PhotoSlider = () => {
   if (!PHOTOS.length) return null;
 
   return (
-    <div className={s.root}>
-      <div
-        className={s.wrap}
-        onMouseEnter={stop}
-        onMouseLeave={start}
-        onFocus={stop}
-        onBlur={start}
-      >
-        <div className={s.embla} ref={emblaRef}>
-          <div className={s.container}>
-            {PHOTOS.map((photo, i) => (
-              <div className={s.slide} key={i} tabIndex={0}>
-                <div className={s.card}>
-                  <picture>
-                    <source srcSet={photo.webp} type="image/webp" />
-                    <img
-                      src={photo.fallback}
-                      alt={`Wine photo ${i + 1}`}
-                      className={s.img}
-                      draggable="false"
-                    />
-                  </picture>
-                </div>
+    <div
+      className={s.wrap}
+      onMouseEnter={stop}
+      onMouseLeave={start}
+      onFocus={stop}
+      onBlur={start}
+    >
+      <div className={s.embla} ref={emblaRef}>
+        <div className={s.container}>
+          {PHOTOS.map((photo, i) => (
+            <div className={s.slide} key={i} tabIndex={0}>
+              <div className={s.card}>
+                <picture>
+                  <source srcSet={photo.webp} type="image/webp" />
+                  <img
+                    src={photo.fallback}
+                    alt={`Wine photo ${i + 1}`}
+                    className={s.img}
+                    draggable="false"
+                  />
+                </picture>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>

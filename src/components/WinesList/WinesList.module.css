@@ -1,3 +1,18 @@
+.nothing {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 25vh;
+
+  text-transform: uppercase;
+  background: radial-gradient(
+    circle at top center,
+    #26211e 0,
+    #050505 100%,
+    #050505 100%
+  );
+}
+
 .wrapper {
   padding-top: 60px;
   padding-bottom: 60px;
@@ -17,4 +32,19 @@
   width: 100%;
   align-items: center;
   justify-content: center;
+}
+
+.showMore {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.showMoreBtn {
+  border-style: none;
+  padding: 8px 16px;
+  border-radius: 12px;
+  background-color: var(--red-accent);
+  text-transform: uppercase;
+  color: var(--color-white);
 }
