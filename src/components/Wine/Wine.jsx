@@ -26,7 +26,11 @@ const Wine = ({
       <div className={s.cardWrapper}>
         <Link to={`/wine-details/${_id}`} state={linkState}>
           <div className={s.wineMedia}>
-            <img className={s.wineImg} src={thumb} alt={title} />
+            <img
+              className={s.wineImg}
+              src={thumb ?? "/photo/default_img.png"}
+              alt={title}
+            />
           </div>
         </Link>
         <div className={s.details}>

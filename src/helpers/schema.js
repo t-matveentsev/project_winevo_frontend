@@ -43,11 +43,11 @@ export const signinAdminValidationSchema = Yup.object().shape({
 
 export const createWineValidationSchema = Yup.object().shape({
   thumb: Yup.mixed().test("fileSize", "File size is too large", (value) => {
-    return !value || (value && value.size <= 5 * 1024 * 1024); // 5MB limit
+    return !value || (value && value.size <= 5 * 1024 * 1024);
   }),
   title: Yup.string()
     .min(4, "Must be at least 4 characters")
-    .max(40, "Must be 40 characters or less")
+    .max(50, "Must be 50 characters or less")
     .required(),
   type: Yup.string().required(),
   country: Yup.string()
@@ -69,21 +69,21 @@ export const createWineValidationSchema = Yup.object().shape({
 
 export const editWineValidationSchema = Yup.object().shape({
   thumb: Yup.mixed().test("fileSize", "File size is too large", (value) => {
-    return !value || (value && value.size <= 5 * 1024 * 1024);
+    return !value || (value instanceof File && value.size <= 5 * 1024 * 1024);
   }),
   title: Yup.string()
     .min(4, "Must be at least 4 characters")
-    .max(40, "Must be 40 characters or less"),
-  type: Yup.strin,
+    .max(50, "Must be 50 characters or less"),
+  type: Yup.string(),
   country: Yup.string()
     .min(4, "Must be at least 4 characters")
     .max(15, "Must be 15 characters or less"),
-  region: Yup.strin,
-  winery: Yup.strin,
+  region: Yup.string(),
+  winery: Yup.string(),
   varietal: Yup.array()
     .of(Yup.string().trim())
     .min(1, "At least one varietal is required"),
-  year: Yup.string().min(4).max,
+  year: Yup.string().min(4).max(4),
   description: Yup.string()
     .min(30, "Must be at least 30 characters")
     .max(1000, "Must be 500 characters or less"),

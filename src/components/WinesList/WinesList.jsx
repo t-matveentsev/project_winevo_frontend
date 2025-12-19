@@ -44,7 +44,6 @@ const WinesList = ({ admin = false, baseQuery = {} }) => {
 
         {hasNextPage && (
           <div className={s.showMore}>
-            {console.log(isLoading)}
             {isLoading ? (
               <button
                 className={s.showMoreBtn}
