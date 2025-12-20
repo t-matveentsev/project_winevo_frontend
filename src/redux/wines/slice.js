@@ -1,9 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { deleteWineById, fetchWines, updateWine } from "./operations";
+import {
+  deleteWineById,
+  fetchWines,
+  getWineById,
+  updateWine,
+} from "./operations";
 
 const initialState = {
   wines: {
     items: [],
+    currentWine: null,
     loading: false,
     error: null,
     page: 1,
@@ -35,6 +41,20 @@ const slice = createSlice({
         state.wines.loading = false;
         state.wines.error = action.payload;
       })
+
+      .addCase(getWineById.pending, (state) => {
+        state.wines.loading = true;
+      })
+      .addCase(getWineById.fulfilled, (state, action) => {
+        state.wines.currentWine = action.payload;
+        state.wines.loading = false;
+        state.wines.error = null;
+      })
+      .addCase(getWineById.rejected, (state, action) => {
+        state.wines.loading = false;
+        state.wines.error = action.payload;
+      })
+
       .addCase(deleteWineById.pending, (state) => {
         state.wines.loading = true;
       })
@@ -49,6 +69,7 @@ const slice = createSlice({
         state.wines.loading = false;
         state.wines.error = action.payload;
       })
+
       .addCase(updateWine.pending, (state) => {
         state.wines.loading = true;
       })

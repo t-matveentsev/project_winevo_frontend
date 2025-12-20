@@ -80,9 +80,7 @@ export const editWineValidationSchema = Yup.object().shape({
     .max(15, "Must be 15 characters or less"),
   region: Yup.string(),
   winery: Yup.string(),
-  varietal: Yup.array()
-    .of(Yup.string().trim())
-    .min(1, "At least one varietal is required"),
+  varietal: Yup.array().of(Yup.string().trim()),
   year: Yup.string().min(4).max(4),
   description: Yup.string()
     .min(30, "Must be at least 30 characters")

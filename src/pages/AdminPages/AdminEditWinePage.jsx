@@ -1,24 +1,28 @@
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { selectWines } from "../../redux/wines/selectors";
 import Container from "../../components/Container/Container";
-import Loader from "../../components/Loader/Loader";
 import WineForm from "../../components/Admin/WineForm/WineForm";
-
 import s from "./AdminShared.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getWineById } from "../../redux/wines/operations";
+import { selectCurrentWine } from "../../redux/wines/selectors";
 
 const AdminWinePage = () => {
-  const { id } = useParams();
-  const wines = useSelector(selectWines);
-  const wine = wines.find((item) => item._id === id);
+  const currentWine = useSelector(selectCurrentWine);
 
-  if (!wine) {
-    return <Loader />;
-  }
+  const { id } = useParams();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (id) {
+      dispatch(getWineById(id));
+    }
+  }, [dispatch, id]);
+
   return (
     <section className={s.createWineBack}>
       <Container>
-        <WineForm wine={wine} />
+        <WineForm wine={currentWine} />
       </Container>
     </section>
   );

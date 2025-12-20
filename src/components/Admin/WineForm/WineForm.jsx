@@ -1,11 +1,11 @@
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Formik, Form, Field, ErrorMessage, useFormikContext } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useNavigate } from "react-router-dom";
 
 import { selectTypes } from "../../../redux/type/selectors";
 import { selectVarietals } from "../../../redux/varietal/selectors";
-import { selectLoading } from "../../../redux/wines/selectors";
+// import { selectLoading } from "../../../redux/wines/selectors";
 import { createWine, updateWine } from "../../../redux/wines/operations";
 
 import {
@@ -18,83 +18,60 @@ import ImageEditorModal from "../../ImageEditorModal/ImageEditorModal";
 import Loader from "../../Loader/Loader";
 import s from "./WineForm.module.css";
 
-const DRAFT_KEY = "wineFormDraft_v1";
-
-function debounce(fn, delay = 500) {
-  let t;
-  return (...args) => {
-    clearTimeout(t);
-    t = setTimeout(() => fn(...args), delay);
-  };
-}
-
-function DraftAutosave({ enabled }) {
-  const { values } = useFormikContext();
-  console.log({ values });
-  const save = useMemo(
-    () =>
-      debounce((vals) => {
-        if (!enabled) return;
-        const { ...rest } = vals;
-        localStorage.setItem(DRAFT_KEY, JSON.stringify(rest));
-      }, 500),
-    [enabled]
-  );
-
-  useEffect(() => {
-    save(values);
-  }, [values, save]);
-
-  return null;
-}
-
 export default function WineForm({ wine }) {
+  const {
+    _id,
+    type,
+    title,
+    country,
+    region,
+    winery,
+    varietal,
+    year,
+    description,
+  } = wine || {};
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const loading = useSelector(selectLoading);
-  const types = useSelector(selectTypes);
-  const varietals = useSelector(selectVarietals);
-
-  const isEdit = Boolean(wine?._id);
 
   const [currentVarietal, setCurrentVarietal] = useState("");
   const [rawPreview, setRawPreview] = useState(null);
   const [finalPreview, setFinalPreview] = useState(null);
   const [editorOpen, setEditorOpen] = useState(false);
 
-  const defaultInitialValues = useMemo(
+  const varietals = useSelector(selectVarietals);
+  const types = useSelector(selectTypes);
+  // const loading = useSelector(selectLoading);
+
+  const initialValues = useMemo(
     () => ({
-      thumb: "",
-      title: wine?.title || "",
-      type: wine?.type?._id || wine?.type || "",
-      country: wine?.country || "",
-      region: wine?.region || "",
-      winery: wine?.winery || "",
+      type: type || "",
+      title: title || "",
+      country: country || "",
+      region: region || "",
+      winery: winery || "",
       varietal: Array.isArray(wine?.varietal)
-        ? wine.varietal.map((v) => v?._id || v)
+        ? varietals
+            .filter((v) => varietal.includes(v.varietal))
+            .map((v) => v._id)
         : [],
-      year: wine?.year ? String(wine.year) : "",
-      description: wine?.description || "",
+      year: year || "",
+      description: description || "",
+      thumb: "",
     }),
-    [wine]
+    [
+      type,
+      title,
+      country,
+      region,
+      winery,
+      wine?.varietal,
+      varietals,
+      year,
+      description,
+      varietal,
+    ]
   );
-
-  const initialValues = useMemo(() => {
-    if (isEdit) return defaultInitialValues;
-    try {
-      const saved = localStorage.getItem(DRAFT_KEY);
-      if (!saved) return defaultInitialValues;
-      const parsed = JSON.parse(saved);
-      return { ...defaultInitialValues, ...parsed, thumb: "" };
-    } catch {
-      return defaultInitialValues;
-    }
-  }, [defaultInitialValues, isEdit]);
-
-  const validationSchema = isEdit
-    ? editWineValidationSchema
-    : createWineValidationSchema;
 
   const onFilePicked = (e, setFieldValue) => {
     const file = e.currentTarget.files?.[0];
@@ -105,27 +82,30 @@ export default function WineForm({ wine }) {
     setFieldValue("thumb", "");
   };
 
-  const buildFormData = (values) => {
-    const fd = new FormData();
+  function buildFormData(values) {
+    const data = new FormData();
+
+    let bodyHasAtLeastOneField = false;
+    let hasThumb = false;
 
     if (values.thumb instanceof File) {
-      fd.append("thumb", values.thumb);
+      data.append("thumb", values.thumb);
+      hasThumb = true;
     }
-
-    const original = defaultInitialValues;
 
     const maybeAppend = (key) => {
       const val = values[key];
-
       if (val === "" || val === null || val === undefined) return;
 
-      if (!isEdit) {
-        fd.append(key, val);
+      if (!wine) {
+        data.append(key, val);
+        bodyHasAtLeastOneField = true;
         return;
       }
 
-      if (String(val) !== String(original[key] ?? "")) {
-        fd.append(key, val);
+      if (String(val) !== String(initialValues[key] ?? "")) {
+        data.append(key, val);
+        bodyHasAtLeastOneField = true;
       }
     };
 
@@ -138,29 +118,34 @@ export default function WineForm({ wine }) {
     maybeAppend("description");
 
     const currentVarietal = values.varietal || [];
-    const originalVarietal = original.varietal || [];
+    const originalVarietal = initialValues.varietal || [];
 
     const sameVarietal =
       currentVarietal.length === originalVarietal.length &&
-      currentVarietal.every((id, i) => id === originalVarietal[i]);
+      currentVarietal.every((id) => originalVarietal.includes(id));
 
-    if (currentVarietal.length > 0 && (!isEdit || !sameVarietal)) {
-      currentVarietal.forEach((id) => fd.append("varietal[]", id));
+    if (!wine || !sameVarietal) {
+      currentVarietal.forEach((id) => data.append("varietal[]", id));
+      bodyHasAtLeastOneField = true;
     }
 
-    return fd;
-  };
+    if (wine && hasThumb && !bodyHasAtLeastOneField) {
+      data.append("title", values.title || initialValues.title || "");
+    }
+
+    return data;
+  }
 
   const handleSubmit = async (values, actions) => {
     try {
       const formData = buildFormData(values);
 
-      if (isEdit) {
-        await dispatch(updateWine({ id: wine._id, formData })).unwrap();
+      if (wine) {
+        await dispatch(updateWine({ id: _id, formData })).unwrap();
         navigate("/admin/home");
       } else {
         const created = await dispatch(createWine(formData)).unwrap();
-        localStorage.removeItem(DRAFT_KEY);
+        // localStorage.removeItem(DRAFT_KEY);
         navigate(`/wine-details/${created._id}`, { state: { admin: true } });
       }
 
@@ -168,28 +153,25 @@ export default function WineForm({ wine }) {
       setCurrentVarietal("");
       setRawPreview(null);
       setFinalPreview(null);
-    } catch (e) {
-      console.log(e);
+    } catch (error) {
+      console.log(error.message);
     }
   };
 
-  if (loading) return <Loader />;
-
   return (
     <div className={s.wrapper}>
-      {console.log(validationSchema)}
-      {console.log(isEdit)}
-      <h2 className={s.title}>{isEdit ? "Edit Wine" : "Add New Wine"}</h2>
+      <h2 className={s.title}>{wine ? "Edit Wine" : "Add New Wine"}</h2>
 
       <Formik
         initialValues={initialValues}
-        validationSchema={validationSchema}
+        validationSchema={
+          wine ? editWineValidationSchema : createWineValidationSchema
+        }
         onSubmit={handleSubmit}
         enableReinitialize
       >
         {({ values, setFieldValue }) => (
           <Form className={s.form}>
-            <DraftAutosave enabled={!isEdit} />
             <div className={`${s.field} ${s.fieldSpan2}`}>
               <label htmlFor="thumb" className={s.label}>
                 Wine Image
@@ -206,7 +188,7 @@ export default function WineForm({ wine }) {
 
               <ErrorMessage name="thumb" component="div" className={s.error} />
 
-              {(finalPreview || rawPreview || (isEdit && wine?.thumb)) && (
+              {(finalPreview || rawPreview || (wine && wine?.thumb)) && (
                 <div className={s.previewWrapper}>
                   <img
                     src={finalPreview || rawPreview || wine.thumb}
@@ -333,18 +315,22 @@ export default function WineForm({ wine }) {
 
               {(values.varietal || []).length > 0 ? (
                 <ul className={s.varietalList}>
-                  {values.varietal.map((id) => {
-                    const v = varietals.find((x) => x._id === id);
+                  {values.varietal.map((item) => {
+                    const v = varietals.find(
+                      (x) => x._id === item || x.varietal === item
+                    );
+
                     return (
-                      <li key={id} className={s.varietalItem}>
-                        <span>{v?.varietal || "Unknown"}</span>
+                      <li key={item} className={s.varietalItem}>
+                        <span>{v?.varietal || item || "Unknown"}</span>
+
                         <button
                           type="button"
                           className={s.varietalRemoveBtn}
                           onClick={() =>
                             setFieldValue(
                               "varietal",
-                              values.varietal.filter((x) => x !== id)
+                              values.varietal.filter((x) => x !== item)
                             )
                           }
                         >
@@ -389,7 +375,7 @@ export default function WineForm({ wine }) {
 
             <div className={s.fieldFull}>
               <button type="submit" className={s.submitBtn}>
-                {isEdit ? "Save changes" : "Create wine"}
+                {wine ? "Save changes" : "Create wine"}
               </button>
             </div>
 

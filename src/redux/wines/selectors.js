@@ -2,6 +2,8 @@ import { createSelector } from "@reduxjs/toolkit";
 
 export const selectWinesState = (state) => state.wines.wines;
 
+export const selectCurrentWine = (state) => selectWinesState(state).currentWine;
+
 export const selectWines = (state) => selectWinesState(state).items;
 
 export const selectWinesMeta = createSelector([selectWinesState], (wine) => ({
